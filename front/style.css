@@ -1,0 +1,13 @@
+form {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+}
+
+.title {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	text-transform: uppercase;
+}

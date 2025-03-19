@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Page perso</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1 class="title">Ma page perso</h1>
+		<p>C'est mon <em>site</em> <strong>perso</strong></p>
+		<button id="get-comments">Afficher les commentaires</button>
+		<ul id="liste">
+			<li>
+				Liste 2 
+			</li>
+		</ul>
+		<form id="post-comment">
+				<label for="firstname">Prénom</label>
+				<input
+					type="text"
+					name="firstname"
+					id="firstname"
+					placeholder="Votre prénom..."
+					required
+				/>
+			</div>
+			<div>
+				<label for="lastname">Nom</label>
+				<input
+					type="text"
+					name="lastname"
+					id="lastname"
+					placeholder="Votre nom..."
+					required
+				/>
+			</div>
+			<textarea name="message" placeholder="Votre message..."></textarea>
+			<input type="submit" value="Envoyer" />
+		</form>
+		<div id="comment-list"></div>
+		<script src="script.js"></script>
+	</body>
+</html>
