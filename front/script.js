@@ -116,3 +116,60 @@ async function displayComments(comments) {
 	// - element.appendChild
 	// - element.innerHTML
 }
+
+
+
+
+
+form = document.getElementById("signup-form");
+// Trigger the getComments function when the form is submitted
+form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Empêche le formulaire de soumettre de manière classique
+
+    // Récupération des données du formulaire
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const password = document.getElementById('password').value;
+    const job = document.getElementById('state').value;
+
+    // Données à envoyer au serveur
+    const formData = {
+        first_name: firstName,
+        last_name: lastName,
+        password: password,
+        job: job
+    };
+
+    try {
+        // Envoi des données au serveur via POST
+        const response = await fetch(`${webServerAddress}/save`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Form submitted successfully:', result);
+        } else {
+            console.error('Form submission failed:', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error occurred:', error);
+    }
+});
+
+
+
+
+
+fetch('TpController.php')
+.then(response => response.json())
+.then(data => {
+	document.getElementById('nomUser').textContent = data.NameUser; // Affichage de la variable
+})
+.catch(error => {
+	console.error('Erreur:', error);
+});
