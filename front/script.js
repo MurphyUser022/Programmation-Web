@@ -164,7 +164,7 @@ form.addEventListener("submit", async (event) => {
 
 
 
-
+/*
 fetch('TpController.php')
 .then(response => response.json())
 .then(data => {
@@ -173,3 +173,4 @@ fetch('TpController.php')
 .catch(error => {
 	console.error('Erreur:', error);
 });
+*/
