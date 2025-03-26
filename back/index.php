@@ -32,7 +32,7 @@ $router->register('DELETE', '/comment', [$commentController, 'handleDeleteCommen
 
 $router->register('POST', '/auth/login', [$loginController, 'handleLoginRequest']);
 $router->register('POST', '/auth/register', [$loginController, 'handleRegister']);
-
+$router->register('POST', '/auth/logout', [$loginController, 'handleLogout']);
 
 //handleRegister
 

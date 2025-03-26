@@ -16,27 +16,26 @@ class AuthController
 
 
 public function handleLoginRequest() {
-    $username = $_POST['username'] ?? null;
-    $password = $_POST['password'] ?? null;
+    $this->username = $_POST['username'] ?? null;
+    $this->password = $_POST['password'] ?? null;
 
-    
-    if($username && $password) {
-        $this->stored_users = json_decode(file_get_contents($this->storage), true);		
-        return $this->login();  // Gérer la connexion de l'utilisateur
+        if ($this->username && $this->password) {
+        $this->stored_users = json_decode(file_get_contents($this->storage), true);
+        return $this->login();  
     } else {
-		echo"Please provide both username and password";
+        echo "Please provide both username and password";
         return $this->error = "Please provide both username and password."; 
     }
 }
 
 
-
 	 private function login(){
 		foreach ($this->stored_users as $user) {
-		   if($user['username'] == $this->username){
+		   if($user['username'] == $this->username){ 
 			  if(password_verify($this->password, $user['password'])){
-				 // You can set a session and redirect the user to his account.
-				 echo"You are loged in";
+                 setcookie('pseudo', $this->username, time() + 300 , "","", false, true);
+                 setcookie('role',$user['role'], time() + 300 );
+				 echo"Welcome username -->".$this->username." avec pour role --->".$user['role'];
 				 return  $this->success = "You are loged in";
 			  }
 		   }
@@ -48,12 +47,10 @@ public function handleLoginRequest() {
 
 
 public function handleRegister() {
-    // Récupérer les données POST
     $username = $_POST['username'] ?? null;
     $password = $_POST['password'] ?? null;
     $role = $_POST['role'] ?? 'Cuisinier'; 
 
-    // Vérification des champs
     if (!$username || !$password) {
         echo "Please provide both username and password";
         return $this->error = "Please provide both username and password.";
@@ -85,6 +82,9 @@ public function handleRegister() {
     $this->stored_users[] = $newUser; 
     file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT));
 
+
+ 
+
     echo "User registered successfully";
     return $this->success = "User registered successfully.";
 }
@@ -95,8 +95,8 @@ public function handleRegister() {
 
 	public function handleLogout(): void
 	{
-		session_destroy(); 
-		http_response_code(200);
+        setcookie('pseudo', '', time() - 30);
+        setcookie('role', '', time() - 30);
 		echo json_encode(['message' => 'Logged out successfully']);
 	}
 
