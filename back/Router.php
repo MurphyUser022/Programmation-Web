@@ -1,8 +1,7 @@
 <?php
 
-class Router
-{
-	private array $routes = [];
+class Router{
+    private array $routes = [];
 
 	/**
 	 * Register a new route
@@ -18,7 +17,7 @@ class Router
 
 	/**
 	 * Handle the incoming request
-	 */
+	 */ 
 	public function handleRequest(): void
 	{
 		// Get the HTTP method and path of the request
@@ -42,4 +41,5 @@ class Router
 		http_response_code(404);
 		echo json_encode(['error' => 'Route not found']);
 	}
+
 }
