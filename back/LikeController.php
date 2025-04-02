@@ -1,8 +1,8 @@
 <?php
-
-class CommentController
+/*
+class LikeController
 {
-	private string $filePath = "data/comments.json";
+	private string $filePath = "data/likes.json";
 	private AuthController $authController;
 
 	public function __construct(string $filePath, AuthController $authController)
@@ -12,13 +12,11 @@ class CommentController
 	}
 
 
-	public function handlePostCommentRequest(array $params): void {
+	public function handleAddLike(array $params): void {
 		// L'ID de la recette est dans les paramètres de l'URL
 		$recipeId = $params['recipe_id'] ?? null;
 		
-		// Récupérer l'ID de la recette depuis l'URL
-		$message = $_POST['message'] ?? null;
-	
+
 		if (!$recipeId || !$message) {
 			echo "Recipe ID and message are required.";
 			return;
@@ -35,7 +33,6 @@ class CommentController
 		$newComment = [
 			'recipe_id' => $recipeId,
 			'user_id' => $userId,
-			'message' => $message,
 			'timestamp' => date('c'),
 		];
 	
@@ -46,7 +43,7 @@ class CommentController
 		echo json_encode(['status' => 'success', 'message' => 'Comment saved successfully.']);
 	}
 	
-	
+    
 
 	// Saves a new comment to the file
 	private function saveComment(array $comment): void
@@ -57,28 +54,5 @@ class CommentController
 		file_put_contents($this->filePath, json_encode($comments, JSON_PRETTY_PRINT));
 	}
 
-	// Retrieves all comments from the file
-	private function getAllComments(): array
-	{
-		if (!file_exists($this->filePath)) {
-			return [];
-		}
-
-		$content = file_get_contents($this->filePath);
-		return json_decode($content, true) ?? [];
 	}
-
-	public function handleGetCommentsRequest(): void
-	{
-		http_response_code(200);
-		header('Content-Type: application/json');
-		echo json_encode($this->getAllComments());
-	}
-
-	public function handleDeleteCommentRequest(): void
-	{
-		$email = $this->authController->validateAuth();
-  
-}
-
-}
+*/
