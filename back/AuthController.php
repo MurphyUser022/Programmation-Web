@@ -33,8 +33,9 @@ public function handleLoginRequest() {
 		foreach ($this->stored_users as $user) {
 		   if($user['username'] == $this->username){ 
 			  if(password_verify($this->password, $user['password'])){
-                 setcookie('pseudo', $this->username, time() + 300 , "","", false, true);
-                 setcookie('role',$user['role'], time() + 300 );
+                 setcookie('pseudo', $this->username, time() + 900 , "/","", false, true); // ici le '/' c'est Pour que le cookie soit accessible depuis n'importe quel chemin
+                 setcookie('role',$user['role'], time() + 900 ,"/");
+                 setcookie('user_id',$user['id'], time() + 900 ,"/");
 				 echo"Welcome username -->".$this->username." avec pour role --->".$user['role'];
 				 return  $this->success = "You are loged in";
 			  }
@@ -72,8 +73,9 @@ public function handleRegister() {
 
     // Hashage du mot de passe
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+    $userId = str_replace('.', '_', uniqid("rec_", true));
     $newUser = [
+        "id" => $userId,
         'username' => $username,
         'password' => $hashedPassword,
         'role' => $role

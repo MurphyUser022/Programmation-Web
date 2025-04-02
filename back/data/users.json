@@ -1,17 +1,8 @@
 [
     {
-        "username": "Joe",
-        "password": "$2y$10$IvZm9ewNy4\/seX1ko.KmT.\/wXLSyzF.UJp1u8JACmLC.cB1cp0PXy",
-        "role": "Traducteur"
-    },
-    {
-        "username": "1",
-        "password": "$2y$10$drPMcA9kxaglpX7atJYXdOihhjurMEYgnsMm7pydDiXrNbuUb2sdS",
-        "role": "Cuisinier"
-    },
-    {
+        "id": "rec_67ed2b107c4633_04326086",
         "username": "John",
-        "password": "$2y$10$ueukVoyvG\/vt\/aMWkuIhqe\/Tj6vLQfC753MY16j4O5MY9Mk8\/qj0q",
+        "password": "$2y$10$Mu1VMeflNO9t8c.IAZlHw.ufHrfYntNfhFpGAnKJGIgx17V2uTsTO",
         "role": "Cuisinier"
     }
 ]
