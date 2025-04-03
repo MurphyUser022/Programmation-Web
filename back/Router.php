@@ -8,7 +8,7 @@ class Router{
 	 */
 	public function register(string $method, string $path, callable $handler): void
 	{
-		        // Remplacer {param} par des groupes dans une expression régulière
+		// Remplacer {param} par des groupes dans une expression régulière
         $pattern = preg_replace('/{(\w+)}/', '(?P<$1>[^/]+)', $path);
         $pattern = "#^" . $pattern . "$#"; // Encadrer par des délimiteurs de regex
 
@@ -44,9 +44,11 @@ class Router{
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 		header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 	
 		foreach ($this->routes as $route) {
-			if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {
+			$pattern = preg_replace('/\{[^\/]+\}/', '([^/]+)', $route['path']);
+			if ($route['method'] === $method && preg_match("#^$pattern$#", $path, $matches)) {
 				// Si une route correspond, extraire les paramètres nommés de l'URL
 	
 				

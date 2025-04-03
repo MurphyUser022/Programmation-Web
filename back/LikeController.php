@@ -50,7 +50,6 @@ class LikeController
 	{
 		$comments = $this->getAllComments();
 		$comments[] = $comment;
-
 		file_put_contents($this->filePath, json_encode($comments, JSON_PRETTY_PRINT));
 	}
 

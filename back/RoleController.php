@@ -2,11 +2,9 @@
 
 class RoleController {
     private $usersFile;
-    private $authController;
 
-    public function __construct($usersFile, $authController) {
+    public function __construct($usersFile) {
         $this->usersFile = $usersFile;
-        $this->authController = $authController;
     }
 
     private function loadUsers() {
@@ -21,26 +19,30 @@ class RoleController {
     }
 
     public function handleRoleRequest() {
+        if (!isset($_COOKIE['user_id'])) {
+            http_response_code(403);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
+            return;
+        }
+
+        $userId = $_COOKIE['user_id'];
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if (!isset($data['user_id']) || !isset($data['roles'])) {
+        if (!isset($data['role'])) {
             http_response_code(400);
             echo json_encode(["error" => "Données invalides"]);
             return;
         }
 
         $users = $this->loadUsers();
-        $userId = $data['user_id'];
-        $role = $data['roles'];
-
         foreach ($users as &$user) {
             if ($user['id'] == $userId) {
-                if (isset($user['role_demande']) && in_array($role, $user['role_demande'])) {
+                if (in_array($data['role'], $user['role_demande'])) {
                     http_response_code(409);
                     echo json_encode(["error" => "Demande déjà en attente"]);
                     return;
                 }
-                $user['role_demande'][] = $role;
+                $user['role_demande'][] = $data['role'];
                 $this->saveUsers($users);
 
                 http_response_code(201);
@@ -53,17 +55,25 @@ class RoleController {
         echo json_encode(["error" => "Utilisateur non trouvé"]);
     }
 
-    public function approveRole($userId) {
+    public function approveRole() {
+        if (!isset($_COOKIE['user_id'])) {
+            http_response_code(403);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
+            return;
+        }
+        $userId = $_COOKIE['user_id'];
         $users = $this->loadUsers();
         foreach ($users as &$user) {
             if ($user['id'] == $userId) {
-                if (!isset($user['role_demande']) || empty($user['role_demande'])) {
+                if (empty($user['role_demande'])) {
                     http_response_code(404);
                     echo json_encode(["error" => "Aucune demande de rôle en attente"]);
                     return;
                 }
                 foreach ($user['role_demande'] as $role) {
-                    $user['roles'][] = $role;
+                    if (!in_array($role, $user['roles'])) {
+                        $user['roles'][] = $role;
+                    }
                 }
                 $user['role_demande'] = [];
                 $this->saveUsers($users);
@@ -76,28 +86,25 @@ class RoleController {
         http_response_code(404);
         echo json_encode(["error" => "Utilisateur non trouvé"]);
     }
-
     
-    public function assignRole($userId) {
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        if (!isset($data['role'])) {
-            http_response_code(400);
-            echo json_encode(["error" => "Données invalides"]);
+    public function assignRole() {
+        
+        if (!isset($_COOKIE['user_id'])) {
+            http_response_code(403);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
             return;
         }
-
+        $userId = $_COOKIE['user_id'];
+        $data = json_decode(file_get_contents("php://input"), true);
         $users = $this->loadUsers();
-        $role = $data['roles'];
-
         foreach ($users as &$user) {
             if ($user['id'] == $userId) {
-                if (isset($user['roles']) && in_array($role, $user['roles'])) {
+                if (in_array($data['role'], $user['roles'])) {
                     http_response_code(409);
                     echo json_encode(["error" => "Utilisateur a déjà ce rôle"]);
                     return;
                 }
-                $user['roles'][] = $role;
+                $user['roles'][] = $data['role'];
                 $this->saveUsers($users);
 
                 http_response_code(201);

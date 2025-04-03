@@ -3,14 +3,20 @@
         "id": 1,
         "username": "admin",
         "password": "hashed_password",
-        "roles": ["admin"],
+        "roles": [
+            "admin"
+        ],
         "role_demande": []
     },
     {
         "id": 2,
         "username": "so_diop",
         "password": "hashed_password",
-        "roles": ["chef"],
-        "role_demande": ["cuisinier"]
+        "roles": [
+            "cuisinier",
+            "chef",
+            "traducteur"
+        ],
+        "role_demande": []
     }
 ]
