@@ -1,8 +1,16 @@
 [
     {
-        "id": "rec_67ed2b107c4633_04326086",
-        "username": "John",
-        "password": "$2y$10$Mu1VMeflNO9t8c.IAZlHw.ufHrfYntNfhFpGAnKJGIgx17V2uTsTO",
-        "role": "Cuisinier"
+        "id": 1,
+        "username": "admin",
+        "password": "hashed_password",
+        "roles": ["admin"],
+        "role_demande": []
+    },
+    {
+        "id": 2,
+        "username": "so_diop",
+        "password": "hashed_password",
+        "roles": ["chef"],
+        "role_demande": ["cuisinier"]
     }
 ]

@@ -16,6 +16,7 @@ $authController = new AuthController(__DIR__ . '/data/users.json');
 $commentController = new CommentController('data/comments.json', $authController);
 //$likeController  = new CommentController('data/likes.json', $authController);
 //$commentController = new CommentController();
+$roleController = new RoleController('data/users.json', $authController);
 
 //$TpController = new TpController('back/TpController.php');
 
