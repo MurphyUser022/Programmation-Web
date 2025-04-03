@@ -36,13 +36,14 @@ public function handleLoginRequest() {
                  setcookie('pseudo', $this->username, time() + 900 , "/","", false, true); // ici le '/' c'est Pour que le cookie soit accessible depuis n'importe quel chemin
                  setcookie('role',$user['role'], time() + 900 ,"/");
                  setcookie('user_id',$user['id'], time() + 900 ,"/");
-				 echo"Welcome username -->".$this->username." avec pour role --->".$user['role'];
-				 return  $this->success = "You are loged in";
+				// echo"Welcome username -->".$this->username." avec pour role --->".$user['role'];
+                echo json_encode(["success" => true, "message" => "You are logged in"]);
+                exit();
 			  }
 		   }
 		}
-		echo"Wrong username or password";
-		return $this->error = "Wrong username or password";
+        echo json_encode(["success" => false, "message" => "Wrong username or password"]);
+        exit();
 	 }
 
 

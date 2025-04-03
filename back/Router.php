@@ -39,7 +39,7 @@ class Router{
 		}
 	
 
-		echo "URL : " . $path . "<br>";
+		//echo "URL : " . $path . "<br>";
 		// Set the CORS headers
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
