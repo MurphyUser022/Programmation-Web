@@ -87,7 +87,7 @@ class RecettesController
             $filteredRecipes = array_filter($recipes, function($recipe) use ($searchTerm) {
                 return stripos($recipe['name'], $searchTerm) !== false; // Recherche insensible à la casse
             });
-echo"Le m'en blc ";
+
 
             // Renvoie des recettes filtré
             http_response_code(200);

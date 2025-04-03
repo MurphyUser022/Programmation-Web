@@ -4,5 +4,11 @@
         "username": "John",
         "password": "$2y$10$Mu1VMeflNO9t8c.IAZlHw.ufHrfYntNfhFpGAnKJGIgx17V2uTsTO",
         "role": "Cuisinier"
+    },
+    {
+        "id": "rec_67ee78b51413b8_26334909",
+        "username": "Fat",
+        "password": "$2y$10$pgEk8\/hnbw6wlHodTKuvkuuikQyUNywBzKLij9Twe9nXzUumxIiRm",
+        "role": "Cuisinier"
     }
 ]
