@@ -51,7 +51,7 @@ public function handleLoginRequest() {
 public function handleRegister() {
     $username = $_POST['username'] ?? null;
     $password = $_POST['password'] ?? null;
-    $role = $_POST['role'] ?? 'Cuisinier'; 
+    $role = 'Cuisinier'; 
 
     if (!$username || !$password) {
         echo "Please provide both username and password";

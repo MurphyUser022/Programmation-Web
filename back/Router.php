@@ -47,21 +47,10 @@ class Router{
 
 	
 		foreach ($this->routes as $route) {
-			$pattern = preg_replace('/\{[^\/]+\}/', '([^/]+)', $route['path']);
-			if ($route['method'] === $method && preg_match("#^$pattern$#", $path, $matches)) {
-				// Si une route correspond, extraire les paramètres nommés de l'URL
-	
-				
+
+			if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {
 				$params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
-
-
-				// Débogage pour vérifier les paramètres de la query string et des URL
-				//var_dump($params);
-				//var_dump($queryParams);
-
-				// Appel du handler avec les deux sets de paramètres
-				call_user_func_array($route['handler'], [$params, $queryParams]);
-	
+				call_user_func($route['handler'], $params);
 				return;
 			}
 		}
