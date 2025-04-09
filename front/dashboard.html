@@ -1,15 +1,187 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Dashboard</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthy Food</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gradient-to-r from-[#fefcf7] to-[#eaf4d3] relative overflow-x-hidden font-sans">
 
-</head>
-<body class="flex items-center justify-center h-screen bg-gray-100">
-    <h1>😊</h1>
-    <p class="mt-4 text-2xl font-semibold ">Coming soon...</p>
+    <!-- Formes et courbes supplémentaires -->
+    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#ffbbd6] blur-2xl opacity-40 rounded-full -z-20"></div>
+    <div class="absolute top-1/4 left-1/2 w-[600px] h-[600px] bg-[#eaf4d3] blur-2xl opacity-30 rounded-[40%] -z-10"></div>
+    <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-[#ff9f00] to-[#ff5349] blur-lg opacity-40 rounded-[60%] -z-10"></div>
 
-</body>
+    <!-- Formes animées -->
+    <div class="absolute top-16 right-10 w-72 h-72 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-40 rounded-full -z-10 animate-pulse"></div>
+    <div class="absolute bottom-32 left-16 w-56 h-56 bg-[#eaf4d3] blur-md opacity-50 rounded-[60%] -z-10 animate-pulse"></div>
+
+
+    <header class="px-10 py-6 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-green-700">Glodon 🍃 </h1>
+        <nav class="flex space-x-6 text-gray-700">
+            <a href="#" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
+            <a href="#" class="transition-colors duration-300 hover:text-green-600">Traduction</a>
+            <a href="#" class="transition-colors duration-300 hover:text-green-600">Paramètres</a>
+            <a href="#" class="transition-colors duration-300 hover:text-green-600">Contact</a>
+          </nav>
+      </header>
+  
+
+    <section class="px-10 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+     
+      <div class="space-y-6">
+        <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">
+            Encyclopédie des <span class="text-orange-500">Recettes de cuisine</span>
+        </h2>
+        <p class="text-gray-600">
+            Découvrez des recettes saines et délicieuses avec des ingrédients uniques
+        </p>
+        <button class="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-all duration-300 ease-in-out transform hover:scale-105">Explore Recipes</button>
+      </div>
+  
+    
+      <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:scale-105 transition-all duration-300">
+        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" class="w-full h-[350px] object-cover object-center rounded-3xl" />
+      </div>
+    </section>
+
+    <!-- Forms et courbures -->
+    <div class="absolute top-1/2 left-1/4 transform -translate-x-1/4 w-80 h-80 bg-[#ffbbd6] blur-xl opacity-30 rounded-full -z-10 animate-pulse"></div>
+    <div class="absolute bottom-24 right-32 w-64 h-64 bg-gradient-to-r from-[#ff5349] to-[#ff9f00] blur-md opacity-40 rounded-[80%] -z-10 animate-pulse"></div>
+
+
+
+    <!-- Animations supplémentaires -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-[#eaf4d3] blur-lg opacity-20 rounded-full -z-10 animate-pulse"></div>
+    <div class="absolute top-10 left-1/4 w-48 h-48 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-30 rounded-full -z-10 animate-pulse"></div>
+
+
+    
+
+    <div class="relative max-w-sm mx-auto mt-16">
+      <input type="text" placeholder="Rechercher..." class="w-full py-3 px-5 pl-12 rounded-xl border border-gray-300 bg-gray-50 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-all duration-300">
+      <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+    </div>
+    
+    
+
+
+<div class="flex flex-wrap justify-center gap-6 p-8 ">
+  <!-- Répéter 3 fois la même carte -->
+  <!-- ========== CARD START ========== -->
+  <div class="w-full sm:w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl hover:bg-gradient-to-r from-green-100 to-green-200 duration-300">
+    <div class="relative">
+      <img id="recette-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Image de la recette" class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <div class="absolute bottom-2 left-4 text-white text-lg font-bold bg-black bg-opacity-50 px-2 py-1 rounded">Pâtes Fraîches</div>
+    </div>
+    <div class="px-4 py-4">
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Pâtes au Basilic</h2>
+      <p class="text-gray-600 text-xs mb-4">Un plat italien classique revisité avec une touche de fraîcheur.</p>
+      <div class="flex items-center space-x-2 text-gray-700 mb-4 text-xs">
+        <i class="fas fa-clock text-green-600"></i>
+        <span>Temps total : 25 min</span>
+      </div>
+     <a href="recette.html" class="text-green-600 text-xs font-medium hover:underline mb-3 focus:outline-none">Voir plus</a>
+
+      <div class="hidden space-y-3 text-xs text-gray-800 mb-4">
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">1</div><div class="flex-1">Faites cuire les pâtes.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">2</div><div class="flex-1">Ajoutez le pesto maison.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">3</div><div class="flex-1">Parsemez de parmesan.</div></div>
+      </div>
+      <div class="flex space-x-3">
+        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> Like</button>
+        <a href="recette.html">
+            <button class="bg-blue-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition">
+              <i class="fas fa-comment"></i> Commenter
+            </button>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="w-full sm:w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl hover:bg-gradient-to-r from-green-100 to-green-200 duration-300">
+    <div class="relative">
+      <img id="recette-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Image de la recette" class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <div class="absolute bottom-2 left-4 text-white text-lg font-bold bg-black bg-opacity-50 px-2 py-1 rounded">Pâtes Fraîches</div>
+    </div>
+    <div class="px-4 py-4">
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Pâtes au Basilic</h2>
+      <p class="text-gray-600 text-xs mb-4">Un plat italien classique revisité avec une touche de fraîcheur.</p>
+      <div class="flex items-center space-x-2 text-gray-700 mb-4 text-xs">
+        <i class="fas fa-clock text-green-600"></i>
+        <span>Temps total : 25 min</span>
+      </div>
+     <a href="recette.html" class="text-green-600 text-xs font-medium hover:underline mb-3 focus:outline-none">Voir plus</a>
+
+      <div class="hidden space-y-3 text-xs text-gray-800 mb-4">
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">1</div><div class="flex-1">Faites cuire les pâtes.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">2</div><div class="flex-1">Ajoutez le pesto maison.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">3</div><div class="flex-1">Parsemez de parmesan.</div></div>
+      </div>
+      <div class="flex space-x-3">
+        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> Like</button>
+        <a href="recette.html">
+            <button class="bg-blue-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition">
+              <i class="fas fa-comment"></i> Commenter
+            </button>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="w-full sm:w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl hover:bg-gradient-to-r from-green-100 to-green-200 duration-300">
+    <div class="relative">
+      <img id="recette-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Image de la recette" class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <div class="absolute bottom-2 left-4 text-white text-lg font-bold bg-black bg-opacity-50 px-2 py-1 rounded">Pâtes Fraîches</div>
+    </div>
+    <div class="px-4 py-4">
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Pâtes au Basilic</h2>
+      <p class="text-gray-600 text-xs mb-4">Un plat italien classique revisité avec une touche de fraîcheur.</p>
+      <div class="flex items-center space-x-2 text-gray-700 mb-4 text-xs">
+        <i class="fas fa-clock text-green-600"></i>
+        <span>Temps total : 25 min</span>
+      </div>
+     <a href="recette.html" class="text-green-600 text-xs font-medium hover:underline mb-3 focus:outline-none">Voir plus</a>
+
+      <div class="hidden space-y-3 text-xs text-gray-800 mb-4">
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">1</div><div class="flex-1">Faites cuire les pâtes.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">2</div><div class="flex-1">Ajoutez le pesto maison.</div></div>
+        <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">3</div><div class="flex-1">Parsemez de parmesan.</div></div>
+      </div>
+      <div class="flex space-x-3">
+        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> Like</button>
+        <a href="recette.html">
+            <button class="bg-blue-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition">
+              <i class="fas fa-comment"></i> Commenter
+            </button>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+ </div>
+</div>
+
+
+
+
+
+
+
+  </body>
 </html>
