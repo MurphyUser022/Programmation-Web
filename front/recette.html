@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title> Recette </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-cyan-100 to-orange-100 font-sans">
+
+  <div class="max-w-3xl mx-auto px-6 py-10">
+
+    <!-- Image et titre de la recette -->
+    <div class="text-center mb-6">
+      <img id="recette-img" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Image de la recette" class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <h1 id="recette-title" class="text-3xl font-extrabold text-gray-800 mt-4">Roti à la Cocotte</h1>
+      <p class="text-lg text-gray-600 italic">Recette par John</p>
+    </div>
+
+    <!-- Restrictions alimentaires -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">Restrictions Alimentaires</h2>
+      <ul id="restrictions" class="list-disc pl-6 text-gray-700">
+        <li>Sans Gluten</li>
+        <li>Sans Lait</li>
+      </ul>
+    </div>
+
+    <!-- Liste des ingrédients -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">Ingrédients</h2>
+      <ul id="recette-ingredients" class="list-disc pl-6 text-gray-700">
+        <li>1 Roti de boeuf</li>
+        <li>1 paquet de sauce brune</li>
+        <li>1 oignon</li>
+        <li>1 bouquet de thym</li>
+        <li>Sel et poivre au goût</li>
+      </ul>
+    </div>
+
+    <!-- Étapes de la recette -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">Étapes</h2>
+      <ul id="recette-steps" class="list-decimal pl-6 space-y-2 text-gray-700">
+        <li>Préparer la viande (1 minute)</li>
+        <li>Faire revenir l'oignon dans une poêle (10 minutes)</li>
+        <li>Placer le roti dans la cocotte et ajouter les épices (5 minutes)</li>
+        <li>Faire cuire à feu doux pendant 7 heures (420 minutes)</li>
+      </ul>
+    </div>
+
+    <!-- Bouton J'aime -->
+    <div class="text-center mb-6">
+      <button id="like-button" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg shadow-md transition">
+        J'aime
+      </button>
+      <p id="like-count" class="mt-2 text-gray-600">10 👍</p>
+    </div>
+
+    <!-- Section des commentaires -->
+    <div class="comments-section">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">Commentaires</h2>
+      
+      <!-- Liste des commentaires -->
+      <ul id="commentaires" class="mt-6 space-y-4">
+        <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+          <p class="font-medium text-gray-800">Marie : </p>
+          <p class="text-gray-700">Cette recette est juste divine ! Un goût incroyable, mes invités ont adoré. À refaire absolument !</p>
+          <span class="text-sm text-gray-500">à 14:30</span>
+        </li>
+        <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+          <p class="font-medium text-gray-800">Julien : </p>
+          <p class="text-gray-700">Super simple et tellement bon ! La cuisson longue donne une tendreté parfaite au roti.</p>
+          <span class="text-sm text-gray-500">à 15:45</span>
+        </li>
+        <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+          <p class="font-medium text-gray-800">Sophie : </p>
+          <p class="text-gray-700">Je suis sans gluten et sans lait, et cette recette est idéale ! Merci pour cette trouvaille. 😋</p>
+          <span class="text-sm text-gray-500">à 16:10</span>
+        </li>
+      </ul>
+
+      <!-- Ajouter un commentaire -->
+      <textarea id="comment-input" class="w-full p-3 mt-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 mb-4" placeholder="Ajouter un commentaire"></textarea>
+      <button id="comment-button" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg shadow-md transition">
+        Envoyer
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
