@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Édition & Traduction de Recette</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans py-10 px-6">
+
+        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#ffbbd6] blur-2xl opacity-40 rounded-full -z-20"></div>
+        <div class="absolute top-1/4 left-1/2 w-[600px] h-[600px] bg-[#eaf4d3] blur-2xl opacity-30 rounded-[40%] -z-10"></div>
+        <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-[#ff9f00] to-[#ff5349] blur-lg opacity-40 rounded-[60%] -z-10"></div>
+    
+        <!-- Formes animées -->
+        <div class="absolute top-16 right-10 w-72 h-72 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-40 rounded-full -z-10 animate-pulse"></div>
+        <div class="absolute bottom-32 left-16 w-56 h-56 bg-[#eaf4d3] blur-md opacity-50 rounded-[60%] -z-10 animate-pulse"></div>
+    
+
+
+
+
+
+        
+
+  <div class="max-w-7xl mx-auto space-y-10">
+
+    <!-- Image et titre -->
+    <div class="text-center">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+           alt="Image de la recette"
+           class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <h1 class="text-3xl font-bold mt-4">Modifier & Traduire la Recette</h1>
+    </div>
+
+    <!-- Titre -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label class="font-semibold">Titre (original)</label>
+        <input type="text" class="w-full border rounded px-3 py-2" value="Rôti à la Cocotte" />
+      </div>
+      <div>
+        <label class="font-semibold">Titre (traduction)</label>
+        <input type="text" class="w-full border rounded px-3 py-2" placeholder="Roast in Casserole" />
+      </div>
+    </div>
+
+
+        <!-- Ingrédients -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">Ingrédients (original)</label>
+              <textarea rows="6" class="w-full border rounded px-3 py-2">- 1 rôti de boeuf
+      - 1 paquet de sauce brune
+      - 1 oignon
+      - 1 bouquet de thym
+      - Sel et poivre</textarea>
+            </div>
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">Ingrédients (traduction)</label>
+              <textarea rows="6" class="w-full border rounded px-3 py-2" placeholder="Traduire ici..."></textarea>
+            </div>
+          </div>
+
+
+
+
+    <div>
+      <h2 class="text-xl font-semibold mb-4">Étapes & Durée</h2>
+
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded shadow">
+          <!-- Original -->
+          <div>
+            <label class="block font-medium mb-1">Étape 1 (original)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Préparer la viande</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" placeholder="Durée (min)" value="1" />
+          </div>
+          <!-- Traduction -->
+          <div>
+            <label class="block font-medium mb-1">Étape 1 (traduction)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Prepare the meat</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" placeholder="Duration (min)" value="1" />
+          </div>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded shadow">
+          <div>
+            <label class="block font-medium mb-1">Étape 2 (original)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Faire revenir l'oignon</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="10" />
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Étape 2 (traduction)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Sauté the onion</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="10" />
+          </div>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded shadow">
+          <div>
+            <label class="block font-medium mb-1">Étape 3 (original)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Ajouter le rôti et les épices</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="5" />
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Étape 3 (traduction)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Add the roast and spices</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="5" />
+          </div>
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded shadow">
+          <div>
+            <label class="block font-medium mb-1">Étape 4 (original)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Cuire à feu doux</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="420" />
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Étape 4 (traduction)</label>
+            <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Cook on low heat</textarea>
+            <input type="number" class="w-full border rounded px-3 py-2" value="420" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 space-x-4">
+      <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded">Sauvegarder</button>
+      <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded">Annuler</button>
+    </div>
+
+  </div>
+</body>
+</html>
