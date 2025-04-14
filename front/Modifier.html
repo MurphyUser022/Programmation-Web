@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifier une recette</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-[#fefcf7] to-[#eaf4d3] font-sans p-6">
+
+  <div class="max-w-5xl mx-auto bg-white p-8 rounded shadow space-y-8">
+
+    <h1 class="text-3xl font-bold text-center text-gray-800">Modifier la Recette</h1>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <label class="block font-medium mb-1">Image (URL)</label>
+        <input type="text" class="w-full border rounded px-3 py-2" value="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" />
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label class="block font-medium mb-1">Titre</label>
+          <input type="text" class="w-full border rounded px-3 py-2" value="Rôti à la Cocotte" />
+        </div>
+        <div>
+          <label class="block font-medium mb-1">Auteur</label>
+          <input type="text" class="w-full border rounded px-3 py-2" value="John" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Ingrédients</h2>
+      <textarea class="w-full border rounded px-3 py-2" rows="4">1 Rôti de boeuf
+1 paquet de sauce brune
+1 oignon
+1 bouquet de thym
+Sel et poivre au goût</textarea>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold mb-2">Étapes de la recette</h2>
+
+      <div class="space-y-6">
+        <div class="bg-gray-50 p-4 rounded border">
+          <label class="block font-medium">Étape 1</label>
+          <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Préparer la viande</textarea>
+          <input type="number" class="w-full border rounded px-3 py-2" value="1" placeholder="Durée en minutes" />
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded border">
+          <label class="block font-medium">Étape 2</label>
+          <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Faire revenir l'oignon dans une poêle</textarea>
+          <input type="number" class="w-full border rounded px-3 py-2" value="10" />
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded border">
+          <label class="block font-medium">Étape 3</label>
+          <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Ajouter le rôti et les épices</textarea>
+          <input type="number" class="w-full border rounded px-3 py-2" value="5" />
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded border">
+          <label class="block font-medium">Étape 4</label>
+          <textarea class="w-full border rounded px-3 py-2 mb-2" rows="2">Cuire à feu doux pendant 7 heures</textarea>
+          <input type="number" class="w-full border rounded px-3 py-2" value="420" />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t">
+      <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded shadow">
+        Sauvegarder les modifications
+      </button>
+      <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded shadow">
+        Supprimer la recette
+      </button>
+      <button onclick="window.history.back()" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded shadow">
+        Annuler
+      </button>
+    </div>
+
+  </div>
+  
+  
+  <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#ffbbd6] blur-2xl opacity-40 rounded-full -z-20 animate-pulse"></div>
+  <div class="absolute top-1/4 left-1/2 w-[600px] h-[600px] bg-[#eaf4d3] blur-2xl opacity-30 rounded-[40%] -z-10 animate-pulse"></div>
+  <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-[#ff9f00] to-[#ff5349] blur-lg opacity-40 rounded-[60%] -z-10 animate-pulse"></div>
+  
+  <!-- Formes animées -->
+  <div class="absolute top-16 right-10 w-72 h-72 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-40 rounded-full -z-10 animate-pulse"></div>
+  <div class="absolute bottom-32 left-16 w-56 h-56 bg-[#eaf4d3] blur-md opacity-50 rounded-[60%] -z-10 animate-pulse"></div>
+
+</body>
+</html>
