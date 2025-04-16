@@ -3,16 +3,15 @@
         "id": 1,
         "username": "admin",
         "password": "hashed_password",
-        "roles": [
-            "admin"
-        ],
+        "role": [
+            "admin"],
         "role_demande": []
     },
     {
         "id": 2,
         "username": "so_diop",
         "password": "hashed_password",
-        "roles": [
+        "role": [
             "cuisinier",
             "chef",
             "traducteur"
@@ -23,7 +22,8 @@
         "id": "rec_67ff60d37c9245_35970410",
         "username": "John",
         "password": "$2y$10$G1KHFipWMYNFOD.aVTbT4.0u05\/FFwzaOxp0X5n3w4XHgUEWeKhGK",
-        "role": "Cuisinier"
+        "role": "Cuisinier",
+        "role_demande": ["traducteur"]
     },
     {
         "id": "rec_67ffdc21590f02_63597510",

@@ -8,10 +8,21 @@ require_once 'RoleController.php';
 require_once 'LikeController.php';
 require_once 'TraductionController.php';
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Gérer les requêtes de type preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+
 session_start(); 
 
 $router = new Router();
-$authController = new AuthController(__DIR__ . '/data/users.json');
+$authController = new AuthController();
 // Créer l'instance de CommentController avec les arguments nécessaires
 $commentController = new CommentController('data/comments.json', $authController);
 $roleController = new RoleController('data/users.json', $authController);
@@ -24,7 +35,9 @@ $traductionController = new TraductionController('data/recipes.json', 'data/user
 $router->register('POST', '/auth/login', [$authController, 'handleLoginRequest']);
 $router->register('POST', '/auth/register', [$authController, 'handleRegister']);
 $router->register('POST', '/auth/logout', [$authController, 'handleLogout']);
-$router->register('GET', '/auth/users', [$authController, 'getAllUsers']);
+$router->register('GET', '/users', [$authController, 'getAllUsers']);
+
+
 
 
 //Gestion des Recettes
@@ -40,7 +53,7 @@ $router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
 //gestion des roles
 $router->register('POST', '/roles/request', [$roleController, 'handleRoleRequest']);
 $router->register('POST', '/roles/{id}/approve', [$roleController, 'approveRole']);
-$router->register('POST', '/roles/{id}/assign', [$roleController, 'assignRole']);
+$router->register('POST', '/roles/{id}/reject', [$roleController, 'rejectRole']);
 
 // gestion des commentaires 
 $router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'handlePostCommentRequest']);

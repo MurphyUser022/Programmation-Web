@@ -115,7 +115,6 @@ public function handleRegister() {
     
         $users = json_decode(file_get_contents($this->storage), true) ?? [];
     
-        // Optionnel : ne pas renvoyer les mots de passe hashés
         $usersSansPassword = array_map(function ($user) {
             unset($user['password']);
             return $user;
@@ -123,5 +122,6 @@ public function handleRegister() {
     
         echo json_encode($usersSansPassword);
     }
+    
     
 }
