@@ -18,6 +18,17 @@
             "traducteur"
         ],
         "role_demande": []
+    },
+    {
+        "id": "rec_67ff60d37c9245_35970410",
+        "username": "John",
+        "password": "$2y$10$G1KHFipWMYNFOD.aVTbT4.0u05\/FFwzaOxp0X5n3w4XHgUEWeKhGK",
+        "role": "Cuisinier"
+    },
+    {
+        "id": "rec_67ffdc21590f02_63597510",
+        "username": "Joe",
+        "password": "$2y$10$SEY31Y1.fuAUrvg4h9aDBOzkQNDDbcmZL2e5beVosO9qBWH.bImfK",
+        "role": "Cuisinier"
     }
-    
 ]
