@@ -1,44 +1,65 @@
 <!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Page perso</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<h1 class="title">Ma page perso</h1>
-		<p>C'est mon <em>site</em> <strong>perso</strong></p>
-		<button id="get-comments">Afficher les commentaires</button>
-		<ul id="liste">
-			<li>
-				Liste 2 
-			</li>
-		</ul>
-		<form id="post-comment">
-				<label for="firstname">Prénom</label>
-				<input
-					type="text"
-					name="firstname"
-					id="firstname"
-					placeholder="Votre prénom..."
-					required
-				/>
-			</div>
-			<div>
-				<label for="lastname">Nom</label>
-				<input
-					type="text"
-					name="lastname"
-					id="lastname"
-					placeholder="Votre nom..."
-					required
-				/>
-			</div>
-			<textarea name="message" placeholder="Votre message..."></textarea>
-			<input type="submit" value="Envoyer" />
-		</form>
-		<div id="comment-list"></div>
-		<script src="script.js"></script>
-	</body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <title>Connexion site de recettes</title>
+</head>
+<body
+  class="bg-cover bg-center h-screen flex items-center justify-center"
+  style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60');"
+>
+
+  <div class="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-sm w-full">
+    <div class="flex justify-center">
+      <img
+        src="https://fastly.picsum.photos/id/225/1500/979.jpg?hmac=jvGoek9ng_Y0GaBbzxN0KJhHaiPtk1VfRcukK8R8FxQ"
+        alt="Recette"
+        class="w-24 h-24 rounded-full shadow-md"
+      />
+    </div>
+
+    <h2 class="text-2xl font-bold text-center text-green-600 mt-4">Bienvenue !</h2>
+    <p class="text-center text-gray-600 text-sm">Connectez-vous pour découvrir des recettes gourmandes 🍲</p>
+
+	<form id="login-form" class="mt-6">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input
+          type="username"
+          id="username"
+          name="username"
+          required
+          class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none"
+        />
+      </div>
+
+      <div class="mt-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-500 rounded-lg hover:bg-orange-600 transition"
+      >
+        Se connecter
+      </button>
+    </form>
+
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Pas encore de compte ?
+      <a href="register.html" class="text-green-500 hover:underline">S'inscrire</a>
+    </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

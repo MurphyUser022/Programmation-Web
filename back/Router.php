@@ -26,38 +26,27 @@ class Router{
 	 * Handle the incoming request
 	 */ 
 	public function handleRequest(): void
-	{
-		// Get the HTTP method and path of the request
-		$method = $_SERVER['REQUEST_METHOD'];
-		$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-	
-		// Extraire les paramètres de la query string si la méthode est GET
-		$queryParams = [];
-		if ($method === 'GET' && strpos($_SERVER['REQUEST_URI'], '?') !== false) {
-			$queryString = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
-			parse_str($queryString, $queryParams);
+{
+	$method = $_SERVER['REQUEST_METHOD'];
+	$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+	// CORS headers
+	header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+	header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+	foreach ($this->routes as $route) {
+		if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {
+			$params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
+
+			// Appelle la fonction avec ou sans arguments selon la route
+			call_user_func_array($route['handler'], array_values($params));
+			return;
 		}
-	
-
-		//echo "URL : " . $path . "<br>";
-		// Set the CORS headers
-		header("Access-Control-Allow-Origin: *");
-		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-		header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-	
-		foreach ($this->routes as $route) {
-
-			if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {
-				$params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
-				call_user_func($route['handler'], $params);
-				return;
-			}
-		}
-	
-		// Si aucune route n'est trouvée, retourne un code 404
-		http_response_code(404);
-		echo json_encode(['error' => 'Route not found']);
 	}
-	
+
+	http_response_code(404);
+	echo json_encode(['error' => 'Route not found']);
+}
+
 }

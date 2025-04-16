@@ -84,10 +84,6 @@ public function handleRegister() {
     
     $this->stored_users[] = $newUser; 
     file_put_contents($this->storage, json_encode($this->stored_users, JSON_PRETTY_PRINT));
-
-
- 
-
     echo "User registered successfully";
     return $this->success = "User registered successfully.";
 }
@@ -108,8 +104,24 @@ public function handleRegister() {
 		return $_SESSION['user'] ?? null;
 	}
 
-	private function getAllUsers(): array
-	{
-		return file_exists($this->filePath) ? json_decode(file_get_contents($this->filePath), true) ?? [] : [];
-	}
+	public function getAllUsers() {
+        header('Content-Type: application/json');
+    
+        if (!file_exists($this->storage)) {
+            http_response_code(404);
+            echo json_encode(["error" => "Fichier users.json non trouvé"]);
+            return;
+        }
+    
+        $users = json_decode(file_get_contents($this->storage), true) ?? [];
+    
+        // Optionnel : ne pas renvoyer les mots de passe hashés
+        $usersSansPassword = array_map(function ($user) {
+            unset($user['password']);
+            return $user;
+        }, $users);
+    
+        echo json_encode($usersSansPassword);
+    }
+    
 }

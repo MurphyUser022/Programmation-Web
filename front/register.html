@@ -1,68 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <title>Connexion site de recettes</title>
 </head>
-<body>
+<body
+  class="bg-cover bg-center h-screen flex items-center justify-center"
+  style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60');"
+>
 
+  <div class="bg-white bg-opacity-90 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-sm w-full">
+    <div class="flex justify-center">
+      <img
+        src="https://fastly.picsum.photos/id/225/1500/979.jpg?hmac=jvGoek9ng_Y0GaBbzxN0KJhHaiPtk1VfRcukK8R8FxQ"
+        alt="Recette"
+        class="w-24 h-24 rounded-full shadow-md"
+      />
+    </div>
 
+    <h2 class="text-2xl font-bold text-center text-green-600 mt-4">Bienvenue !</h2>
+    <p class="text-center text-gray-600 text-sm">Connectez-vous pour découvrir des recettes gourmandes 🍲</p>
 
-    <div class="flex justify-center items-center h-screen p-10 ">
-      
-
-
-      <div class="container mx-auto flex md:px-24 md:py-10 md:flex-row flex-col items-center">
-
-        <div class="lg:max-w-lg lg:w-full mb-5 md:mb-0 md:w-1/2 w-3/6">
-            <img class="object-cover object-center rounded" alt="hero" src="https://www.svgrepo.com/show/490900/hot-air-balloon.svg">
-          </div>
-    
-    <div class="w-full max-w-sm bg-white p-6 rounded-lg shadow-lg ">
-
-      <div class="flex justify-center">
-          <img src="https://fastly.picsum.photos/id/225/1500/979.jpg?hmac=jvGoek9ng_Y0GaBbzxN0KJhHaiPtk1VfRcukK8R8FxQ" alt="Recette"
-              class="w-32 h-32 rounded-full shadow-md">
+    <form action="#" method="POST" class="mt-6" id="login-form">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input
+          type="username"
+          id="username"
+          name="username"
+          required
+          class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none"
+        />
       </div>
 
-  
-      <h2 class="text-2xl font-bold text-center text-blue-600 mt-4">Bienvenue !</h2>
-      <p class="text-center text-gray-500 text-sm">Inscrivez-vous pour découvrir des recettes gourmandes 🍲</p>
-    
+      <div class="mt-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none"
+        />
+      </div>
 
-      <form action="#" method="POST" class="mt-6" id="register-form">
-  
-          <div>
-              <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-              <input type="username" id="username" name="username" required
-                  class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none">
-          </div>
+      <button
+        type="submit"
+        class="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-500 rounded-lg hover:bg-orange-600 transition"
+      >
+        S'inscrire
+      </button>
+    </form>
 
-         
-          <div class="mt-4">
-              <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-              <input type="password" id="password" name="password" required
-                  class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-orange-300 focus:outline-none">
-          </div>
-
-
-          <button type="submit"
-              class="w-full px-4 py-2 mt-6 font-semibold text-white bg-blue-500 rounded-lg hover:bg-orange-600 transition">
-              S'inscrire
-          </button>
-      </form>
-
-      <p class="mt-4 text-center text-sm text-gray-600">
-          Pas encore de compte ?
-          <a href="login.html" class="text-blue-500 hover:underline">Se Connecter</a>
-      </p>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Deja inscrit(e)?
+      <a href="index.html" class="text-green-500 hover:underline">Se connecter</a>
+    </p>
   </div>
-</div>
 
-
-</div>
-		<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

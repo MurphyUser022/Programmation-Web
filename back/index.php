@@ -24,6 +24,8 @@ $traductionController = new TraductionController('data/recipes.json', 'data/user
 $router->register('POST', '/auth/login', [$authController, 'handleLoginRequest']);
 $router->register('POST', '/auth/register', [$authController, 'handleRegister']);
 $router->register('POST', '/auth/logout', [$authController, 'handleLogout']);
+$router->register('GET', '/auth/users', [$authController, 'getAllUsers']);
+
 
 //Gestion des Recettes
 $router->register('POST', '/recipes',[$recettesController, 'AjouteRecette']);

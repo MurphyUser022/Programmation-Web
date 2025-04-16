@@ -21,11 +21,10 @@
     <header class="px-10 py-6 flex justify-between items-center">
         <h1 class="text-3xl font-bold text-green-700">Glodon 🍃 </h1>
         <nav class="flex space-x-6 text-gray-700">
-            <a href="#" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
-            <a href="traduction.html" class="transition-colors duration-300 hover:text-green-600">Traduction</a>
-            <a href="#" class="transition-colors duration-300 hover:text-green-600">Paramètres</a>
-            <a href="#" class="transition-colors duration-300 hover:text-green-600">Contact</a>
-          </nav>
+            <a href="dashboard.html" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
+            <a href="user.html" class="transition-colors duration-300 hover:text-green-600">Gestion des roles</a>
+
+          </nav>     
       </header>
   
 
@@ -91,9 +90,7 @@
         <div class="flex items-start space-x-3"><div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-semibold">3</div><div class="flex-1">Parsemez de parmesan.</div></div>
       </div>
       <div class="flex space-x-3">
-        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> 10 👍</button>
-        
-        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> Traduire</button>
+        <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition"><i class="fas fa-thumbs-up"></i> Like</button>
         <a href="recette.html">
             <button class="bg-blue-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition">
               <i class="fas fa-comment"></i> Commenter
@@ -194,6 +191,28 @@
  </div>
 </div>
   
+<div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">👤 Demande de rôle</h2>
+  <p class="text-gray-600 mb-4">
+    Pour accéder à certaines fonctionnalités, veuillez sélectionner un rôle et faire une demande.
+  </p>
+
+  <div class="flex items-center space-x-4">
+    <select id="requested-role" class="flex-1 border border-gray-300 rounded px-4 py-2">
+      <option disabled> Choisir un rôle</option>
+      <option value="traducteur">Traducteur</option>
+      <option value="admin">Administrateur</option>
+      <option value="chef">Chef</option>
+    </select>
+
+    <button id="request-role-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+      Envoyer
+    </button>
+  </div>
+
+  <p id="role-feedback" class="mt-4 text-sm text-center font-medium text-green-600 hidden"></p>
+</div>
+
   
       
 

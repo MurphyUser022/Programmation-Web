@@ -14,6 +14,7 @@ class RoleController {
         return json_decode(file_get_contents($this->usersFile), true) ?? [];
     }
 
+
     private function saveUsers($users) {
         file_put_contents($this->usersFile, json_encode($users, JSON_PRETTY_PRINT));
     }
