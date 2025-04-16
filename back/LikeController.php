@@ -1,58 +1,124 @@
 <?php
-/*
-class LikeController
-{
-	private string $filePath = "data/likes.json";
-	private AuthController $authController;
 
-	public function __construct(string $filePath, AuthController $authController)
-	{
-		$this->filePath = $filePath;
-		$this->authController = $authController;
+class LikeController {
+	private $recipesFile;
+
+	public function __construct($recipesFile) {
+		$this->recipesFile = $recipesFile;
 	}
 
+	private function loadRecipes() {
+		if (!file_exists($this->recipesFile)) {
+            return [];
+        }
+        return json_decode(file_get_contents($this->recipesFile), true) ?? [];
+	}
 
-	public function handleAddLike(array $params): void {
-		// L'ID de la recette est dans les paramètres de l'URL
+	private function saveRecipes($recipes) {
+		file_put_contents($this->recipesFile, json_encode($recipes, JSON_PRETTY_PRINT));
+	}
+
+	public function addLike($params) {
+        var_dump($params);
 		$recipeId = $params['recipe_id'] ?? null;
-		
-
-		if (!$recipeId || !$message) {
-			echo "Recipe ID and message are required.";
+		if (!$recipeId) {
+			http_response_code(400);
+			echo json_encode(["error" => "ID de recette manquant"]);
 			return;
 		}
-	
-		// Get user ID from cookies
-		$userId = $_COOKIE['user_id'] ?? null;
-		if (!$userId) {
-			echo "User not authenticated.";
+
+		if (!isset($_COOKIE['user_id'])) {
+			http_response_code(403);
+			echo json_encode(["error" => "Utilisateur non authentifié"]);
 			return;
 		}
-	
-		// Créer le commentaire
-		$newComment = [
-			'recipe_id' => $recipeId,
-			'user_id' => $userId,
-			'timestamp' => date('c'),
-		];
-	
-		// Sauvegarder le commentaire
-		$this->saveComment($newComment);
-	
-		// Retourner la réponse
-		echo json_encode(['status' => 'success', 'message' => 'Comment saved successfully.']);
-	}
-	
-    
 
-	// Saves a new comment to the file
-	private function saveComment(array $comment): void
-	{
-		$comments = $this->getAllComments();
-		$comments[] = $comment;
+		$userId = $_COOKIE['user_id'];
+		$recipes = $this->loadRecipes();
 
-		file_put_contents($this->filePath, json_encode($comments, JSON_PRETTY_PRINT));
+		foreach ($recipes as &$recipe) {
+			if ($recipe['id'] == $recipeId) {
+				if (!isset($recipe['likes']) || !is_array($recipe['likes'])) {
+					$recipe['likes'] = [];
+				}
+				if (!in_array($userId, $recipe['likes'])) {
+					$recipe['likes'][] = $userId;
+					$this->saveRecipes($recipes);
+					http_response_code(200);
+					echo json_encode(["message" => "Like ajouté"]);
+				} else {
+					http_response_code(409);
+					echo json_encode(["error" => "Vous avez déjà aimé cette recette"]);
+				}
+				return;
+			}
+		}
+
+		http_response_code(404);
+		echo json_encode(["error" => "Recette non trouvée"]);
 	}
 
+	public function removeLike($params) {
+		$recipeId = $params['recipe_id'] ?? null;
+		if (!$recipeId) {
+			http_response_code(400);
+			echo json_encode(["error" => "ID de recette manquant"]);
+			return;
+		}
+
+		if (!isset($_COOKIE['user_id'])) {
+			http_response_code(403);
+			echo json_encode(["error" => "Utilisateur non authentifié"]);
+			return;
+		}
+
+		$userId = $_COOKIE['user_id'];
+		$recipes = $this->loadRecipes();
+
+		foreach ($recipes as &$recipe) {
+			if ($recipe['id'] == $recipeId) {
+				if (!isset($recipe['likes']) || !is_array($recipe['likes'])) {
+					$recipe['likes'] = [];
+				}
+
+				if (($key = array_search($userId, $recipe['likes'])) !== false) {
+					unset($recipe['likes'][$key]);
+					$recipe['likes'] = array_values($recipe['likes']);
+					$this->saveRecipes($recipes);
+					http_response_code(200);
+					echo json_encode(["message" => "Like retiré"]);
+				} else {
+					http_response_code(409);
+					echo json_encode(["error" => "Vous n'avez pas aimé cette recette"]);
+				}
+				return;
+			}
+		}
+
+		http_response_code(404);
+		echo json_encode(["error" => "Recette non trouvée"]);
 	}
-*/
+
+	public function countLikes($params) {
+		$recipeId = $params['recipe_id'] ?? null;
+		if (!$recipeId) {
+			http_response_code(400);
+			echo json_encode(["error" => "ID de recette manquant"]);
+			return;
+		}
+
+		$recipes = $this->loadRecipes();
+
+		foreach ($recipes as $recipe) {
+			if ($recipe['id'] == $recipeId) {
+				$likes = isset($recipe['likes']) && is_array($recipe['likes']) ? count($recipe['likes']) : 0;
+				http_response_code(200);
+				echo json_encode(["recipe_id" => $recipeId, "likes" => $likes]);
+				return;
+			}
+		}
+
+		http_response_code(404);
+		echo json_encode(["error" => "Recette non trouvée"]);
+	}
+}

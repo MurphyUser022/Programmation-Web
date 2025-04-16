@@ -11,9 +11,9 @@ class RecettesController
 
 
     public function testCokiee()
-        {
+    {
            echo'voici le pseudo actu en dans les cookies '.$_COOKIE['pseudo'];
-        }
+    }
 
     public function AjouteRecette() {
         // Utilisation de $this->recipeFile au lieu de $recipeFile
@@ -66,11 +66,10 @@ class RecettesController
     {
 
         // load le JSON
-        $recipes = json_decode(file_get_contents($this->recipeFile), true);
-
-
-        http_response_code(200);
+        $recipes = json_decode(file_get_contents($this->recipesFile), true);
         echo json_encode($recipes);
+        http_response_code(200);
+        return;
     }
 
 

@@ -1,14 +1,23 @@
 [
     {
-        "id": "rec_67ed2b107c4633_04326086",
-        "username": "John",
-        "password": "$2y$10$Mu1VMeflNO9t8c.IAZlHw.ufHrfYntNfhFpGAnKJGIgx17V2uTsTO",
-        "role": "Cuisinier"
+        "id": 1,
+        "username": "admin",
+        "password": "hashed_password",
+        "roles": [
+            "admin"
+        ],
+        "role_demande": []
     },
     {
-        "id": "rec_67ee78b51413b8_26334909",
-        "username": "Fat",
-        "password": "$2y$10$pgEk8\/hnbw6wlHodTKuvkuuikQyUNywBzKLij9Twe9nXzUumxIiRm",
-        "role": "Cuisinier"
+        "id": 2,
+        "username": "so_diop",
+        "password": "hashed_password",
+        "roles": [
+            "cuisinier",
+            "chef",
+            "traducteur"
+        ],
+        "role_demande": []
     }
+    
 ]

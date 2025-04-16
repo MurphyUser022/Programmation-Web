@@ -1,15 +1,14 @@
 <?php
 
-class Router
-{
-	private array $routes = [];
+class Router{
+    private array $routes = [];
 
 	/**
 	 * Register a new route
 	 */
 	public function register(string $method, string $path, callable $handler): void
 	{
-		        // Remplacer {param} par des groupes dans une expression régulière
+		// Remplacer {param} par des groupes dans une expression régulière
         $pattern = preg_replace('/{(\w+)}/', '(?P<$1>[^/]+)', $path);
         $pattern = "#^" . $pattern . "$#"; // Encadrer par des délimiteurs de regex
 
@@ -25,7 +24,7 @@ class Router
 
 	/**
 	 * Handle the incoming request
-	 */
+	 */ 
 	public function handleRequest(): void
 	{
 		// Get the HTTP method and path of the request
@@ -45,22 +44,13 @@ class Router
 		header("Access-Control-Allow-Origin: *");
 		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 		header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 	
 		foreach ($this->routes as $route) {
+
 			if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {
-				// Si une route correspond, extraire les paramètres nommés de l'URL
-	
-				
 				$params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
-
-
-				// Débogage pour vérifier les paramètres de la query string et des URL
-				//var_dump($params);
-				//var_dump($queryParams);
-
-				// Appel du handler avec les deux sets de paramètres
-				call_user_func_array($route['handler'], [$params, $queryParams]);
-	
+				call_user_func($route['handler'], $params);
 				return;
 			}
 		}

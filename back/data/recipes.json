@@ -1,31 +1,1094 @@
 [
- {
-        "id": "rec_67ec22aa0cb093_93944409",
-        "name": "Crock Pot Roast",
+    {
+        "id": 10045,
         "nameFR": "Roti \u00e0 la cocotte",
-        "Author": "John",
-        "Without": [
-            "NoGluten",
-            "NoMilk"
+        "Author": "Unknown",
+        "Sans": [
+            "Sans gluten",
+            "Sans lait"
         ],
-        "ingredients": [
+        "ingredientsFR": [
             {
                 "quantity": "1",
-                "name": "beef roast",
-                "type": "Meat"
+                "name": "roti de boeuf",
+                "type": "Viande"
+            },
+            {
+                "quantity": "1 sachet",
+                "name": "melange sauce au vin",
+                "type": "Aide culinaire"
             },
             {
                 "quantity": "1 package",
-                "name": "brown gravy mix",
-                "type": "Baking"
+                "name": null,
+                "type": "Condiments"
+            },
+            {
+                "quantity": "1 package",
+                "name": null,
+                "type": "Condiments"
+            },
+            {
+                "quantity": "1\/2 verre",
+                "name": "eau",
+                "type": "Boisson"
             }
+        ],
+        "stepsFR": [
+            "Placer le roti dans la cocotte en fonte",
+            "Melanger les sachets de sauces en poudre dans un bol et saupoudrer le roti avec.",
+            "Arroser le roti",
+            "Cuire \u00e0 feu doux entre 7 et 9 heures."
         ],
         "timers": [
             1,
             1,
+            1,
             420
         ],
-        "imageURL": "http:\/\/example.com\/image.jpg",
-        "originalURL": "http:\/\/example.com\/recipe"
+        "imageURL": "http:\/\/img.sndimg.com\/food\/image\/upload\/w_266\/v1\/img\/recipes\/27\/20\/8\/picVfzLZo.jpg",
+        "originalURL": "http:\/\/www.food.com\/recipe\/to-die-for-crock-pot-roast-27208",
+        "likes": [
+            "2"
+        ],
+        "traductions": {
+            "name": "Crock Pot Roast",
+            "ingredients": [
+                {
+                    "quantity": "1",
+                    "name": "beef roast",
+                    "type": "Meat"
+                },
+                {
+                    "quantity": "1 package",
+                    "name": "brown gravy mix",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 package",
+                    "name": "dried Italian salad dressing mix",
+                    "type": "Condiments"
+                },
+                {
+                    "quantity": "1 package",
+                    "name": "dry ranch dressing mix",
+                    "type": "Condiments"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "water",
+                    "type": "Drinks"
+                }
+            ],
+            "steps": [
+                "Place beef roast in crock pot.",
+                "Mix the dried mixes together in a bowl and sprinkle over the roast.",
+                "Pour the water around the roast.",
+                "Cook on low for 7-9 hours."
+            ],
+            "Without": [
+                "NoGluten",
+                "NoMilk"
+            ]
+        }
+    },
+    {
+        "id": 10046,
+        "nameFR": "Asperges roties",
+        "Author": "Unknown",
+        "Sans": [
+            "Sans gluten",
+            "Sans lait",
+            "V\u00e9gan"
+        ],
+        "ingredientsFR": [
+            {
+                "quantity": "1 lb (environ 450 g)",
+                "name": "asperges",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1 1\/2 c. \u00e0 soupe",
+                "name": "huile d\u2019olive",
+                "type": "Condiments"
+            },
+            {
+                "quantity": "1\/2 c. \u00e0 caf\u00e9",
+                "name": "sel kasher",
+                "type": "P\u00e2tisserie"
+            }
+        ],
+        "stepsFR": [
+            "Pr\u00e9chauffer le four \u00e0 220\u00b0C (425\u00b0F).",
+            "Couper et jeter la partie dure \u00e0 la base des tiges d\u2019asperges.",
+            "\u00c0 l\u2019aide d\u2019un \u00e9conome, peler la peau des 5 \u00e0 7 cm du bas des tiges (cela \u00e9vite que les asperges soient fibreuses \u2013 les amateurs comprendront !).",
+            "D\u00e9poser les asperges sur une plaque de cuisson recouverte de papier d\u2019aluminium, puis arroser d\u2019huile d\u2019olive.",
+            "Saupoudrer de sel.",
+            "Avec les mains, rouler les asperges pour bien les enrober d\u2019huile et de sel.",
+            "Faire r\u00f4tir de 10 \u00e0 15 minutes, selon l\u2019\u00e9paisseur des tiges et la tendret\u00e9 d\u00e9sir\u00e9e.",
+            "Elles doivent \u00eatre tendres lorsqu\u2019on les pique avec la pointe d\u2019un couteau.",
+            "Les pointes deviendront bien dor\u00e9es \u2014 surveillez-les pour \u00e9viter qu\u2019elles br\u00fblent.",
+            "Elles sont d\u00e9licieuses telles quelles, mais parfois je les accompagne d\u2019une l\u00e9g\u00e8re vinaigrette pour une touche acidul\u00e9e qui \u00e9quilibre le repas."
+        ],
+        "timers": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0,
+            0
+        ],
+        "imageURL": "http:\/\/img.sndimg.com\/food\/image\/upload\/w_266\/v1\/img\/recipes\/50\/84\/7\/picMcSyVd.jpg",
+        "originalURL": "http:\/\/www.food.com\/recipe\/roasted-asparagus-50847",
+        "traductions": {
+            "name": "Roasted Asparagus",
+            "Without": [
+                "NoGluten",
+                "noMilk",
+                "Vegan"
+            ],
+            "ingredients": [
+                {
+                    "quantity": "1 lb",
+                    "name": " asparagus",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1 1\/2 tbsp",
+                    "name": "olive oil",
+                    "type": "Condiments"
+                },
+                {
+                    "quantity": "1\/2 tsp",
+                    "name": "kosher salt",
+                    "type": "Baking"
+                }
+            ],
+            "steps": [
+                "Preheat oven to 425\u00b0F.",
+                "Cut off the woody bottom part of the asparagus spears and discard.",
+                "With a vegetable peeler, peel off the skin on the bottom 2-3 inches of the spears (this keeps the asparagus from being all.\",string.\", and if you eat asparagus you know what I mean by that).",
+                "Place asparagus on foil-lined baking sheet and drizzle with olive oil.",
+                "Sprinkle with salt.",
+                "With your hands, roll the asparagus around until they are evenly coated with oil and salt.",
+                "Roast for 10-15 minutes, depending on the thickness of your stalks and how tender you like them.",
+                "They should be tender when pierced with the tip of a knife.",
+                "The tips of the spears will get very brown but watch them to prevent burning.",
+                "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal."
+            ]
+        },
+        "likes": [
+            "1",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "id": 10047,
+        "nameFR": "Lentilles et Riz au curry",
+        "Author": "Unknown",
+        "Sans": [
+            "Sans Gluten",
+            "Sans lait",
+            "Vegan"
+        ],
+        "ingredientsFR": [
+            {
+                "quantity": "1 litre",
+                "name": "bouillon de b\u0153uf",
+                "type": "Divers"
+            },
+            {
+                "quantity": "1 tasse",
+                "name": "lentilles vertes s\u00e8ches",
+                "type": "Divers"
+            },
+            {
+                "quantity": "1\/2 tasse",
+                "name": "riz basmati",
+                "type": "Divers"
+            },
+            {
+                "quantity": "1 c. \u00e0 caf\u00e9",
+                "name": "curry en poudre",
+                "type": "Condiments"
+            },
+            {
+                "quantity": "1 c. \u00e0 caf\u00e9",
+                "name": "sel",
+                "type": "Condiments"
+            }
+        ],
+        "stepsFR": [
+            "Porter le bouillon \u00e0 l\u00e9g\u00e8re \u00e9bullition.",
+            "Ajouter le curry en poudre et le sel.",
+            "Cuire les lentilles pendant 20 minutes.",
+            "Ajouter le riz et laisser mijoter pendant 20 minutes.",
+            "Bon app\u00e9tit !"
+        ],
+        "timers": [
+            0,
+            0,
+            20,
+            20,
+            0
+        ],
+        "imageURL": "http:\/\/dagzhsfg97k4.cloudfront.net\/wp-content\/uploads\/2012\/05\/lentils3.jpg",
+        "traductions": {
+            "name": "Curried Lentils and Rice",
+            "Without": [
+                "NoGluten",
+                "noMilk",
+                "Vegan"
+            ],
+            "ingredients": [
+                {
+                    "quantity": "1 quart",
+                    "name": "beef broth",
+                    "type": "Misc"
+                },
+                {
+                    "quantity": "1 cup",
+                    "name": "dried green lentils",
+                    "type": "Misc"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "basmati rice",
+                    "type": "Misc"
+                },
+                {
+                    "quantity": "1 tsp",
+                    "name": "curry powder",
+                    "type": "Condiments"
+                },
+                {
+                    "quantity": "1 tsp",
+                    "name": "salt",
+                    "type": "Condiments"
+                }
+            ],
+            "steps": [
+                "Bring broth to a low boil.",
+                "Add curry powder and salt.",
+                "Cook lentils for 20 minutes.",
+                "Add rice and simmer for 20 minutes.",
+                ""
+            ]
+        }
+    },
+    {
+        "id": 10048,
+        "nameFR": "La pizza des grands soirs",
+        "Author": "Unknown",
+        "Sans": [
+            "Vegetarien"
+        ],
+        "ingredientsFR": [
+            {
+                "quantity": "5 cuill\u00e8res \u00e0 caf\u00e9",
+                "name": "levure",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "5 tasses",
+                "name": "farine",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "4 cuill\u00e8res \u00e0 soupe",
+                "name": "huile v\u00e9g\u00e9tale",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 cuill\u00e8res \u00e0 soupe",
+                "name": "sucre",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 cuill\u00e8res \u00e0 caf\u00e9",
+                "name": "sel",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 tasses",
+                "name": "eau chaude",
+                "type": "Divers"
+            },
+            {
+                "quantity": "1\/4 tasse",
+                "name": "sauce pizza",
+                "type": "Divers"
+            },
+            {
+                "quantity": "3\/4 tasse",
+                "name": "fromage mozzarella",
+                "type": "Produits laitiers"
+            }
+        ],
+        "stepsFR": [
+            "Ajouter l'eau chaude \u00e0 la levure dans un grand bol et laisser reposer pendant 15 minutes.",
+            "Incorporer l'huile, le sucre, le sel et la farine, puis laisser reposer pendant 1 heure.",
+            "P\u00e9trir la p\u00e2te et l'\u00e9taler sur une plaque.",
+            "\u00c9taler la sauce pizza et parsemer de fromage.",
+            "Ajouter les garnitures optionnelles selon vos envies.",
+            "Cuire au four \u00e0 200\u00b0C pendant 15 minutes.",
+            "Bon app\u00e9tit !"
+        ],
+        "timers": [
+            15,
+            60,
+            0,
+            0,
+            0,
+            15,
+            0
+        ],
+        "imageURL": "http:\/\/upload.wikimedia.org\/wikipedia\/commons\/c\/c7\/Spinach_pizza.jpg",
+        "traductions": {
+            "name": "Big Night Pizza",
+            "Without": [
+                "Vegetarian"
+            ],
+            "ingredients": [
+                {
+                    "quantity": "5 teaspoons",
+                    "name": "yeast",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "5 cups",
+                    "name": "flour",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "4 tablespoons",
+                    "name": "vegetable oil",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 tablespoons",
+                    "name": "sugar",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 teaspoons",
+                    "name": "salt",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 cups",
+                    "name": "hot water",
+                    "type": "Misc"
+                },
+                {
+                    "quantity": "1\/4 cup",
+                    "name": "pizza sauce",
+                    "type": "Misc"
+                },
+                {
+                    "quantity": "3\/4 cup",
+                    "name": "mozzarella cheese",
+                    "type": "Dairy"
+                }
+            ],
+            "steps": [
+                "Add hot water to yeast in a large bowl and let sit for 15 minutes.",
+                "Mix in oil, sugar, salt, and flour and let sit for 1 hour.",
+                "Knead the dough and spread onto a pan.",
+                "Spread pizza sauce and sprinkle cheese.",
+                "Add any optional toppings as you wish.",
+                "Bake at 400 deg Fahrenheit for 15 minutes.",
+                "Enjoy!"
+            ]
+        }
+    },
+    {
+        "id": 10049,
+        "nameFR": "Courge poivr\u00e9e farcies aux cranberries et aux pommes",
+        "Author": "Unknown",
+        "Sans": [
+            "Sans Gluten",
+            "Vegetarien"
+        ],
+        "ingredientsFR": [
+            {
+                "quantity": "2",
+                "name": "courges poivr\u00e9es (acorn squash)",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1",
+                "name": "eau bouillante",
+                "type": "Boissons"
+            },
+            {
+                "quantity": "2",
+                "name": "pommes coup\u00e9es en morceaux de 1,4 cm",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1\/2 tasse",
+                "name": "canneberges s\u00e9ch\u00e9es",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1 cuill\u00e8re \u00e0 caf\u00e9",
+                "name": "cannelle",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 cuill\u00e8res \u00e0 soupe",
+                "name": "beurre fondu",
+                "type": "Produits laitiers"
+            }
+        ],
+        "stepsFR": [
+            "Couper les courges en deux et retirer les graines.",
+            "Placer les courges face coup\u00e9e vers le bas dans un plat allant au four.",
+            "Verser 0,5 cm d\u2019eau dans le plat.",
+            "Faire cuire 30 minutes \u00e0 175\u00b0C.",
+            "Dans un grand bol, m\u00e9langer les autres ingr\u00e9dients.",
+            "Sortir les courges du four et les remplir du m\u00e9lange.",
+            "Remettre au four pendant 30 \u00e0 40 minutes, jusqu\u2019\u00e0 ce que la courge soit tendre.",
+            "Bon app\u00e9tit !"
+        ],
+        "timers": [
+            0,
+            0,
+            0,
+            30,
+            0,
+            0,
+            30,
+            0
+        ],
+        "imageURL": "http:\/\/elanaspantry.com\/wp-content\/uploads\/2008\/10\/acorn_squash_with_cranberry.jpg",
+        "originalURL": "",
+        "traductions": {
+            "name": "Cranberry and Apple Stuffed Acorn Squash Recipe",
+            "Without": [
+                "NoGluten",
+                "Vegetarian"
+            ],
+            "ingredients": [
+                {
+                    "quantity": "2",
+                    "name": "acorn squash",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1",
+                    "name": "boiling water",
+                    "type": "Drinks"
+                },
+                {
+                    "quantity": "2",
+                    "name": "apples chopped into 1.4 inch pieces",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "dried cranberries",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1 teaspoon",
+                    "name": "cinnamon",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 tablespoons",
+                    "name": "melted butter",
+                    "type": "Dairy"
+                }
+            ],
+            "steps": [
+                "Cut squash in half, remove seeds.",
+                "Place squash in baking dish, cut-side down.",
+                "Pour 1\/4-inch water into dish.",
+                "Bake for 30 minutes at 350 degrees F.",
+                "In large bowl, combine remaining ingredients.",
+                "Remove squash from oven, fill with mix.",
+                "Bake for 30-40 more minutes, until squash tender.",
+                "Enjoy!"
+            ]
+        }
+    },
+    {
+        "id": 10050,
+        "nameFR": "Yorkshire pudding  de Mickey",
+        "Author": "Unknown",
+        "Sans": [
+            "Vegetarien"
+        ],
+        "ingredientsFR": [
+            {
+                "quantity": "200 g",
+                "name": "farine nature",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "3",
+                "name": "\u0153ufs",
+                "type": "Produits laitiers"
+            },
+            {
+                "quantity": "300 ml",
+                "name": "lait",
+                "type": "Produits laitiers"
+            },
+            {
+                "quantity": "3 c. \u00e0 soupe",
+                "name": "huile v\u00e9g\u00e9tale",
+                "type": "Condiments"
+            }
+        ],
+        "stepsFR": [
+            "Mettre la farine et un peu d\u2019assaisonnement dans un grand bol.",
+            "Incorporer les \u0153ufs un \u00e0 un en remuant.",
+            "Fouetter avec le lait jusqu\u2019\u00e0 obtenir une p\u00e2te lisse.",
+            "R\u00e9frig\u00e9rer pendant au moins 30 minutes.",
+            "Pr\u00e9chauffer le four \u00e0 220\u00b0C (thermostat 7).",
+            "Verser l\u2019huile dans les alv\u00e9oles d\u2019un moule \u00e0 muffins de 8 trous.",
+            "Chauffer le moule au four pendant 5 minutes.",
+            "Verser la p\u00e2te dans le moule.",
+            "Cuire au four pendant 30 minutes jusqu\u2019\u00e0 ce que ce soit bien dor\u00e9 et gonfl\u00e9."
+        ],
+        "timers": [
+            0,
+            0,
+            0,
+            30,
+            0,
+            0,
+            5,
+            0,
+            30
+        ],
+        "imageURL": "http:\/\/upload.wikimedia.org\/wikipedia\/commons\/f\/f9\/Yorkshire_Pudding.jpg",
+        "originalURL": "https:\/\/fr.wikipedia.org\/wiki\/Yorkshire_pudding",
+        "traductions": {
+            "name": "Mickey's Yorkshire Pudding",
+            "Without": [
+                "Vegetarian"
+            ],
+            "ingredients": [
+                {
+                    "quantity": "200g",
+                    "name": "plain flour",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "3",
+                    "name": "eggs",
+                    "type": "Dairy"
+                },
+                {
+                    "quantity": "300ml",
+                    "name": "milk",
+                    "type": "Dairy"
+                },
+                {
+                    "quantity": "3 tbsp",
+                    "name": "vegetable oil",
+                    "type": "Condiments"
+                }
+            ],
+            "steps": [
+                "Put the flour and some seasoning into a large bowl.",
+                "Stir in eggs, one at a time.",
+                "Whisk in milk until you have a smooth batter.",
+                "Chill in the fridge for at least 30 minutes.",
+                "Heat oven to 220C\/gas mark 7.",
+                "Pour the oil into the holes of a 8-hole muffin tin.",
+                "Heat tin in the oven for 5 minutes.",
+                "Ladle the batter mix into the tin.",
+                "Bake for 30 minutes until well browned and risen."
+            ]
+        }
+    },
+    {
+        "id": 10051,
+        "name": "Biscuits \u00e0 l'avoine \u00e0 l'ancienne",
+        "ingredientsFR": [
+            {
+                "quantity": "1 tasse",
+                "name": "raisins secs",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1 tasse",
+                "name": "eau",
+                "type": "Boissons"
+            },
+            {
+                "quantity": "3\/4 tasse",
+                "name": "graisse v\u00e9g\u00e9tale (shortening)",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 1\/2 tasse",
+                "name": "sucre",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 1\/2 tasses",
+                "name": "farine",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 c. \u00e0 caf\u00e9",
+                "name": "bicarbonate de soude",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 c. \u00e0 caf\u00e9",
+                "name": "sel",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 c. \u00e0 caf\u00e9",
+                "name": "cannelle",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1\/2 c. \u00e0 caf\u00e9",
+                "name": "levure chimique",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1\/2 c. \u00e0 caf\u00e9",
+                "name": "clous de girofle moulus",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2 tasses",
+                "name": "flocons d'avoine",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1\/2 tasse",
+                "name": "noix hach\u00e9es",
+                "type": "P\u00e2tisserie"
+            }
+        ],
+        "stepsFR": [
+            "Faire mijoter les raisins et l'eau \u00e0 feu moyen jusqu'\u00e0 ce qu'ils soient gonfl\u00e9s, environ 15 minutes.",
+            "\u00c9goutter les raisins en r\u00e9servant le liquide.",
+            "Ajouter un peu d'eau au liquide r\u00e9serv\u00e9 pour obtenir 1\/2 tasse au total.",
+            "Pr\u00e9chauffer le four \u00e0 200\u00b0C.",
+            "M\u00e9langer soigneusement la graisse v\u00e9g\u00e9tale, le sucre, les \u0153ufs et la vanille.",
+            "Incorporer le liquide r\u00e9serv\u00e9.",
+            "Ajouter et bien m\u00e9langer les ingr\u00e9dients restants.",
+            "D\u00e9poser la p\u00e2te par cuiller\u00e9es \u00e0 caf\u00e9 bomb\u00e9es sur une plaque non graiss\u00e9e, en les espa\u00e7ant d\u2019environ 5 cm.",
+            "Cuire au four 8 \u00e0 10 minutes, jusqu\u2019\u00e0 ce qu\u2019ils soient l\u00e9g\u00e8rement dor\u00e9s.",
+            "Donne environ 6 1\/2 douzaines de biscuits."
+        ],
+        "timers": [
+            15,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0
+        ],
+        "imageURL": "http:\/\/s3.amazonaws.com\/gmi-digital-library\/65caecf7-a8f7-4a09-8513-2659cf92871e.jpg",
+        "originalURL": "#",
+        "traductions": {
+            "name": "Old-Fashioned Oatmeal Cookies",
+            "ingredients": [
+                {
+                    "quantity": "1 cup",
+                    "name": "raisins",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1",
+                    "name": "cup water",
+                    "type": "Drinks"
+                },
+                {
+                    "quantity": "3\/4 cup",
+                    "name": "shortening",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 1\/2 cups",
+                    "name": "sugar",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 1\/2 cups",
+                    "name": "flour",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 tsp.",
+                    "name": "soda",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 tsp.",
+                    "name": "salt",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 tsp.",
+                    "name": "cinnamon",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1\/2 tsp.",
+                    "name": "baking powder",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1\/2 tsp.",
+                    "name": "cloves",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2 cups",
+                    "name": "oats",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "chopped nuts",
+                    "type": "Baking"
+                }
+            ],
+            "steps": [
+                "Simmer raisins and water over medium heat until raisins are plump, about 15 minutes.",
+                "Drain raisins, reserving the liquid.",
+                "Add enough water to reserved liquid to measure 1\/2 cup.",
+                "Heat oven to 400\u00b0.",
+                "Mix thoroughly shortening, sugar, eggs and vanilla.",
+                "Stir in reserved liquid.",
+                "Blend in remaining ingredients.",
+                "Drop dough by rounded teaspoonfuls about 2 inches apart onto ungreased baking sheet.",
+                "Bake 8 to 10 minutes or until light brown.",
+                "About 6 1\/2 dozen cookies."
+            ]
+        }
+    },
+    {
+        "id": 10052,
+        "nameFR": "Carr\u00e9s \u00e0 l'avoine et aux bleuets",
+        "Author": "Unknown",
+        "ingredientsFR": [
+            {
+                "quantity": "2 1\/2 tasses",
+                "name": "flocons d\u2019avoine (non instantan\u00e9s)",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 1\/4 tasse",
+                "name": "farine tout usage",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 c. \u00e0 soupe",
+                "name": "zeste d\u2019orange r\u00e2p\u00e9",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1\/4 c. \u00e0 caf\u00e9",
+                "name": "sel",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 tasse",
+                "name": "beurre froid, coup\u00e9 en d\u00e9s",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "3\/4 tasse",
+                "name": "cassonade tass\u00e9e",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "3 tasses",
+                "name": "bleuets frais",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1\/2 tasse",
+                "name": "sucre granul\u00e9",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1\/3 tasse",
+                "name": "jus d\u2019orange",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "4 c. \u00e0 caf\u00e9",
+                "name": "f\u00e9cule de ma\u00efs",
+                "type": "P\u00e2tisserie"
+            }
+        ],
+        "stepsFR": [
+            "Garniture : Dans une casserole, porter \u00e0 \u00e9bullition les bleuets, le sucre et le jus d\u2019orange. R\u00e9duire le feu et laisser mijoter jusqu\u2019\u00e0 ce que les fruits soient tendres, environ 10 minutes.",
+            "Fouetter la f\u00e9cule de ma\u00efs avec 2 c. \u00e0 soupe (25 mL) d\u2019eau, puis l\u2019incorporer aux bleuets. Porter de nouveau \u00e0 \u00e9bullition en remuant jusqu\u2019\u00e0 \u00e9paississement, environ 1 minute.",
+            "Placer une pellicule plastique directement sur la surface et r\u00e9frig\u00e9rer jusqu\u2019\u00e0 refroidissement, environ 1 heure.",
+            "Dans un grand bol, fouetter les flocons d\u2019avoine, la farine, la cassonade, le zeste d\u2019orange et le sel. Ajouter le beurre \u00e0 l\u2019aide d\u2019un coupe-p\u00e2te jusqu\u2019\u00e0 obtention d\u2019une texture grumeleuse.",
+            "Presser la moiti\u00e9 du m\u00e9lange au fond d\u2019un moule carr\u00e9 en m\u00e9tal de 20 cm (2 L), tapiss\u00e9 de papier parchemin. R\u00e9partir la garniture aux bleuets.",
+            "Cuire au centre du four \u00e0 175\u00b0C (350\u00b0F) jusqu\u2019\u00e0 ce que le dessus soit l\u00e9g\u00e8rement dor\u00e9, environ 45 minutes.",
+            "Laisser refroidir sur une grille avant de couper en carr\u00e9s.",
+            "(Pr\u00e9paration \u00e0 l\u2019avance : Couvrir et r\u00e9frig\u00e9rer jusqu\u2019\u00e0 2 jours, ou envelopper herm\u00e9tiquement dans du papier d\u2019aluminium r\u00e9sistant et congeler jusqu\u2019\u00e0 2 semaines.)"
+        ],
+        "timers": [
+            10,
+            1,
+            60,
+            0,
+            0,
+            45,
+            0,
+            0
+        ],
+        "imageURL": "http:\/\/www.canadianliving.com\/img\/photos\/biz\/blueberry-oatmeal-squares5801359401371.jpg",
+        "originalURL": "http:\/\/www.canadianliving.com\/food\/blueberry_oatmeal_squares.php",
+        "traductions": {
+            "name": "Blueberry Oatmeal Squares",
+            "ingredients": [
+                {
+                    "quantity": "2-1\/2 cups",
+                    "name": "rolled oats, (not instant)",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1-1\/4 cups",
+                    "name": "all-purpose flour",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 tbsp",
+                    "name": "grated orange rind",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1\/4 tsp",
+                    "name": "salt",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 cup",
+                    "name": "cold butter, cubed",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "3\/4 cup",
+                    "name": "packed brown sugar",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "3 cups",
+                    "name": "fresh blueberries",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "granulated sugar",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1\/3 cup",
+                    "name": "orange juice",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "4 tsp",
+                    "name": "cornstarch",
+                    "type": "Baking"
+                }
+            ],
+            "steps": [
+                "Filling: In saucepan, bring blueberries, sugar and orange juice to boil; reduce heat and simmer until tender, about 10 minutes.",
+                "Whisk cornstarch with 2 tbsp (25 mL) water; whisk into blueberries and boil, stirring, until thickened, about 1 minute.",
+                "Place plastic wrap directly on surface; refrigerate until cooled, about 1 hour.",
+                "In large bowl, whisk together oats, flour, sugar, orange rind and salt ; with pastry blender, cut in butter until in coarse crumbs.",
+                "Press half into 8-inch (2 L) square parchment paper\u2013lined metal cake pan; spread with blueberry filling.",
+                "Bake in centre of 350\u00b0F oven until light golden, about 45 minutes.",
+                "Let cool on rack before cutting into squares.",
+                "(Make-ahead: Cover and refrigerate for up to 2 days or overwrap with heavy-duty foil and freeze for up to 2 weeks.)"
+            ]
+        }
+    },
+    {
+        "id": 10053,
+        "name": "Salade de poulet au curry",
+        "ingredientsFR": [
+            {
+                "quantity": "3",
+                "name": "poitrines de poulet d\u00e9soss\u00e9es et sans peau, coup\u00e9es en deux dans la longueur",
+                "type": "Viande"
+            },
+            {
+                "quantity": "1\/2 tasse",
+                "name": "mayonnaise",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1 c. \u00e0 soupe",
+                "name": "zeste de citron",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1 c. \u00e0 soupe",
+                "name": "jus de citron",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1 1\/2 c. \u00e0 caf\u00e9",
+                "name": "poudre de curry",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "1\/4 c. \u00e0 caf\u00e9",
+                "name": "sel",
+                "type": "P\u00e2tisserie"
+            },
+            {
+                "quantity": "2",
+                "name": "mangues m\u00fbres, en d\u00e9s",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1\/4 tasse",
+                "name": "canneberges s\u00e9ch\u00e9es",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "2",
+                "name": "oignons verts, finement tranch\u00e9s",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "1",
+                "name": "branche de c\u00e9leri, finement hach\u00e9e",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "6 feuilles",
+                "name": "laitue Boston",
+                "type": "Produits frais"
+            },
+            {
+                "quantity": "6",
+                "name": "muffins anglais, grill\u00e9s",
+                "type": "Divers"
+            }
+        ],
+        "stepsFR": [
+            "Disposer le poulet en une seule couche dans une grande casserole.",
+            "Ajouter juste assez d'eau pour couvrir.",
+            "Porter \u00e0 \u00e9bullition \u00e0 feu moyen-\u00e9lev\u00e9.",
+            "Retourner le poulet, r\u00e9duire \u00e0 feu moyen et laisser mijoter jusqu'\u00e0 ce qu\u2019il soit cuit, environ 6 minutes suppl\u00e9mentaires.",
+            "Laisser refroidir.",
+            "Dans un grand bol, m\u00e9langer la mayonnaise avec le zeste de citron, le jus, le curry et le sel.",
+            "\u00c0 l\u2019aide de deux fourchettes, effilocher le poulet, puis l\u2019incorporer au m\u00e9lange de mayonnaise avec la mangue, les canneberges, les oignons verts et le c\u00e9leri.",
+            "R\u00e9partir le m\u00e9lange sur les muffins avec les feuilles de laitue.",
+            "Couvrir avec les dessus des muffins pour faire des sandwichs."
+        ],
+        "timers": [
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "imageURL": "http:\/\/www.chatelaine.com\/wp-content\/uploads\/2013\/05\/Curried-chicken-salad.jpg",
+        "originalURL": "http:\/\/www.chatelaine.com\/recipe\/stovetop-cooking-method\/curried-chicken-salad\/",
+        "traductions": {
+            "name": "Curried chicken salad",
+            "ingredients": [
+                {
+                    "quantity": "3",
+                    "name": "skinless, boneless chicken breasts, halved lengthwise",
+                    "type": "Meat"
+                },
+                {
+                    "quantity": "1\/2 cup",
+                    "name": "mayonnaise",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1 tbsp",
+                    "name": "lemon zest",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1 tbsp ",
+                    "name": "lemon juice",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1 1\/2 tsp",
+                    "name": "curry powder",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "1\/4 tsp",
+                    "name": "salt",
+                    "type": "Baking"
+                },
+                {
+                    "quantity": "2",
+                    "name": "ripe mangoes, diced",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1\/4 cup",
+                    "name": "dried cranberries",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "2",
+                    "name": "green onions, thinly sliced",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "1",
+                    "name": "celery stalk, finely chopped",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "6 leaves",
+                    "name": "Boston lettuce",
+                    "type": "Produce"
+                },
+                {
+                    "quantity": "6",
+                    "name": "English muffins, toasted",
+                    "type": "Misc"
+                }
+            ],
+            "steps": [
+                "ARRANGE chicken in a single layer in a large pot.",
+                "Add water to just cover.",
+                "Bring to a boil over medium-high.",
+                "Flip chicken, reduce heat to medium and simmer until cooked, about 6 more min.",
+                "Cool.",
+                "STIR mayo with lemon zest, juice, curry and salt in large bowl.",
+                "Using 2 forks, shred chicken, then stir into mayo mixture with mango, cranberries, green onions and celery.",
+                "Divide among muffins with lettuce leaves",
+                "Sandwich with tops"
+            ]
+        }
     }
 ]
