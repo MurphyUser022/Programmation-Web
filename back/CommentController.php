@@ -81,4 +81,30 @@ class CommentController
   
 }
 
+
+
+
+
+public function GetCommentsByRecipe(array $params): void
+{
+    $recipeId = $params['id'];
+
+    if (!file_exists($filePath)) {
+        http_response_code(200);
+        echo json_encode([]);
+        return;
+    }
+
+    $comments = json_decode(file_get_contents($commentsFile), true);
+
+    $filtered = array_filter($comments, function ($c) use ($recipeId) {
+        return $c['recipe_id'] == $recipeId;
+    });
+
+    http_response_code(200);
+    echo json_encode(array_values($filtered)); // array_values pour réindexer
+}
+
+
+
 }

@@ -31,6 +31,7 @@ $router->register('POST', '/test',[$recettesController, 'testCokiee']);
 $router->register('POST', '/recipes',[$recettesController, 'testCokiee']);
 
 $router->register('GET', '/recipes', [$recettesController, 'ConsultRecipe']);
+$router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID']);
 $router->register('DELETE', '/recipes/delete/{recipe_id}', [$recettesController, 'DeleteRecipeByID']);
 $router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
 
@@ -40,7 +41,8 @@ $router->register('POST', '/roles/{id}/approve', [$roleController, 'approveRole'
 $router->register('POST', '/roles/{id}/assign', [$roleController, 'assignRole']);
 
 // gestion des commentaires 
-$router->register('POST','/recipes/{id}/comments', [$commentController, 'handlePostCommentRequest']);
+$router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'handlePostCommentRequest']);
+$router->register('GET','/recipes/{id}/Getcomments', [$commentController, 'handlePostCommentRequest']);
 
 // gestion des likes
 $router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'addLike']);

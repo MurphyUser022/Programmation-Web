@@ -1,7 +1,7 @@
 const webServerAddress = "http://localhost:8080";
 //alert("Ceci est un test !");
 
-const loginForm = document.getElementById("register-form");
+const loginForm = document.getElementById("login-form");
 if (loginForm) {
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();

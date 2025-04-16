@@ -142,7 +142,7 @@
             0,
             0
         ],
-        "imageURL": "http:\/\/img.sndimg.com\/food\/image\/upload\/w_266\/v1\/img\/recipes\/50\/84\/7\/picMcSyVd.jpg",
+        "imageURL": "https:\/\/img.sndimg.com\/food\/image\/upload\/w_266\/v1\/img\/recipes\/50\/84\/7\/picMcSyVd.jpg",
         "originalURL": "http:\/\/www.food.com\/recipe\/roasted-asparagus-50847",
         "traductions": {
             "name": "Roasted Asparagus",
@@ -614,7 +614,7 @@
     },
     {
         "id": 10051,
-        "name": "Biscuits \u00e0 l'avoine \u00e0 l'ancienne",
+        "nameFR": "Biscuits \u00e0 l'avoine \u00e0 l'ancienne",
         "ingredientsFR": [
             {
                 "quantity": "1 tasse",
