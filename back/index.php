@@ -52,7 +52,10 @@ $router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
 
 //gestion des roles
 $router->register('POST', '/roles/request', [$roleController, 'handleRoleRequest']);
-$router->register('POST', '/roles/{id}/approve', [$roleController, 'approveRole']);
+$router->register('POST', '/roles/{id}/approve', function($id) use ($roleController) {
+    $roleController->approveRole(['id' => $id]);
+});
+
 $router->register('POST', '/roles/{id}/reject', [$roleController, 'rejectRole']);
 
 // gestion des commentaires 

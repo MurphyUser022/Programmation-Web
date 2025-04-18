@@ -81,3 +81,40 @@ fetch(`${webServerAddress}/recipes`)
     img.parentNode.insertBefore(emojiDiv, img.nextSibling);
   }
   
+document.addEventListener("DOMContentLoaded", () => {
+  const requestBtn = document.getElementById("request-role-btn");
+  const roleSelect = document.getElementById("requested-role");
+
+  requestBtn.addEventListener("click", async () => {
+    const selectedRole = roleSelect.value;
+
+    if (!selectedRole) {
+      alert("Veuillez choisir un rôle à demander.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${webServerAddress}/roles/request`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ role: selectedRole })
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(`Votre demande pour le rôle '${selectedRole}' a été envoyée ✅`);
+      } else {
+        alert(`Erreur : ${result.error || "Impossible d'envoyer la demande."}`);
+      }
+
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de la demande de rôle :", error);
+      alert("Erreur technique. Veuillez réessayer.");
+    }
+  });
+});
+
+

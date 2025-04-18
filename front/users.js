@@ -9,7 +9,9 @@ async function getUsers() {
     });
 
     if (res.ok) {
-      return await res.json();
+      const data = await res.json();
+      console.log("Utilisateurs récupérés:", data);
+      return data;
     } else {
       console.error("Erreur lors de la récupération des utilisateurs");
       return [];
@@ -23,6 +25,7 @@ async function getUsers() {
 // Met à jour le rôle d'un utilisateur (approve ou reject)
 async function updateUserRole(userId, role, action) {
   try {
+    console.log("🟢 Envoi approbation :", userId, role, action);
     const res = await fetch(`${webServerAddress}/roles/${userId}/${action}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,6 +33,7 @@ async function updateUserRole(userId, role, action) {
     });
 
     if (res.ok) {
+      console.log("Rôle mis à jour, rechargement des utilisateurs...");
       alert("Action réussie !");
       afficherUsers();
     } else {
@@ -54,6 +58,8 @@ async function afficherUsers() {
       ? (user.role_demande.length > 0 ? user.role_demande.join(", ") : "-")
       : (user.role_demande || "-");
 
+    const firstRequestedRole = roleDemande.split(",")[0].trim();
+
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
@@ -65,9 +71,9 @@ async function afficherUsers() {
       <td class="px-6 py-4">${roleDemande}</td>
       <td class="px-6 py-4 text-right space-x-2">
         <button class="px-3 py-1 border border-green-500 text-green-500 rounded hover:bg-green-500 hover:text-white"
-          onclick="updateUserRole('${user.id}', '${roleDemande}', 'approve')">Accepter</button>
+          onclick="updateUserRole('${user.id}', '${firstRequestedRole}', 'approve')">Accepter</button>
         <button class="px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-500 hover:text-white"
-          onclick="updateUserRole('${user.id}', '${roleDemande}', 'reject')">Refuser</button>
+          onclick="updateUserRole('${user.id}', '${firstRequestedRole}', 'reject')">Refuser</button>
       </td>
     `;
 
@@ -75,6 +81,21 @@ async function afficherUsers() {
   });
 }
 
-
 // Lancer l'affichage à l'ouverture de la page
 window.addEventListener("DOMContentLoaded", afficherUsers);
+
+// page reserve a l'admin
+document.addEventListener("DOMContentLoaded", () => {
+  const role = getCookie("role");
+
+  // Vérifie si le rôle contient "admin"
+  if (!role || !role.toLowerCase().includes("admin")) {
+    alert("Accès refusé. Cette page est réservée aux administrateurs.");
+    window.location.href = "dashboard.html";
+  }
+});
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}

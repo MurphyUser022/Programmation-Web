@@ -57,41 +57,66 @@ class RoleController {
     }
 
     public function approveRole($params) {
-        $userId = $params['id'];
+        $userId = is_array($params) ? $params['id'] : $params;
+    
+        $data = json_decode(file_get_contents("php://input"), true);
+        $role = $data['role'] ?? null;
+    
+        if (!$role) {
+            http_response_code(400);
+            echo json_encode(["error" => "Aucun rôle fourni"]);
+            return;
+        }
+    
         $users = $this->loadUsers();
     
         foreach ($users as &$user) {
             if ($user['id'] == $userId) {
-                if (empty($user['role_demande'])) {
+                if (!isset($user['role']) || !is_array($user['role'])) {
+                    $user['role'] = is_string($user['role']) ? [$user['role']] : [];
+                }
+                if (!isset($user['role_demande']) || !is_array($user['role_demande'])) {
+                    $user['role_demande'] = [];
+                }
+    
+                if (in_array($role, $user['role_demande'])) {
+                    if (!in_array($role, $user['role'])) {
+                        $user['role'][] = $role;
+                    }
+    
+                    $user['role_demande'] = array_values(array_filter(
+                        $user['role_demande'],
+                        fn($r) => $r !== $role
+                    ));
+    
+                    $this->saveUsers($users);
+    
+                    http_response_code(200);
+                    echo json_encode(["message" => "Rôle '$role' approuvé"]);
+                    return;
+                } else {
                     http_response_code(404);
-                    echo json_encode(["error" => "Aucune demande de rôle en attente"]);
+                    echo json_encode(["error" => "Ce rôle n'est pas demandé"]);
                     return;
                 }
-                foreach ($user['role_demande'] as $role) {
-                    if (!in_array($role, $user['roles'])) {
-                        $user['roles'][] = $role;
-                    }
-                }
-                $user['role_demande'] = [];
-                $this->saveUsers($users);
-    
-                http_response_code(200);
-                echo json_encode(["message" => "Rôle(s) approuvé(s)"]);
-                return;
             }
         }
+    
         http_response_code(404);
         echo json_encode(["error" => "Utilisateur non trouvé"]);
-    }    
+    }
+    
+    
     
     public function rejectRole($params) {
-        $userId = $params['id'];
+        $userId = is_array($params) ? $params['id'] : $params;
+    
         $data = json_decode(file_get_contents("php://input"), true);
         $roleToReject = $data['role'] ?? null;
     
         if (!$roleToReject) {
             http_response_code(400);
-            echo json_encode(["error" => "Rôle à refuser manquant"]);
+            echo json_encode(["error" => "Aucun rôle fourni"]);
             return;
         }
     
@@ -118,6 +143,7 @@ class RoleController {
     
         http_response_code(404);
         echo json_encode(["error" => "Utilisateur non trouvé"]);
-    }    
+    }
+    
 }
 ?>
