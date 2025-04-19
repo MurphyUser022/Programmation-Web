@@ -34,8 +34,11 @@ public function handleLoginRequest() {
 		   if($user['username'] == $this->username){ 
 			  if(password_verify($this->password, $user['password'])){
                  setcookie('pseudo', $this->username, time() + 900 , "/","", false, true); // ici le '/' c'est Pour que le cookie soit accessible depuis n'importe quel chemin
-                 setcookie('role',$user['role'], time() + 900 ,"/");
-                 setcookie('user_id',$user['id'], time() + 900 ,"/");
+                 setcookie('user_id', $user['id'], time() + 900, "/", "", false, true);
+                 setcookie('role', is_array($user['role']) ? implode(",", $user['role']) : $user['role'], time() + 900, "/", "", false, true);
+                    // $_SESSION['user'] = $this->username;
+                    // $_SESSION['role'] = $user['role'];
+                    // $_SESSION['user_id'] = $user['id'];
 				// echo"Welcome username -->".$this->username." avec pour role --->".$user['role'];
                 echo json_encode(["success" => true, "message" => "You are logged in"]);
                 exit();

@@ -31,9 +31,12 @@ class Router{
 	$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 	// CORS headers
-	header("Access-Control-Allow-Origin: *");
+	$origin = $_SERVER['HTTP_ORIGIN'] ?? 'http://localhost';
+	header("Access-Control-Allow-Origin: $origin");
+	header("Access-Control-Allow-Credentials: true");
 	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 	header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 
 	foreach ($this->routes as $route) {
 		if ($route['method'] === $method && preg_match($route['pattern'], $path, $matches)) {

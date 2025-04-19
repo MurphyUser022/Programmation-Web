@@ -81,40 +81,43 @@ fetch(`${webServerAddress}/recipes`)
     img.parentNode.insertBefore(emojiDiv, img.nextSibling);
   }
   
-document.addEventListener("DOMContentLoaded", () => {
-  const requestBtn = document.getElementById("request-role-btn");
-  const roleSelect = document.getElementById("requested-role");
-
-  requestBtn.addEventListener("click", async () => {
-    const selectedRole = roleSelect.value;
-
-    if (!selectedRole) {
-      alert("Veuillez choisir un rôle à demander.");
-      return;
-    }
-
-    try {
-      const response = await fetch(`${webServerAddress}/roles/request`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ role: selectedRole })
+  document.addEventListener("DOMContentLoaded", () => {
+    const requestBtn = document.getElementById("request-role-btn");
+    const roleSelect = document.getElementById("requested-role");
+  
+    if (requestBtn && roleSelect) {
+      requestBtn.addEventListener("click", async () => {
+        const selectedRole = roleSelect.value;
+  
+        if (!selectedRole) {
+          alert("Veuillez choisir un rôle.");
+          return;
+        }
+  
+        try {
+          const response = await fetch("http://localhost:8080/roles/request", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            credentials: "include", // 🔥 pour envoyer les cookies
+            body: JSON.stringify({ role: selectedRole })
+          });
+  
+          const result = await response.json();
+  
+          if (response.ok) {
+            alert("✅ Demande envoyée avec succès !");
+          } else {
+            alert("❌ Erreur : " + (result.error || "Échec de la demande"));
+          }
+        } catch (error) {
+          console.error("Erreur technique :", error);
+          alert("Erreur technique. Voir console.");
+        }
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(`Votre demande pour le rôle '${selectedRole}' a été envoyée ✅`);
-      } else {
-        alert(`Erreur : ${result.error || "Impossible d'envoyer la demande."}`);
-      }
-
-    } catch (error) {
-      console.error("Erreur lors de l'envoi de la demande de rôle :", error);
-      alert("Erreur technique. Veuillez réessayer.");
+    } else {
+      console.warn("🔍 Élément(s) introuvable(s) : Bouton ou Select non chargé");
     }
   });
-});
-
-
+  
