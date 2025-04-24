@@ -33,7 +33,9 @@
         "role": [
             "Cuisinier"
         ],
-        "role_demande": []
+        "role_demande": [
+            "traducteur"
+        ]
     },
     {
         "id": "rec_6802c810097003_62789770",

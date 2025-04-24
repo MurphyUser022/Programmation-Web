@@ -8,6 +8,12 @@ require_once 'RoleController.php';
 require_once 'LikeController.php';
 require_once 'TraductionController.php';
 
+// CORS headers
+	$origin = $_SERVER['HTTP_ORIGIN'] ?? 'http://localhost';
+	header("Access-Control-Allow-Origin: $origin");
+	header("Access-Control-Allow-Credentials: true"); 
+	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+	header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Gérer les requêtes de type preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
@@ -54,6 +60,8 @@ $router->register('POST', '/roles/{id}/approve', function($id) use ($roleControl
 });
 
 $router->register('POST', '/roles/{id}/reject', [$roleController, 'rejectRole']);
+$router->register('GET', '/auth/user/roles', [$authController, 'getCurrentUserRoles']);
+
 
 // gestion des commentaires 
 $router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'handlePostCommentRequest']);

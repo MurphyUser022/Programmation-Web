@@ -127,6 +127,41 @@ public function handleRegister() {
     
         echo json_encode($usersSansPassword);
     }
+
+    
+    public function getCurrentUserRoles() {
+        header("Content-Type: application/json");
+    
+        if (!isset($_COOKIE['user_id'])) {
+            http_response_code(403);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
+            return;
+        }
+    
+        $userId = $_COOKIE['user_id'];
+    
+        if (!file_exists($this->storage)) {
+            http_response_code(500);
+            echo json_encode(["error" => "Fichier utilisateur introuvable"]);
+            return;
+        }
+    
+        $users = json_decode(file_get_contents($this->storage), true);
+    
+        foreach ($users as $user) {
+            if ($user['id'] == $userId) {
+                echo json_encode([
+                    "username" => $user['username'],
+                    "roles" => $user['role'] ?? [],
+                    "role_demande" => $user['role_demande'] ?? []
+                ]);
+                return;
+            }
+        }
+    
+        http_response_code(404);
+        echo json_encode(["error" => "Utilisateur non trouvé"]);
+    }
     
     
 }
