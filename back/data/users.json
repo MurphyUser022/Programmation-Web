@@ -30,7 +30,10 @@
         "id": "rec_68025d6b4a1ae9_91354408",
         "username": "Kev",
         "password": "$2y$10$q0cmcHbOjgPjdhQ80U.gJuH9G.CF7PXB10.CoYY1McxbsGHmKxeCG",
-        "role": "Cuisinier"
+        "role": [
+            "Cuisinier"
+        ],
+        "role_demande": []
     },
     {
         "id": "rec_6802c810097003_62789770",
@@ -42,6 +45,7 @@
         "id": "rec_6802cfa98c2687_96747835",
         "username": "admin",
         "password": "$2y$10$TwEYjClog6ii6OiOa8x9guedoJzpY14woaMo4qs7kZhmlB92As.W6",
-        "role": "Cuisinier, Admin"
+        "role": "Admin",
+        "role_demande": []
     }
 ]
