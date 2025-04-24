@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "Content-Type": "application/x-www-form-urlencoded",
             },
             body: new URLSearchParams({ username, password }),
-            credentials: "include" // 🔥 important pour envoyer/recevoir les cookies
+            credentials: "include" 
           });
   
           const text = await response.text();

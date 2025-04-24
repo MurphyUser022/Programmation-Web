@@ -81,43 +81,48 @@ fetch(`${webServerAddress}/recipes`)
     img.parentNode.insertBefore(emojiDiv, img.nextSibling);
   }
   
-  document.addEventListener("DOMContentLoaded", () => {
-    const requestBtn = document.getElementById("request-role-btn");
-    const roleSelect = document.getElementById("requested-role");
-  
-    if (requestBtn && roleSelect) {
-      requestBtn.addEventListener("click", async () => {
-        const selectedRole = roleSelect.value;
-  
-        if (!selectedRole) {
-          alert("Veuillez choisir un rôle.");
-          return;
+  document.getElementById('request-role-btn').addEventListener('click', async () => {
+    const role = document.getElementById('requested-role').value;
+    const userId = getCookie('user_id');
+
+    if (!userId) {
+      alert("Vous devez être connecté pour demander un rôle.");
+      console.log(userId);
+      return;
+    }
+
+    if (!role || role === "Choisir un rôle") {
+      alert("Veuillez choisir un rôle valide.");
+      return;
+    }
+
+    try {
+        const res = await fetch('http://localhost:8080/roles/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          role: role
+        }),
+        credentials: 'include' // 🔥 Sans ça les cookies ne sont jamais envoyés !
+       });      
+       const data = await res.json();
+
+        if (res.ok) {
+          alert(data.message || "Demande de rôle envoyée avec succès !");
+        } else {
+          alert(data.error || "Erreur lors de la demande.");
         }
-  
-        try {
-          const response = await fetch("http://localhost:8080/roles/request", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            credentials: "include", // 🔥 pour envoyer les cookies
-            body: JSON.stringify({ role: selectedRole })
-          });
-  
-          const result = await response.json();
-  
-          if (response.ok) {
-            alert("✅ Demande envoyée avec succès !");
-          } else {
-            alert("❌ Erreur : " + (result.error || "Échec de la demande"));
-          }
-        } catch (error) {
-          console.error("Erreur technique :", error);
-          alert("Erreur technique. Voir console.");
-        }
-      });
-    } else {
-      console.warn("🔍 Élément(s) introuvable(s) : Bouton ou Select non chargé");
+
+    } catch (error) {
+      console.error("🔥 Erreur réseau :", error.message || error);
     }
   });
-  
+
+  // Fonction pour lire un cookie
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+    return null;
+  }

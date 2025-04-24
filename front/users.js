@@ -84,18 +84,17 @@ async function afficherUsers() {
 // Lancer l'affichage à l'ouverture de la page
 window.addEventListener("DOMContentLoaded", afficherUsers);
 
-// page reserve a l'admin
-document.addEventListener("DOMContentLoaded", () => {
-  const role = getCookie("role");
-
-  // Vérifie si le rôle contient "admin"
-  if (!role || !role.toLowerCase().includes("admin")) {
-    alert("Accès refusé. Cette page est réservée aux administrateurs.");
-    window.location.href = "dashboard.html";
+// Fonction pour récupérer un cookie spécifique
+document.addEventListener('DOMContentLoaded', () => {
+  const role = getCookie('role');
+  if (role !== 'Admin') {
+    alert("Accès réservé à l'administrateur");
+    window.location.href = "dashboard.html"; // ou login.html si non connecté
   }
 });
 
 function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[2]) : null;
+  if (match) return match[2];
+  return null;
 }
