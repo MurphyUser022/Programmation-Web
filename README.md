@@ -11,3 +11,10 @@
 cd back
 php -S localhost:8080
 ```
+
+```sh
+## Pour Run le front  ( dan un autre terminal et à la racine du projet )
+cd front 
+php -S localhost:3000
+
+```
