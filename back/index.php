@@ -9,12 +9,18 @@ require_once 'LikeController.php';
 require_once 'TraductionController.php';
 
 // CORS headers
-	$origin = $_SERVER['HTTP_ORIGIN'] ?? 'http://localhost';
-	header("Access-Control-Allow-Origin: $origin");
-	header("Access-Control-Allow-Credentials: true"); 
-	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-	header("Access-Control-Allow-Headers: Content-Type, Authorization");
+$allowedOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+];
 
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+}
 // Gérer les requêtes de type preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
@@ -29,7 +35,7 @@ $authController = new AuthController();
 // Créer l'instance de CommentController avec les arguments nécessaires
 $commentController = new CommentController('data/comments.json', $authController);
 $roleController = new RoleController('data/users.json', $authController);
-$likeController = new LikeController('data/recipes.json', $authController);
+$likeController = new LikeController("data/recipes.json", "data/like.json");
 $recettesController = new RecettesController('data/recipes.json', $authController);
 $traductionController = new TraductionController('data/recipes.json', 'data/users.json',$authController);
 
@@ -68,9 +74,7 @@ $router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'hand
 $router->register('GET','/recipes/{id}/Getcomments', [$commentController, 'handlePostCommentRequest']);
 
 // gestion des likes
-$router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'addLike']);
-$router->register('DELETE','/recipes/{recipe_id}/like', [$likeController, 'removeLike']);
-$router->register('GET', '/recipes/{recipe_id}/like', [$likeController, 'countLikes']);
+$router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'toggleLike']);
 
 // gestion des traductions
 $router->register('POST', '/recipes/{id}/traduction', [$traductionController, 'addTraduction']);

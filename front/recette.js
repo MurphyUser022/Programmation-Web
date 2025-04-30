@@ -17,7 +17,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>👻 Oups ! Aucune recette trouvée.</div>";
   }
 
-  document.getElementById('comment-button').addEventListener('click', () => {
+
+document.getElementById('like-button').addEventListener('click', () => {
+    toggleLike(id);  // On passe l'ID de la recette en commentaire
+  });
+
+  document. getElementById('comment-button').addEventListener('click', () => {
     addComment(id);
   });
 });
@@ -68,8 +73,10 @@ async function loadRecipe(id) {
     steps.appendChild(li);
   });
 
-  // Likes
-  document.getElementById('like-count').textContent = `${recette.likes.length} 👍`;
+
+  // Mettre à jour le nombre de likes
+  const likeCountElement = document.getElementById('like-count');
+  likeCountElement.textContent = `${recette.likes} 👍`;  // Récupère et affiche les likes
 }
 
 async function loadComments(id) {
@@ -131,3 +138,30 @@ async function addComment(id) {
     alert("Une erreur est survenue.");
   }
 }
+
+
+
+
+
+async function toggleLike(recipeId) {
+  try {
+    const response = await fetch(`${webServerAddress}/recipes/${recipeId}/like`, {
+      method: 'POST',
+      credentials: 'include', // ← ceci pour les cookies
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ recipe_id: recipeId })
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      document.getElementById('like-count').textContent = `${result.likes} 👍`;
+    } else {
+      alert(result.error || "Erreur inconnue");
+    }
+  } catch (err) {
+    console.error("Erreur lors du like :", err);
+    alert("Impossible de liker pour l'instant");
+  }
+}
+
