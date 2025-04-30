@@ -1,18 +1,9 @@
 [
     {
-        "id": 1,
-        "username": "admin",
-        "password": "hashed_password",
-        "roles": [
-            "admin"
-        ],
-        "role_demande": []
-    },
-    {
         "id": 2,
         "username": "so_diop",
         "password": "hashed_password",
-        "roles": [
+        "role": [
             "cuisinier",
             "chef",
             "traducteur"
@@ -20,15 +11,43 @@
         "role_demande": []
     },
     {
-        "id": "rec_67ff60d37c9245_35970410",
+        "id": "3",
         "username": "John",
         "password": "$2y$10$G1KHFipWMYNFOD.aVTbT4.0u05\/FFwzaOxp0X5n3w4XHgUEWeKhGK",
-        "role": "Cuisinier"
+        "role": [
+            "Cuisinier",
+            "traducteur"
+        ],
+        "role_demande": []
     },
     {
-        "id": "rec_67ffdc21590f02_63597510",
+        "id": "4",
         "username": "Joe",
         "password": "$2y$10$SEY31Y1.fuAUrvg4h9aDBOzkQNDDbcmZL2e5beVosO9qBWH.bImfK",
         "role": "Cuisinier"
+    },
+    {
+        "id": "rec_68025d6b4a1ae9_91354408",
+        "username": "Kev",
+        "password": "$2y$10$q0cmcHbOjgPjdhQ80U.gJuH9G.CF7PXB10.CoYY1McxbsGHmKxeCG",
+        "role": [
+            "Cuisinier"
+        ],
+        "role_demande": [
+            "traducteur"
+        ]
+    },
+    {
+        "id": "rec_6802c810097003_62789770",
+        "username": "Cookie",
+        "password": "$2y$10$nriZ.qXX4QMhNHLawJBj5u\/HJPEyIT09AJ1YbkNyVc6bNlLBuH0BO",
+        "role": "Cuisinier"
+    },
+    {
+        "id": "rec_6802cfa98c2687_96747835",
+        "username": "admin",
+        "password": "$2y$10$TwEYjClog6ii6OiOa8x9guedoJzpY14woaMo4qs7kZhmlB92As.W6",
+        "role": "Admin",
+        "role_demande": []
     }
 ]

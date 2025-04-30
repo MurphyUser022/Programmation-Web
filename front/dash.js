@@ -81,3 +81,78 @@ fetch(`${webServerAddress}/recipes`)
     img.parentNode.insertBefore(emojiDiv, img.nextSibling);
   }
   
+  document.getElementById('request-role-btn').addEventListener('click', async () => {
+    const role = document.getElementById('requested-role').value;
+    const userId = getCookie('user_id');
+
+    if (!userId) {
+      alert("Vous devez être connecté pour demander un rôle.");
+      console.log(userId);
+      return;
+    }
+
+    if (!role || role === "Choisir un rôle") {
+      alert("Veuillez choisir un rôle valide.");
+      return;
+    }
+
+    try {
+        const res = await fetch('http://localhost:8080/roles/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          role: role
+        }),
+        credentials: 'include' // 🔥 Sans ça les cookies ne sont jamais envoyés !
+       });      
+       const data = await res.json();
+
+        if (res.ok) {
+          alert(data.message || "Demande de rôle envoyée avec succès !");
+        } else {
+          alert(data.error || "Erreur lors de la demande.");
+        }
+
+    } catch (error) {
+      console.error("🔥 Erreur réseau :", error.message || error);
+    }
+  });
+
+  // Fonction pour lire un cookie
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+    return null;
+  }
+
+  async function fetchUserRoles() {
+    try {
+      const response = await fetch("http://localhost:8080/auth/user/roles", {
+        method: "GET",
+        credentials: "include"
+      });
+  
+      if (!response.ok) {
+        throw new Error("Non autorisé");
+      }
+  
+      const user = await response.json();
+      document.getElementById("roles-list").textContent = Array.isArray(user.roles)
+        ? user.roles.join(", ")
+        : user.roles;
+  
+      document.getElementById("pending-roles").textContent = Array.isArray(user.role_demande)
+        ? user.role_demande.join(", ") || "Aucune"
+        : user.role_demande || "Aucune";
+    } catch (error) {
+      console.error("Erreur récupération rôles :", error);
+      document.getElementById("user-roles").innerHTML =
+        "<p class='text-red-600'>Erreur de chargement des rôles.</p>";
+    }
+  }
+  
+  // Appel auto au chargement de la page
+  document.addEventListener("DOMContentLoaded", fetchUserRoles);
+  

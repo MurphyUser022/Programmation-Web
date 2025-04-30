@@ -1,25 +1,87 @@
 const webServerAddress = "http://localhost:8080";
 //alert("Ceci est un test !");
 
-const loginForm = document.getElementById("login-form");
-if (loginForm) {
-    loginForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const response = await sendLogin(event);
-            window.location.href = "dashboard.html";
-	});
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+  
+        const formData = new FormData(loginForm);
+        const username = formData.get("username");
+        const password = formData.get("password");
+  
+        try {
+          const response = await fetch("http://localhost:8080/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({ username, password }),
+            credentials: "include" 
+          });
+  
+          const text = await response.text();
+  
+          try {
+            const result = JSON.parse(text);
+  
+            if (result.success) {
+              alert("Connexion réussie !");
+              window.location.href = "dashboard.html";
+            } else {
+              alert("Erreur : " + (result.message || "Échec de la connexion"));
+            }
+  
+          } catch (err) {
+            console.error("Réponse non-JSON :", text);
+            alert("Erreur serveur : " + text);
+          }
+  
+        } catch (error) {
+          console.error("Erreur de connexion :", error);
+          alert("Une erreur s'est produite lors de la connexion.");
+        }
+      });
+    }
+  });
 
-}
+  // FORMULAIRE D'INSCRIPTION
+  const registerForm = document.getElementById("register-form");
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
+      const formData = new FormData(registerForm);
+      const username = formData.get("username");
+      const password = formData.get("password");
 
-const registerForm = document.getElementById("register-form");
-if (registerForm) {
-    registerForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        await sendRegister(event);
-		window.location.href = "dashboard.html";
+      console.log("📨 Envoi des données :", { username, password });
+
+      try {
+        const response = await fetch("http://localhost:8080/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ username, password }),
+        });
+
+        const result = await response.text();
+        console.log("🟢 Réponse:", result);
+
+        if (result.includes("successfully")) {
+          alert("Inscription réussie !");
+          window.location.href = "dashboard.html";
+        } else {
+          alert("Erreur: " + result);
+        }
+      } catch (error) {
+        console.error("Erreur inscription:", error);
+        alert("Une erreur s'est produite lors de l'inscription.");
+      }
     });
-}
+  }
 
 
 
@@ -160,89 +222,3 @@ async function displayComments(comments) {
     commentListContainer.appendChild(ul);
 }
 
-
-//traduction de la recette
-  const modal = document.getElementById('modal-traduction');
-  const closeModalBtn = document.getElementById('close-modal');
-  const form = document.getElementById('form-traduction');
-  const recetteIdInput = document.getElementById('recette-id');
-
-  // Charger les recettes dynamiquement
-  async function chargerRecettes() {
-    const res = await fetch('http://localhost:8080/recipes');
-    const recettes = await res.json();
-    const container = document.querySelector('.flex.flex-wrap');
-
-    recettes.forEach(recette => {
-      const card = document.createElement('div');
-      card.className = "w-full sm:w-[300px] bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl hover:bg-gradient-to-r from-green-100 to-green-200 duration-300";
-
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${recette.imageURL || 'https://via.placeholder.com/300'}" alt="Image" class="w-full h-48 object-cover">
-        </div>
-        <div class="px-4 py-4">
-          <h2 class="text-lg font-semibold text-gray-800 mb-2">${recette.name}</h2>
-          <p class="text-gray-600 text-xs mb-4">${recette.description || 'Recette à découvrir !'}</p>
-          <button data-id="${recette.id}" data-name="${recette.name}" class="btn-traduire bg-red-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition">
-            Traduire
-          </button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-    // Attacher les événements aux boutons "Traduire"
-    document.querySelectorAll('.btn-traduire').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = btn.dataset.id;
-        const name = btn.dataset.name;
-
-        // Préremplir
-        recetteIdInput.value = id;
-        document.getElementById('trad-name').value = name;
-        document.getElementById('trad-ingredients').value = '';
-        document.getElementById('trad-steps').value = '';
-        document.getElementById('trad-without').value = '';
-
-        modal.classList.remove('hidden');
-      });
-    });
-  }
-
-  closeModalBtn.addEventListener('click', () => {
-    modal.classList.add('hidden');
-  });
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const id = recetteIdInput.value;
-    const name = document.getElementById('trad-name').value;
-    const ingredients = document.getElementById('trad-ingredients').value
-      .split("\n")
-      .map(l => {
-        const [quantity, ...rest] = l.trim().split(" ");
-        const type = rest.pop();
-        const name = rest.join(" ");
-        return { quantity, name, type };
-      });
-
-    const steps = document.getElementById('trad-steps').value.split("\n").map(s => s.trim());
-    const Without = document.getElementById('trad-without').value.split(",").map(w => w.trim());
-
-    const res = await fetch(`http://localhost:8080/recipes/${id}/traduction`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, ingredients, steps, Without })
-    });
-
-    if (res.ok) {
-      alert("✅ Traduction enregistrée !");
-      modal.classList.add('hidden');
-    } else {
-      alert("❌ Erreur lors de l'enregistrement.");
-    }
-  });
-
-  // Charger les recettes à l'ouverture
-  chargerRecettes();
