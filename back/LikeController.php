@@ -70,7 +70,8 @@ class LikeController {
 				// Si pas déjà liké → on ajoute
 				if (!$liked) {
 					$likes[] = ['recipe_id' => $recipeId, 'user_id' => $userId];
-					$recipe['likes'] = ($recipe['likes'] ?? 0) + 1;
+					$recipe['likes'] = (int)($recipe['likes'] ?? 0) + 1;
+
 				}
 	
 				$this->saveLikes(array_values($likes)); // propre

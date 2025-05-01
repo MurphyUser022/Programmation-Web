@@ -1,8 +1,15 @@
 const webServerAddress = "http://localhost:8080";
 
+let isEnglish = false;  // false pour français, true pour anglais
+
+// Récupérer les paramètres de l'URL à la page de recette
 document.addEventListener('DOMContentLoaded', async () => {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search); 
   const id = params.get('id');
+  const lang = params.get('lang');  // Vérifie si "lang" est dans l'URL
+
+
+  isEnglish = lang === 'en';
 
   if (!id) {
     document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>❌ Recette introuvable</div>";
@@ -17,18 +24,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>👻 Oups ! Aucune recette trouvée.</div>";
   }
 
-
-document.getElementById('like-button').addEventListener('click', () => {
-    toggleLike(id);  // On passe l'ID de la recette en commentaire
+  document.getElementById('like-button').addEventListener('click', () => {
+    toggleLike(id);  // Passer l'ID de la recette pour le like
   });
 
-  document. getElementById('comment-button').addEventListener('click', () => {
+  document.getElementById('comment-button').addEventListener('click', () => {
     addComment(id);
   });
 });
 
+// Charger la recette
 async function loadRecipe(id) {
-  const response = await fetch(`${webServerAddress}/recipes/${id}`);
+  const response = await fetch(`${webServerAddress}/recipes/${id}/${isEnglish ? 'en' : 'fr'}`);
   if (!response.ok) throw new Error('Recette non trouvée');
 
   const recette = await response.json();
@@ -42,13 +49,15 @@ async function loadRecipe(id) {
   };
 
   // Titre & Auteur
-  document.getElementById('recette-title').textContent = recette.nameFR;
+  const displayName = isEnglish && recette.traductions ? recette.traductions.name : recette.nameFR;
+  document.getElementById('recette-title').textContent = displayName;
   document.querySelector('p.text-lg').textContent = `Recette par ${recette.Author}`;
 
   // Restrictions
   const restrictions = document.getElementById('restrictions');
   restrictions.innerHTML = '';
-  recette.Sans.forEach(restriction => {
+  const restrictionsList = isEnglish && recette.traductions ? recette.traductions.Without : recette.Sans;
+  restrictionsList.forEach(restriction => {
     const li = document.createElement('li');
     li.textContent = restriction;
     restrictions.appendChild(li);
@@ -57,7 +66,8 @@ async function loadRecipe(id) {
   // Ingrédients
   const ingredients = document.getElementById('recette-ingredients');
   ingredients.innerHTML = '';
-  recette.ingredientsFR.forEach(ing => {
+  const displayIngredients = isEnglish && recette.traductions ? recette.traductions.ingredients : recette.ingredientsFR;
+  displayIngredients.forEach(ing => {
     const li = document.createElement('li');
     li.textContent = `${ing.quantity} ${ing.name ?? ''}`.trim();
     ingredients.appendChild(li);
@@ -66,18 +76,17 @@ async function loadRecipe(id) {
   // Étapes
   const steps = document.getElementById('recette-steps');
   steps.innerHTML = '';
-  recette.stepsFR.forEach((step, index) => {
+  const displaySteps = isEnglish && recette.traductions ? recette.traductions.steps : recette.stepsFR;
+  displaySteps.forEach((step, index) => {
     const duration = recette.timers[index] ? ` (${recette.timers[index]} min)` : '';
     const li = document.createElement('li');
     li.textContent = `${step}${duration}`;
     steps.appendChild(li);
   });
 
-
-  // Mettre à jour le nombre de likes
-  const likeCountElement = document.getElementById('like-count');
-  likeCountElement.textContent = `${recette.likes} 👍`;  // Récupère et affiche les likes
 }
+
+
 
 async function loadComments(id) {
   const ul = document.getElementById('commentaires');
@@ -138,30 +147,3 @@ async function addComment(id) {
     alert("Une erreur est survenue.");
   }
 }
-
-
-
-
-
-async function toggleLike(recipeId) {
-  try {
-    const response = await fetch(`${webServerAddress}/recipes/${recipeId}/like`, {
-      method: 'POST',
-      credentials: 'include', // ← ceci pour les cookies
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ recipe_id: recipeId })
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      document.getElementById('like-count').textContent = `${result.likes} 👍`;
-    } else {
-      alert(result.error || "Erreur inconnue");
-    }
-  } catch (err) {
-    console.error("Erreur lors du like :", err);
-    alert("Impossible de liker pour l'instant");
-  }
-}
-

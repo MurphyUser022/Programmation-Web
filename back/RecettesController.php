@@ -147,6 +147,17 @@ class RecettesController
     public function RecipeByID(array $params): void
     {
         $id = (int)$params['recipe_id']; // On cast ici
+
+        // Récupérer la langue (fr ou en)
+        $lang = isset($params['lang']) ? $params['lang'] : 'fr';  // Par défaut, la langue est 'fr'
+    
+
+        if (!in_array($lang, ['fr', 'en'])) {
+            http_response_code(400); // Mauvaise requête si la langue est invalide
+            echo json_encode(["error" => "Langue invalide"]);
+            return;
+        }
+        
     
         if (!file_exists($this->recipeFile)) {
             http_response_code(404); // petit correctif : 4004 n’existe pas 😉
