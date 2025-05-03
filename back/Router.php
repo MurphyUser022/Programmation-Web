@@ -48,7 +48,7 @@ class Router{
 			$params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
 
 			// Appelle la fonction avec ou sans arguments selon la route
-			call_user_func_array($route['handler'], array_values($params));
+			call_user_func($route['handler'], $params);
 			return;
 		}
 	}

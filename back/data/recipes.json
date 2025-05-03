@@ -48,9 +48,6 @@
         ],
         "imageURL": "http:\/\/img.sndimg.com\/food\/image\/upload\/w_266\/v1\/img\/recipes\/27\/20\/8\/picVfzLZo.jpg",
         "originalURL": "http:\/\/www.food.com\/recipe\/to-die-for-crock-pot-roast-27208",
-        "likes": [
-            "2"
-        ],
         "traductions": {
             "name": "Crock Pot Roast",
             "ingredients": [
@@ -90,7 +87,9 @@
                 "NoGluten",
                 "NoMilk"
             ]
-        }
+        },
+        "likes": 1,
+        "statut": "valid\u00e9"
     },
     {
         "id": 10046,
@@ -181,11 +180,7 @@
                 "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal."
             ]
         },
-        "likes": [
-            "1",
-            "2",
-            "3"
-        ],
+        "likes": [],
         "statut": "valid\u00e9"
     },
     {
@@ -281,6 +276,7 @@
                 ""
             ]
         },
+        "likes": 0,
         "statut": "valid\u00e9"
     },
     {
@@ -408,6 +404,7 @@
                 "Enjoy!"
             ]
         },
+        "likes": [],
         "statut": "valid\u00e9"
     },
     {
@@ -521,6 +518,7 @@
                 "Enjoy!"
             ]
         },
+        "likes": 0,
         "statut": "valid\u00e9"
     },
     {
@@ -615,10 +613,12 @@
                 "Bake for 30 minutes until well browned and risen."
             ]
         },
+        "likes": [],
         "statut": "valid\u00e9"
     },
     {
         "id": 10051,
+        "Author": "Unknown",
         "nameFR": "Biscuits \u00e0 l'avoine \u00e0 l'ancienne",
         "ingredientsFR": [
             {
@@ -785,7 +785,8 @@
                 "About 6 1\/2 dozen cookies."
             ]
         },
-        "statut": "valid\u00e9"
+        "statut": "valid\u00e9",
+        "likes": []
     },
     {
         "id": 10052,
@@ -930,11 +931,13 @@
                 "(Make-ahead: Cover and refrigerate for up to 2 days or overwrap with heavy-duty foil and freeze for up to 2 weeks.)"
             ]
         }, 
-        "statut": "valid\u00e9"
+        "statut": "valid\u00e9",
+        "likes": []
     },
     {
         "id": 10053,
         "name": "Salade de poulet au curry",
+        "Author": "Unknown",
         "ingredientsFR": [
             {
                 "quantity": "3",
