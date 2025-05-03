@@ -18,7 +18,7 @@ function loadRecipes() {
         const totalTime = recette.timers?.reduce((a, b) => a + b, 0) || 0;
 
         // Déterminer l'URL de la recette en fonction de la langue
-        const recetteURL = isEnglish ? `/${recette.id}/en` : `/recettes/${recette.id}/fr`;
+        const recetteLang = isEnglish ? 'en' : 'fr';
 
         // Utilisation des traductions si l'anglais est activé
         const displayName = isEnglish && recette.traductions ? recette.traductions.name : recette.nameFR;
@@ -44,10 +44,10 @@ function loadRecipes() {
                 <span>Temps total : ${totalTime} min</span>
               </div>
               <!-- Lien vers la page de détails de la recette -->
-              <a href="recette.html?id=${recetteURL}" class="text-green-600 text-xs font-medium hover:underline mb-3 focus:outline-none">Voir plus</a>
+              <a href="recette.html?id=${recette.id}&lang=${recetteLang}" class="text-green-600 text-xs font-medium hover:underline mb-3 focus:outline-none">Voir plus</a>
               <div class="flex space-x-3 mt-3">
                 <button class="bg-yellow-200 text-gray-700 py-1 px-4 rounded-full hover:bg-yellow-500 text-xs transition" data-id="${recette.id}" onclick="toggleLike(${recette.id})"><i class="fas fa-thumbs-up"></i> Like</button>
-                <a href="${recetteURL}">
+                <a href="#">
                   <button class="bg-blue-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition"><i class="fas fa-comment"></i> Commenter</button>
                 </a>
                 <button class="bg-red-200 text-gray-700 py-1 px-4 rounded-full hover:bg-blue-500 text-xs transition" onclick="showTranslation(${recette.id}, ${JSON.stringify(recette.traductions)})"><i class="fas fa-language"></i> Traduction</button>

@@ -147,3 +147,31 @@ async function addComment(id) {
     alert("Une erreur est survenue.");
   }
 }
+
+async function toggleLike(recipeId) {
+  try {
+    const response = await fetch(`${webServerAddress}/recipes/${recipeId}/like`, {
+      method: 'POST',
+      credentials: 'include', // Pour les cookies
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ recipe_id: recipeId })
+    });
+
+    // Vérification de la réponse brute avant le parse JSON
+    const textResponse = await response.text();
+    console.log("Réponse brute du serveur:", textResponse);
+
+    // Si la réponse est vide ou n'est pas au format JSON, tu peux arrêter ici
+    if (response.ok) {
+      const result = JSON.parse(textResponse); // Essaye de parser la réponse
+
+      document.getElementById('like-count').textContent = `${result.likes} 👍`;
+    } else {
+      const errorMessage = JSON.parse(textResponse).error || "Erreur inconnue";
+      alert(errorMessage);
+    }
+  } catch (err) {
+    console.error("Erreur lors du like :", err);
+    alert("Impossible de liker pour l'instant");
+  }
+}
