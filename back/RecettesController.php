@@ -9,55 +9,59 @@ class RecettesController
     }
 
 
-
-    public function testCokiee()
-    {
-           echo'voici le pseudo actu en dans les cookies '.$_COOKIE['pseudo'];
-    }
-
     public function AjouteRecette() {
-        // Utilisation de $this->recipeFile au lieu de $recipeFile
         $recipes = file_exists($this->recipeFile) ? json_decode(file_get_contents($this->recipeFile), true) : [];
-
-        // Recup des data
+    
         $data = json_decode(file_get_contents("php://input"), true);
-
-        if (!$data || !isset($data['name']) || !isset($data['ingredients'])) {
+    
+        if (!$data || !isset($data['nameFR']) || !isset($data['ingredientsFR']) || !is_array($data['ingredientsFR'])) {
             http_response_code(400);
-            echo json_encode(["error" => "Missing required fields"]);
+            echo json_encode(["error" => "Champs requis manquants ou invalides"]);
             return;
         }
-
-        if (!isset($_COOKIE['pseudo']))
-        {
-            echo";)  je viens de del le cokiee c'est un test Sophie , pas de username dans les cookies";
+    
+        if (!isset($_COOKIE['pseudo'])) {
+            http_response_code(401);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
+            return;
         }
-        else
-        {
-            $recipeId = str_replace('.', '_', uniqid("rec_", true));
-
-
+    
+        if (isset($data['imageURL']) && !filter_var($data['imageURL'], FILTER_VALIDATE_URL)) {
+            http_response_code(400);
+            echo json_encode(["error" => "URL d'image invalide"]);
+            return;
+        }
+    
+        // Trouver le plus grand ID numérique existant
+        $maxId = 0;
+        foreach ($recipes as $r) {
+            if (isset($r['id']) && is_numeric($r['id'])) {
+                $maxId = max($maxId, (int)$r['id']);
+            }
+        }
+    
+        $newId = $maxId + 1;
+    
         $newRecipe = [
-            "id" => $recipeId,
-            "name" => $data['name'],
-            "nameFR" => $data['nameFR'] ?? "",
+            "id" => $newId,
+            "nameFR" => $data['nameFR'],
             "Author" => $_COOKIE['pseudo'],
-            "Without" => $data['without'] ?? [],
-            "ingredients" => $data['ingredients'],
+            "Sans" => $data['Sans'] ?? [],
+            "ingredientsFR" => $data['ingredientsFR'],
+            "stepsFR" => $data['stepsFR'] ?? [],
             "timers" => $data['timers'] ?? [],
             "imageURL" => $data['imageURL'] ?? "",
-            "originalURL" => $data['originalURL'] ?? ""
+            "statut" => "en_attente"
         ];
-
+    
         $recipes[] = $newRecipe;
-
-        // Save du ficier JSON
         file_put_contents($this->recipeFile, json_encode($recipes, JSON_PRETTY_PRINT));
-
+    
         http_response_code(201);
-        echo json_encode(["success" => "Recipe added successfully  with id ".$recipeId]);
-        }
-
+        echo json_encode([
+            "success" => "Recette ajoutée avec succès",
+            "id" => $newId
+        ]);
     }
 
 
@@ -168,4 +172,23 @@ class RecettesController
         echo json_encode(["error" => "Recette non trouvée"]);
     }
     
+    public function validerRecette($params) {
+        $recipeId = $params['id'];
+        $recipes = json_decode(file_get_contents($this->recipeFile), true);
+    
+        foreach ($recipes as &$recipe) {
+            if ($recipe['id'] == $recipeId) {
+                $recipe['statut'] = 'valide';
+                file_put_contents($this->recipeFile, json_encode($recipes, JSON_PRETTY_PRINT));
+                echo json_encode(["success" => "Recette validée"]);
+                return;
+            }
+        }
+    
+        http_response_code(404);
+        echo json_encode(["error" => "Recette non trouvée"]);
+    }
+    
 }
+
+

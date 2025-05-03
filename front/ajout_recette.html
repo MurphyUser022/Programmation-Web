@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajout de Recette</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-[#fefcf7] to-[#eaf4d3] relative overflow-x-hidden font-sans">
+
+    <header class="px-10 py-6 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-green-700">Glodon 🍃 </h1>
+        <nav class="flex space-x-6 text-gray-700">
+            <a href="dashboard.html" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
+            <a href="user.html" id="gestion-role-link" class="transition-colors duration-300 hover:text-green-600">Gestion des roles</a>
+            <a href="index.html" class="transition-colors duration-300 hover:text-green-600">Deconnexion</a>
+          </nav>     
+      </header>
+
+        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#ffbbd6] blur-2xl opacity-40 rounded-full -z-20"></div>
+        <div class="absolute top-1/4 left-1/2 w-[600px] h-[600px] bg-[#eaf4d3] blur-2xl opacity-30 rounded-[40%] -z-10"></div>
+        <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-[#ff9f00] to-[#ff5349] blur-lg opacity-40 rounded-[60%] -z-10"></div>
+    
+  <div class="max-w-7xl mx-auto space-y-10 text-center">
+
+
+    <!-- Image et titre -->
+    <div class="text-center">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60"
+           alt="Image de la recette"
+           class="w-full max-w-xl mx-auto rounded-lg shadow-md" />
+      <h1 class="text-3xl font-bold mt-4">Ajouter une Recette</h1>
+    </div>
+
+    <!-- Titre -->
+    <input id="recipe-title" type="text" class="w-full border rounded px-3 py-2" placeholder="Titre" />
+
+    <!-- Ingrédients -->
+    <textarea id="ingredients" rows="6" class="w-full border rounded px-3 py-2" placeholder="Ingrédients ligne par ligne"></textarea>
+
+    <div class="mb-6">
+        <label class="block font-medium mb-1">Sans (Restrictions alimentaires)</label>
+        <input type="text" id="sans" placeholder="Ex: gluten, lactose" class="w-full border rounded px-3 py-2" />
+    </div>      
+
+    <!-- Étapes -->
+    <div id="steps-container" class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-4 rounded shadow step-block">
+        <div>
+        <label class="block font-medium mb-1">Étape 1</label>
+        <textarea class="step-text w-full border rounded px-3 py-2 mb-2" rows="2" placeholder="Description de l'étape"></textarea>
+        <input class="step-duration w-full border rounded px-3 py-2" type="number" placeholder="Durée (min)" />
+        </div>
+    </div>
+    <button id="add-step-btn" class="bg-green-500 hover:bg-orange-600 text-white px-6 py-2 rounded">Ajouter une étape</button> <br>
+    </div>
+
+    <div class="mb-6">
+        <label class="block font-medium mb-1">URL de l'image</label>
+        <input type="url" id="image-url" placeholder="https://..." class="w-full border rounded px-3 py-2" />
+    </div>
+      
+
+    <!-- Boutons -->
+    <button id="submit-recipe" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded mt-6">Ajouter la recette</button> 
+
+  </div> <br>
+
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 Glodon. Tous droits réservés.</p>
+      <p>Développé avec ❤️ par Soso & Kev</p>
+    </div>
+  </footer>
+  <script src="ajout_recette.js"></script>
+</body>
+</html>

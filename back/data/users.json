@@ -41,7 +41,11 @@
         "id": "rec_6802c810097003_62789770",
         "username": "Cookie",
         "password": "$2y$10$nriZ.qXX4QMhNHLawJBj5u\/HJPEyIT09AJ1YbkNyVc6bNlLBuH0BO",
-        "role": "Cuisinier"
+        "role": [
+            "Cuisinier",
+            "chef"
+        ],
+        "role_demande": []
     },
     {
         "id": "rec_6802cfa98c2687_96747835",

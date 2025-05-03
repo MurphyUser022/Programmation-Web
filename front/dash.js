@@ -126,33 +126,3 @@ fetch(`${webServerAddress}/recipes`)
     if (match) return match[2];
     return null;
   }
-
-  async function fetchUserRoles() {
-    try {
-      const response = await fetch("http://localhost:8080/auth/user/roles", {
-        method: "GET",
-        credentials: "include"
-      });
-  
-      if (!response.ok) {
-        throw new Error("Non autorisé");
-      }
-  
-      const user = await response.json();
-      document.getElementById("roles-list").textContent = Array.isArray(user.roles)
-        ? user.roles.join(", ")
-        : user.roles;
-  
-      document.getElementById("pending-roles").textContent = Array.isArray(user.role_demande)
-        ? user.role_demande.join(", ") || "Aucune"
-        : user.role_demande || "Aucune";
-    } catch (error) {
-      console.error("Erreur récupération rôles :", error);
-      document.getElementById("user-roles").innerHTML =
-        "<p class='text-red-600'>Erreur de chargement des rôles.</p>";
-    }
-  }
-  
-  // Appel auto au chargement de la page
-  document.addEventListener("DOMContentLoaded", fetchUserRoles);
-  

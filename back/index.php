@@ -45,9 +45,6 @@ $router->register('GET', '/users', [$authController, 'getAllUsers']);
 
 //Gestion des Recettes
 $router->register('POST', '/recipes',[$recettesController, 'AjouteRecette']);
-$router->register('POST', '/test',[$recettesController, 'testCokiee']);
-$router->register('POST', '/recipes',[$recettesController, 'testCokiee']);
-
 $router->register('GET', '/recipes', [$recettesController, 'ConsultRecipe']);
 $router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID']);
 $router->register('DELETE', '/recipes/delete/{recipe_id}', [$recettesController, 'DeleteRecipeByID']);
