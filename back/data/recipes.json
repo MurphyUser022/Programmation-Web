@@ -180,7 +180,7 @@
                 "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal."
             ]
         },
-        "likes": [],
+        "likes": 0,
         "statut": "valid\u00e9"
     },
     {
@@ -930,7 +930,7 @@
                 "Let cool on rack before cutting into squares.",
                 "(Make-ahead: Cover and refrigerate for up to 2 days or overwrap with heavy-duty foil and freeze for up to 2 weeks.)"
             ]
-        }, 
+        },
         "statut": "valid\u00e9",
         "likes": []
     },
@@ -1100,7 +1100,8 @@
                 "Sandwich with tops"
             ]
         },
-        "statut": "valid\u00e9"
+        "statut": "en_attente",
+        "likes": []
     },
     {
         "id": 10054,
@@ -1130,32 +1131,48 @@
             1
         ],
         "imageURL": "https:\/\/mesrecettestoutsimplement.wordpress.com\/wp-content\/uploads\/2014\/04\/photo-19.jpg",
-        "statut":"en_attente"
+        "statut": "en_attente",
+        "likes": []
     },
     {
         "id": 10055,
         "nameFR": "P\u00e2tes \u00e0 l'ail",
-        "Author": "Kev",
+        "Author": "admin",
         "Sans": [
             "lactose"
         ],
         "ingredientsFR": [
-            "quantite: 200g, nom: spaghetti, type: p\u00e2tes,",
-            "quantite: 2 gousses , nom: ail, type: aromates"
+            {
+                "quantity": "2",
+                "name": "Gousses d'ail",
+                "type": "Aromates"
+            },
+            {
+                "quantity": "200g",
+                "name": "spaghetti",
+                "type": "P\u00e2tes"
+            },
+            {
+                "quantity": "100g",
+                "name": "Parmesan",
+                "type": "Fromage"
+            }
         ],
         "stepsFR": [
-            "Faire Bouillir l'eau",
-            "Ajouter les p\u00e2tes",
-            "Ajouter l\u2019ail",
-            "Laissez Cuire"
+            "Faire bouillir de l'eau",
+            "Mettre les Pates",
+            "faire cuire les pates",
+            "ajouter l'ail",
+            "ajouter le parmesan"
         ],
         "timers": [
             5,
             2,
-            2,
-            15
+            15,
+            3,
+            2
         ],
         "imageURL": "https:\/\/img-3.journaldesfemmes.fr\/jOEHYQjqe2KDHY8rY6ezWIiwIGs=\/750x500\/d7db2b0eca6541fc84925ac13c7e8662\/ccmcms-jdf\/39710191.jpg",
-        "statut": "en_attente"
+        "statut": "valid\u00e9"
     }
 ]

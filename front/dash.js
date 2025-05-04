@@ -14,7 +14,9 @@ function loadRecipes() {
       container.innerHTML = '';  // Effacer les anciennes recettes affichées
 
       // Ajouter les recettes traduites ou non en fonction de la langue
-      recettes.forEach(recette => {
+      recettes
+      .filter(recette => recette.statut && recette.statut.trim().toLowerCase() === "validé")
+      .forEach(recette => {
         const totalTime = recette.timers?.reduce((a, b) => a + b, 0) || 0;
 
         // Déterminer l'URL de la recette en fonction de la langue

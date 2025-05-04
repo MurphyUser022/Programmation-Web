@@ -13,6 +13,7 @@
     <nav class="flex space-x-6 text-gray-700">
         <a href="dashboard.html" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
         <a href="ajout_recette.html" id="ajout-recette-link" class="transition-colors duration-300 hover:text-green-600">Ajout de recettes</a>
+        <a href="user.html" class="transition-colors duration-300 hover:text-green-600">Gestion des roles</a>
         <a href="index.html" class="transition-colors duration-300 hover:text-green-600">Deconnexion</a>
     </nav>     
   </header>
@@ -24,13 +25,14 @@
       <thead class="bg-gray-100 text-blue-600 font-semibold">
         <tr>
           <th class="px-6 py-3">ID</th>
-          <th class="px-6 py-3">Username</th>
-          <th class="px-6 py-3">Rôles</th>
-          <th class="px-6 py-3">Rôle demandé</th>
+          <th class="px-6 py-3">Nom</th>
+          <th class="px-6 py-3">Auteur</th>
+          <th class="px-6 py-3">Ingredients</th>
+          <th class="px-6 py-3">Restrictions</th>
           <th class="px-6 py-3 text-right">Actions</th>
         </tr>
       </thead>
-      <tbody class="bg-white" id="users-table">
+      <tbody class="bg-white divide-y divide-gray-200" id="rec-table">
 
       </tbody>
     </table>
@@ -45,7 +47,7 @@
     <div class="absolute top-16 right-10 w-72 h-72 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-40 rounded-full -z-10 animate-pulse"></div>
     <div class="absolute bottom-32 left-16 w-56 h-56 bg-[#eaf4d3] blur-md opacity-50 rounded-[60%] -z-10 animate-pulse"></div>
 
-    <script src="users.js"></script>
+    <script src="ges_recette.js"></script>
 
 </body>
 </html>

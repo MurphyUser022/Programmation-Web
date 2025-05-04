@@ -184,22 +184,53 @@ class RecettesController
     }
     
     public function validerRecette($params) {
-        $recipeId = $params['id'];
-        $recipes = json_decode(file_get_contents($this->recipeFile), true);
+        $recipeId = is_array($params) ? ($params['id'] ?? $params['recipe_id'] ?? null) : $params;
     
+        if (!$recipeId) {
+            http_response_code(400);
+            echo json_encode(["error" => "ID de recette manquant"]);
+            return;
+        }
+    
+        $recipes = json_decode(file_get_contents($this->recipeFile), true);
         foreach ($recipes as &$recipe) {
-            if ($recipe['id'] == $recipeId) {
-                $recipe['statut'] = 'valide';
+            if ((string)$recipe['id'] === (string)$recipeId) {
+                $recipe['statut'] = 'validé';
                 file_put_contents($this->recipeFile, json_encode($recipes, JSON_PRETTY_PRINT));
-                echo json_encode(["success" => "Recette validée"]);
+                http_response_code(200);
+                echo json_encode(["message" => "Recette validée"]);
                 return;
             }
         }
     
         http_response_code(404);
-        echo json_encode(["error" => "Recette non trouvée"]);
+        echo json_encode(["error" => "Recette introuvable"]);
     }
     
+    public function rejeterRecette($params) {
+        $recipeId = is_array($params) ? ($params['id'] ?? $params['recipe_id'] ?? null) : $params;
+    
+        if (!$recipeId) {
+            http_response_code(400);
+            echo json_encode(["error" => "ID de recette manquant"]);
+            return;
+        }
+    
+        $recipes = json_decode(file_get_contents($this->recipeFile), true);
+        foreach ($recipes as $index => $recipe) {
+            if ((string)$recipe['id'] === (string)$recipeId) {
+                array_splice($recipes, $index, 1);
+                file_put_contents($this->recipeFile, json_encode($recipes, JSON_PRETTY_PRINT));
+                http_response_code(200);
+                echo json_encode(["message" => "Recette refusée et supprimée"]);
+                return;
+            }
+        }
+    
+        http_response_code(404);
+        echo json_encode(["error" => "Recette introuvable"]);
+    }
+    
+    
 }
-
 

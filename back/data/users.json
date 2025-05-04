@@ -53,5 +53,11 @@
         "password": "$2y$10$TwEYjClog6ii6OiOa8x9guedoJzpY14woaMo4qs7kZhmlB92As.W6",
         "role": "Admin",
         "role_demande": []
+    },
+    {
+        "id": "rec_6817c186de5aa4_91392049",
+        "username": "nana",
+        "password": "$2y$10$cG0HMEbx45KKj67abS1PWuh66PeSmDB9PpD3omqLOqgOwXoUZJvyS",
+        "role": "Cuisinier"
     }
 ]

@@ -13,25 +13,24 @@ class CommentController
 
 
 	public function handlePostCommentRequest(array $params): void {
-		// L'ID de la recette est dans les paramètres de l'URL
-		$recipeId = $params['recipe_id'] ?? null;
-		
-		// Récupérer l'ID de la recette depuis l'URL
-		$message = $_POST['message'] ?? null;
+		$recipeId = $params['id'] ?? null;
+	
+		$data = json_decode(file_get_contents("php://input"), true);
+		$message = $data['message'] ?? null;
 	
 		if (!$recipeId || !$message) {
-			echo "Recipe ID and message are required.";
+			http_response_code(400);
+			echo json_encode(["error" => "Recipe ID and message are required."]);
 			return;
 		}
 	
-		// Get user ID from cookies
 		$userId = $_COOKIE['user_id'] ?? null;
 		if (!$userId) {
-			echo "User not authenticated.";
+			http_response_code(401);
+			echo json_encode(["error" => "User not authenticated."]);
 			return;
 		}
 	
-		// Créer le commentaire
 		$newComment = [
 			'recipe_id' => $recipeId,
 			'user_id' => $userId,
@@ -39,13 +38,11 @@ class CommentController
 			'timestamp' => date('c'),
 		];
 	
-		// Sauvegarder le commentaire
 		$this->saveComment($newComment);
 	
-		// Retourner la réponse
+		http_response_code(201);
 		echo json_encode(['status' => 'success', 'message' => 'Comment saved successfully.']);
-	}
-	
+	}	
 	
 
 	// Saves a new comment to the file
@@ -68,43 +65,26 @@ class CommentController
 		return json_decode($content, true) ?? [];
 	}
 
-	public function handleGetCommentsRequest(): void
-	{
-		http_response_code(200);
-		header('Content-Type: application/json');
-		echo json_encode($this->getAllComments());
-	}
+	public function handleGetCommentsRequest(array $params): void {
+		$recipeId = $params['id'] ?? null;
+	
+		if (!$recipeId) {
+			http_response_code(400);
+			echo json_encode(["error" => "ID de recette requis"]);
+			return;
+		}
+	
+		$allComments = $this->getAllComments();
+	
+		$filtered = array_filter($allComments, fn($c) => $c['recipe_id'] == $recipeId);
+	
+		echo json_encode(array_values($filtered));
+	}	
 
 	public function handleDeleteCommentRequest(): void
 	{
 		$email = $this->authController->validateAuth();
   
-}
-
-
-
-
-
-public function GetCommentsByRecipe(array $params): void
-{
-    $recipeId = $params['id'];
-
-    if (!file_exists($filePath)) {
-        http_response_code(200);
-        echo json_encode([]);
-        return;
-    }
-
-    $comments = json_decode(file_get_contents($commentsFile), true);
-
-    $filtered = array_filter($comments, function ($c) use ($recipeId) {
-        return $c['recipe_id'] == $recipeId;
-    });
-
-    http_response_code(200);
-    echo json_encode(array_values($filtered)); // array_values pour réindexer
-}
-
-
+	}
 
 }

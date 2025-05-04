@@ -6,7 +6,7 @@
     <title>Healthy Food</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gradient-to-r from-[#fefcf7] to-[#eaf4d3] relative overflow-x-hidden font-sans">
+  <body class="bg-gradient-to-r from-[#fefcf7] to-[#eaf4d3] relative overflow-x-hidden font-sans min-h-screen ">
 
     <!-- Formes et courbes supplémentaires -->
     <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#ffbbd6] blur-2xl opacity-40 rounded-full -z-20"></div>
@@ -17,12 +17,14 @@
     <div class="absolute top-16 right-10 w-72 h-72 bg-gradient-to-l from-[#ffe8c8] to-[#ff9f00] blur-xl opacity-40 rounded-full -z-10 animate-pulse"></div>
     <div class="absolute bottom-32 left-16 w-56 h-56 bg-[#eaf4d3] blur-md opacity-50 rounded-[60%] -z-10 animate-pulse"></div>
 
+
     <header class="px-10 py-6 flex justify-between items-center">
         <h1 class="text-3xl font-bold text-green-700">Glodon 🍃 </h1>
         <nav class="flex space-x-6 text-gray-700">
             <a href="dashboard.html" class="transition-colors duration-300 hover:text-green-600">Accueil</a>
             <a href="user.html" id="gestion-role-link" class="transition-colors duration-300 hover:text-green-600">Gestion des roles</a>
             <a href="ajout_recette.html" id="ajout-recette-link" class="transition-colors duration-300 hover:text-green-600">Ajout de recettes</a>
+            <a href="ges_recette.html" id="gestion-role-link" class="transition-colors duration-300 hover:text-green-600">Gestion des recettes</a>
             <a href="index.html" class="transition-colors duration-300 hover:text-green-600">Deconnexion</a>
           </nav>     
       </header>
@@ -37,8 +39,7 @@
         <p class="text-gray-600">
             Découvrez des recettes saines et délicieuses avec des ingrédients uniques
         </p>
-        <button class="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-all duration-300 ease-in-out transform hover:scale-105">Explore Recipes</button>
-      </div>
+        </div>
   
     
       <div class="relative overflow-hidden rounded-3xl shadow-2xl hover:scale-105 transition-all duration-300">

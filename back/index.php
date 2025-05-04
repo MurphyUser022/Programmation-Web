@@ -12,6 +12,8 @@ require_once 'TraductionController.php';
 $allowedOrigins = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://localhost:8080',
+    'http://localhost'
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
@@ -21,6 +23,7 @@ if (in_array($origin, $allowedOrigins)) {
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
 }
+
 // Gérer les requêtes de type preflight OPTIONS
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
@@ -53,7 +56,8 @@ $router->register('GET', '/users', [$authController, 'getAllUsers']);
 $router->register('POST', '/recipes',[$recettesController, 'AjouteRecette']);
 $router->register('GET', '/recipes', [$recettesController, 'ConsultRecipe']);
 $router->register('GET', '/recipes/{recipe_id}/{lang}', [$recettesController, 'RecipeByID']);
-
+$router->register('POST', '/recipes/{recipe_id}/approve', [$recettesController, 'validerRecette']);
+$router->register('POST', '/recipes/{recipe_id}/reject', [$recettesController, 'rejeterRecette']);
 $router->register('DELETE', '/recipes/delete/{recipe_id}', [$recettesController, 'DeleteRecipeByID']);
 $router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
 
@@ -62,14 +66,16 @@ $router->register('POST', '/roles/request', [$roleController, 'handleRoleRequest
 $router->register('POST', '/roles/{id}/approve', function($id) use ($roleController) {
     $roleController->approveRole(['id' => $id]);
 });
-
 $router->register('POST', '/roles/{id}/reject', [$roleController, 'rejectRole']);
 $router->register('GET', '/auth/user/roles', [$authController, 'getCurrentUserRoles']);
+$router->register("GET", "/users", [$roleController, "getAllUsers"]);
+
+
 
 
 // gestion des commentaires 
 $router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'handlePostCommentRequest']);
-$router->register('GET','/recipes/{id}/Getcomments', [$commentController, 'handlePostCommentRequest']);
+$router->register('GET','/recipes/{id}/Getcomments', [$commentController, 'handleGetCommentRequest']);
 
 // gestion des likes
 $router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'toggleLike']);

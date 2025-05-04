@@ -159,6 +159,5 @@ class RoleController {
         http_response_code(404);
         echo json_encode(["error" => "Utilisateur non trouvé"]);
     }
-    
 }
 ?>

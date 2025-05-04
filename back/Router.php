@@ -6,7 +6,7 @@ class Router{
 	/**
 	 * Register a new route
 	 */
-	public function register(string $method, string $path, callable $handler): void
+	public function register(string $method, string $path, $handler): void
 	{
 		// Remplacer {param} par des groupes dans une expression régulière
         $pattern = preg_replace('/{(\w+)}/', '(?P<$1>[^/]+)', $path);
@@ -33,9 +33,10 @@ class Router{
 	// CORS headers
 	$origin = $_SERVER['HTTP_ORIGIN'] ?? 'http://localhost';
 	header("Access-Control-Allow-Origin: $origin");
-	header("Access-Control-Allow-Credentials: true"); 
+	header("Access-Control-Allow-Credentials: true");
 	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 	header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 
 	if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 		http_response_code(200);
