@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const role = getCookie('role');
   if (role !== 'Admin') {
     alert("Accès réservé à l'administrateur");
-    window.location.href = "dashboard.html"; // ou login.html si non connecté
+    window.location.href = "dashboard.html"; 
   }
 });
 

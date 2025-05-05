@@ -31,7 +31,7 @@ class TraductionController{
     }
 
     public function addTraduction($params) {
-        header('Content-Type: application/json'); // ✅ Toujours le mettre
+        header('Content-Type: application/json'); 
 
         $recipeId = $params['id'] ?? null;
     
@@ -53,13 +53,13 @@ class TraductionController{
         // Décoder la chaîne des rôles et la transformer en tableau
         $roles = isset($_COOKIE['role']) ? explode(',', urldecode($_COOKIE['role'])) : [];
     
-        // 🔍 Debug pour vérifier les rôles
-        error_log("DEBUG RÔLES: " . json_encode($roles)); // ✅ Pour vérifier côté serveur
+        // Debug pour vérifier les rôles
+        error_log("DEBUG RÔLES: " . json_encode($roles)); 
     
         // Mettre tous les rôles en minuscules
         $roles = array_map('strtolower', $roles);
     
-        // ✅ Vérifie la présence des rôles exigés
+        // Vérifie la présence des rôles exigés
         if (!array_intersect(['traducteur', 'admin'], $roles)) {
             http_response_code(403);
             echo json_encode(["error" => "Accès refusé, rôle traducteur requis"]);

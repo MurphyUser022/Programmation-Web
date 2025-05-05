@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-}); // end DOMContentLoaded
+}); 
 
 function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));

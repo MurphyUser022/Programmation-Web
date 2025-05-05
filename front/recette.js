@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadCommentaires();
 
   document.getElementById('like-button').addEventListener('click', () => {
-    toggleLike(recetteId);  // Passer l'ID de la recette pour le like
+    toggleLike(recetteId);  
   });
 });
 

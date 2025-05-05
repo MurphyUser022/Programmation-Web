@@ -113,7 +113,7 @@ await fetch(`${webServerAddress}/addToBothVersions/${recipeId}`, {
   body: JSON.stringify({
     add: {
       type: "ingredient",
-      fr: `${quantity.value} de ${name.value}`, // Phrase descriptive
+      fr: `${quantity.value} de ${name.value}`, 
       quantity: quantity.value,
       name: name.value,
       ingredientType: typeInput.value
@@ -282,7 +282,7 @@ return { stepText, timer };
 // Restrictions
 const restrictions = Array.from(document.querySelectorAll("#restrictions-section > div")).map(row => {
 const input = row.querySelector("input").value.trim();
-if (!input) return null; // Si la restriction est vide, on l'ignore
+if (!input) return null;
 
 return input;
 }).filter(restriction => restriction !== null); // Filtrer les restrictions vides
@@ -293,7 +293,7 @@ imageURL,
 ingredientsFR: ingredients,
 stepsFR: steps.map(step => step.stepText),
 timers: steps.map(step => step.timer),
-restrictions: restrictions // Inclure les restrictions collectées
+restrictions: restrictions 
 };
 
 // Vérifier si tous les champs nécessaires sont remplis

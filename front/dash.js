@@ -1,4 +1,4 @@
-const apiURL = 'http://localhost:3000/api/recettes';
+/* const apiURL = 'http://localhost:3000/api/recettes'; */
 const container = document.getElementById('card-container');
 const webServerAddress = "http://localhost:8080";
 
@@ -72,7 +72,7 @@ function updateStaticTexts() {
   document.getElementById('connection').textContent = isEnglish ? 'Logout' : 'Déconnexion';
   document.querySelector('h2.text-5xl').innerHTML = isEnglish ? 'Cooking Recipe <span class="text-orange-500">Encyclopedia</span>' : 'Encyclopédie des <span class="text-orange-500">Recettes de cuisine</span>';
   document.querySelector('p.text-gray-600').textContent = isEnglish ? 'Discover healthy and delicious recipes with unique ingredients' : 'Découvrez des recettes saines et délicieuses avec des ingrédients uniques';
-  document.querySelector('button.bg-green-600').textContent = isEnglish ? 'Explore Recipes' : 'Explorer les recettes';
+  document.querySelector('button.bg-green-600').textContent = isEnglish ? 'Demander' : 'Ask';
 }
 
 document.addEventListener('DOMContentLoaded', () => {

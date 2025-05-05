@@ -1,6 +1,6 @@
 const webServerAddress = "http://localhost:8080";
 
-// 🔁 Fonction pour récupérer les utilisateurs depuis le backend
+
 async function getUsers() {
   try {
     const res = await fetch(`${webServerAddress}/users`, {
@@ -8,7 +8,7 @@ async function getUsers() {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include" // 🔐 Nécessaire pour envoyer les cookies
+      credentials: "include" 
     });
 
     if (!res.ok) {
@@ -65,10 +65,10 @@ async function afficherUsers() {
   });
 }
 
-// 🔁 Appelé au chargement
+
 window.addEventListener("DOMContentLoaded", afficherUsers);
 
-// 🔁 Fonction pour valider ou refuser un rôle
+//  Fonction pour valider ou refuser un rôle
 async function updateUserRole(userId, role, action) {
   try {
     const res = await fetch(`${webServerAddress}/roles/${userId}/${action}`, {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const role = getCookie('role');
   if (role !== 'Admin') {
     alert("Accès réservé à l'administrateur");
-    window.location.href = "dashboard.html"; // ou login.html si non connecté
+    window.location.href = "dashboard.html"; 
   }
 });
 

@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const result = await response.text();
-        console.log("🟢 Réponse:", result);
+        console.log(" Réponse:", result);
 
         if (result.includes("successfully")) {
           alert("Inscription réussie !");
