@@ -229,6 +229,7 @@ async function saveTranslation() {
     const result = await response.json();
     if (response.ok) {
       alert("Traduction sauvegardée");
+      window.location.reload();
     } else {
       alert(result.error || "Erreur lors de la sauvegarde");
     }
