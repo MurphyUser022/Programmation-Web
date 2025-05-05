@@ -205,4 +205,48 @@ class RecettesController
         echo json_encode(["error" => "Recette non trouvée"]);
     }
     
+
+
+    public function searchRecipesBy(): void {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $mot = strtolower($data['mot_rechercher'] ?? '');
+    
+        if (empty($mot)) {
+            http_response_code(400);
+            echo json_encode(["error" => "Aucun mot-clé fourni."]);
+            return;
+        }
+    
+        $recettes = json_decode(file_get_contents($this->recipeFile), true);
+        $resultats = [];
+    
+        foreach ($recettes as $recette) {
+            $ingredientsFR = array_column($recette['ingredientsFR'] ?? [], 'name');
+            $ingredientsEN = array_column($recette['traductions']['ingredients'] ?? [], 'name');
+    
+            $textes = array_merge(
+                [$recette['nameFR'] ?? '', $recette['traductions']['name'] ?? ''],
+                $ingredientsFR,
+                $ingredientsEN,
+                $recette['stepsFR'] ?? [],
+                $recette['traductions']['steps'] ?? [],
+                $recette['Sans'] ?? [],
+                $recette['traductions']['Without'] ?? []
+            );
+    
+            foreach ($textes as $texte) {
+                if (is_string($texte) && stripos($texte, $mot) !== false) {
+                    $resultats[] = $recette;
+                    break;
+                }
+            }
+        }
+    
+        http_response_code(200);
+        echo json_encode($resultats, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
+    
+    
+
+
 }

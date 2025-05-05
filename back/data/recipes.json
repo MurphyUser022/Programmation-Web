@@ -84,7 +84,7 @@
                 "Cook on low for 7-9 hours."
             ],
             "Without": [
-                "NoGluten",
+                "NoGluten B",
                 "NoMilk"
             ]
         },
@@ -179,7 +179,7 @@
                 "They are great plain, but sometimes I serve them with a light vinaigrette if we need something acidic to balance out our meal."
             ]
         },
-        "likes": []
+        "likes": 0
     },
     {
         "id": 10047,
@@ -401,7 +401,7 @@
                 "Enjoy!"
             ]
         },
-        "likes": []
+        "likes": 0
     },
     {
         "id": 10049,
@@ -608,11 +608,12 @@
                 "Bake for 30 minutes until well browned and risen."
             ]
         },
-        "likes": []
+        "likes": 0
     },
     {
         "id": 10051,
         "Author": "Unknown",
+        "Sans": [],
         "nameFR": "Biscuits \u00e0 l'avoine \u00e0 l'ancienne",
         "ingredientsFR": [
             {
@@ -704,6 +705,7 @@
         "originalURL": "#",
         "traductions": {
             "name": "Old-Fashioned Oatmeal Cookies",
+            "Without": [],
             "ingredients": [
                 {
                     "quantity": "1 cup",
@@ -779,12 +781,13 @@
                 "About 6 1\/2 dozen cookies."
             ]
         },
-        "likes": []
+        "likes": 0
     },
     {
         "id": 10052,
         "nameFR": "Carr\u00e9s \u00e0 l'avoine et aux bleuets",
         "Author": "Unknown",
+        "Sans": [],
         "ingredientsFR": [
             {
                 "quantity": "2 1\/2 tasses",
@@ -861,6 +864,7 @@
         "originalURL": "http:\/\/www.canadianliving.com\/food\/blueberry_oatmeal_squares.php",
         "traductions": {
             "name": "Blueberry Oatmeal Squares",
+            "Without": [],
             "ingredients": [
                 {
                     "quantity": "2-1\/2 cups",
@@ -924,12 +928,13 @@
                 "(Make-ahead: Cover and refrigerate for up to 2 days or overwrap with heavy-duty foil and freeze for up to 2 weeks.)"
             ]
         },
-        "likes": []
+        "likes": 0
     },
     {
         "id": 10053,
         "name": "Salade de poulet au curry",
         "Author": "Unknown",
+        "Sans": [],
         "ingredientsFR": [
             {
                 "quantity": "3",
@@ -1018,6 +1023,7 @@
         "originalURL": "http:\/\/www.chatelaine.com\/recipe\/stovetop-cooking-method\/curried-chicken-salad\/",
         "traductions": {
             "name": "Curried chicken salad",
+            "Without": [],
             "ingredients": [
                 {
                     "quantity": "3",
@@ -1092,6 +1098,6 @@
                 "Sandwich with tops"
             ]
         },
-        "likes": []
+        "likes": 0
     }
 ]

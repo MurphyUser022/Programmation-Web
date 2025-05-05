@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
 
+  const roleCookie = getCookie("role");
+  if (!roleCookie) {
+    alert("Vous devez être connecté pour accéder à cette page.");
+    window.location.href = "index.html";
+    return;
+  }
+
+  const roles = decodeURIComponent(roleCookie).split(",");
+  const isAllowed = roles.includes("admin") || roles.includes("chef");
+  if (!isAllowed) {
+    alert("Accès refusé. Seuls les cuisiniers ou chefs peuvent modifier les recettes.");
+    window.location.href = "dashboard.html";
+    return;
+  }
+
   if (!id) {
     document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>❌ Recette introuvable</div>";
     return;
@@ -18,6 +33,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById("save-button").addEventListener("click", saveTranslation);
 });
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
 
 async function loadRecipe(id) {
   const response = await fetch(`${webServerAddress}/recipes/${id}`, {
@@ -53,7 +73,7 @@ async function loadRecipe(id) {
   });
 
   const stepsContainer = document.getElementById("steps-section");
-  stepsContainer.innerHTML = "<h2 class='text-xl font-semibold mb-4'>Étapes & Durée</h2>";
+  stepsContainer.innerHTML = "";
 
   const frSteps = recette.stepsFR || [];
   const enSteps = recette.traductions?.steps || [];
@@ -70,6 +90,31 @@ async function loadRecipe(id) {
     block.appendChild(fr);
     stepsContainer.appendChild(block);
   }
+
+  // Affichage des restrictions
+  const withoutFr = document.getElementById("without-fr");
+  const withoutEn = document.getElementById("without-en");
+  withoutFr.innerHTML = "";
+  withoutEn.innerHTML = "";
+
+  (recette.Sans || []).forEach(r => {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "w-full border rounded px-3 py-2";
+    input.value = r;
+    input.readOnly = true;
+    withoutFr.appendChild(input);
+  });
+
+  (recette.traductions?.Without || []).forEach(r => {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "w-full border rounded px-3 py-2 mt-2";
+    input.value = r;
+    withoutEn.appendChild(input);
+  });
+
+
 }
 
 function createIngredientRow(quantity = "", name = "", type = "", readOnly = false) {
@@ -97,10 +142,12 @@ function createStepBlock(text = "", duration = "", lang = "en") {
   return block;
 }
 
+
 async function saveTranslation() {
   const title = document.getElementById("translated-title").value.trim();
   const ingredientInputs = document.querySelectorAll("#translated-ingredients input");
   const stepTextareas = document.querySelectorAll("#steps-section textarea[data-lang='en']");
+  const withoutEnInputs = document.querySelectorAll("#without-en input:not(button)");
 
   let isValid = true;
 
@@ -111,7 +158,6 @@ async function saveTranslation() {
     document.getElementById("translated-title").classList.remove("border-red-500");
   }
 
-  // Validation des ingrédients (en anglais)
   const translatedIngredients = [];
   for (let i = 0; i < ingredientInputs.length; i += 3) {
     const quantity = ingredientInputs[i]?.value.trim();
@@ -129,7 +175,6 @@ async function saveTranslation() {
     }
   }
 
-  // Validation des étapes traduites
   const translatedSteps = [];
   stepTextareas.forEach(textarea => {
     const val = textarea.value.trim();
@@ -139,6 +184,18 @@ async function saveTranslation() {
     } else {
       textarea.classList.remove("border-red-500");
       translatedSteps.push(val);
+    }
+  });
+
+  const translatedWithout = [];
+  withoutEnInputs.forEach(input => {
+    const val = input.value.trim();
+    if (!val) {
+      input.classList.add("border-red-500");
+      isValid = false;
+    } else {
+      input.classList.remove("border-red-500");
+      translatedWithout.push(val);
     }
   });
 
@@ -154,7 +211,7 @@ async function saveTranslation() {
     name: title,
     ingredients: translatedIngredients,
     steps: translatedSteps,
-    Without: "Some data"
+    Without: translatedWithout
   };
 
   try {
@@ -163,8 +220,8 @@ async function saveTranslation() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data),
-      credentials: 'include'
+      credentials: 'include',
+      body: JSON.stringify(data)
     });
 
     const result = await response.json();

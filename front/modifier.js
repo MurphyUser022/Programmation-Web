@@ -4,11 +4,39 @@ let originalSteps = [];
 let originalRestrictions = [];
 
 window.onload = async () => {
+   // Vérification des rôles à l'accès
+   const roleCookie = getCookie("role");
+   if (!roleCookie) {
+     alert("Vous devez être connecté pour accéder à cette page.");
+     window.location.href = "index.html";
+     return;
+   }
+ 
+   const roles = decodeURIComponent(roleCookie).split(",");
+   const isAllowed = roles.includes("Admin") || roles.includes("chef");
+ 
+   if (!isAllowed) {
+     alert("Accès refusé. Seuls les admins ou chefs peuvent ajouter une recette.");
+     window.location.href = "dashboard.html";
+     return;
+   }
+ 
+   
+   function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  
   const id = new URLSearchParams(window.location.search).get("id");
   if (!id) return alert("ID de recette manquant.");
   await loadRecipe(id);
+
+  
 };
 
+
+ 
 async function loadRecipe(id) {
   const response = await fetch(`${webServerAddress}/recipes/${id}`);
   const recipe = await response.json();
@@ -81,6 +109,7 @@ const recipeId = new URLSearchParams(window.location.search).get("id");
 await fetch(`${webServerAddress}/addToBothVersions/${recipeId}`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
+  credentials: "include",
   body: JSON.stringify({
     add: {
       type: "ingredient",
@@ -121,7 +150,8 @@ row.querySelector("button").onclick = async () => {
     const recipeId = new URLSearchParams(window.location.search).get("id");
     await fetch(`${webServerAddress}/addToBothVersions/${recipeId}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },       
+      credentials: "include",
       body: JSON.stringify({
         add: {
           type: "step",
@@ -159,6 +189,7 @@ row.querySelector("button").onclick = async () => {
     await fetch(`${webServerAddress}/addToBothVersions/${recipeId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({
         add: {
           type: "restriction",
@@ -188,6 +219,7 @@ async function removeItem(index, type) {
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: "include",
       body: JSON.stringify({
         remove: {
           type: type,
@@ -273,6 +305,7 @@ try {
 const res = await fetch(`${webServerAddress}/update/${recipeId}`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
+  credentials: "include",
   body: JSON.stringify(updatePayload)
 });
 

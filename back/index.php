@@ -61,7 +61,7 @@ $router->register('GET', '/recipes/{recipe_id}/{lang}', [$recettesController, 'R
 $router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID2']);
 
 $router->register('DELETE', '/recipes/delete/{recipe_id}', [$recettesController, 'DeleteRecipeByID']);
-$router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
+$router->register('POST', '/recipes/search', [$recettesController, 'searchRecipesBy']);
 
 $router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID2']);
 //gestion des roles
