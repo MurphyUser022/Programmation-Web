@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const roles = decodeURIComponent(roleCookie).split(",");
-  const isAllowed = roles.includes("admin") || roles.includes("chef");
+  const isAllowed = roles.includes("Admin") || roles.includes("Traducteur");
   if (!isAllowed) {
-    alert("Accès refusé. Seuls les cuisiniers ou chefs peuvent modifier les recettes.");
+    alert("Accès refusé. Seuls les admin ou Traducteur peuvent modifier les recettes.");
     window.location.href = "dashboard.html";
     return;
   }

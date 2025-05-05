@@ -65,9 +65,11 @@ function toggleTranslation() {
 
 function updateStaticTexts() {
   document.getElementById('traduire-btn').textContent = isEnglish ? 'Français' : 'Anglais';
-  document.getElementById('gestion-role-link').textContent = isEnglish ? 'Role Management' : 'Gestion des rôles';
+  document.getElementById('nav-home').textContent = isEnglish ? 'Home' : 'Accueil';
+  document.getElementById('nav-roles').textContent = isEnglish ? 'Role Management' : 'Gestion des rôles';
+  document.getElementById('nav-add').textContent = isEnglish ? 'Add Recipe' : 'Ajout de recettes';
+  document.getElementById('nav-manage').textContent = isEnglish ? 'Manage Recipes' : 'Gestion des recettes';
   document.getElementById('connection').textContent = isEnglish ? 'Logout' : 'Déconnexion';
-  document.querySelector('a[href="dashboard.html"]').textContent = isEnglish ? 'Home' : 'Accueil';
   document.querySelector('h2.text-5xl').innerHTML = isEnglish ? 'Cooking Recipe <span class="text-orange-500">Encyclopedia</span>' : 'Encyclopédie des <span class="text-orange-500">Recettes de cuisine</span>';
   document.querySelector('p.text-gray-600').textContent = isEnglish ? 'Discover healthy and delicious recipes with unique ingredients' : 'Découvrez des recettes saines et délicieuses avec des ingrédients uniques';
   document.querySelector('button.bg-green-600').textContent = isEnglish ? 'Explore Recipes' : 'Explorer les recettes';

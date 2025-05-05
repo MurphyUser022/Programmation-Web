@@ -149,4 +149,37 @@ document.getElementById("comment-button").addEventListener("click", async () => 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadRecette();
   await loadCommentaires();
+
+  document.getElementById('like-button').addEventListener('click', () => {
+    toggleLike(recetteId);  // Passer l'ID de la recette pour le like
+  });
 });
+
+
+
+async function toggleLike(recipeId) {
+  try {
+    const response = await fetch(`${webServerAddress}/recipes/${recipeId}/like`, {
+      method: 'POST',
+      credentials: 'include', 
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ recipe_id: recipeId })
+    });
+
+    // Vérification de la réponse brute avant le parse JSON
+    const textResponse = await response.text();
+    console.log("Réponse brute du serveur:", textResponse);
+
+    if (response.ok) {
+      const result = JSON.parse(textResponse); 
+
+      document.getElementById('like-count').textContent = `${result.likes} 👍`;
+    } else {
+      const errorMessage = JSON.parse(textResponse).error || "Erreur inconnue";
+      alert(errorMessage);
+    }
+  } catch (err) {
+    console.error("Erreur lors du like :", err);
+    alert("Impossible de liker pour l'instant");
+  }
+}

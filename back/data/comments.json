@@ -17,5 +17,19 @@
         "message": "parfait",
         "timestamp": "2025-05-05T02:44:16+02:00",
         "image": null
+    },
+    {
+        "recipe_id": "10051",
+        "user_id": "3",
+        "message": "Bonjour",
+        "timestamp": "2025-05-05T22:31:10+02:00",
+        "image": null
+    },
+    {
+        "recipe_id": "10048",
+        "user_id": "3",
+        "message": "Bonjour",
+        "timestamp": "2025-05-05T22:44:30+02:00",
+        "image": null
     }
 ]
