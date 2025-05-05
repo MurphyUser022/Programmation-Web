@@ -31,29 +31,42 @@ class TraductionController{
     }
 
     public function addTraduction($params) {
+        header('Content-Type: application/json'); // ✅ Toujours le mettre
 
         $recipeId = $params['id'] ?? null;
-
+    
         if (!$recipeId) {
             http_response_code(400);
             echo json_encode(["error" => "ID de recette manquant"]);
             return;
         }
-        
+    
+        // Vérifie que l'utilisateur est bien connecté
         if (!isset($_COOKIE['user_id'])) {
-			http_response_code(403);
-			echo json_encode(["error" => "Utilisateur non authentifié"]);
-			return;
-		}
+            http_response_code(403);
+            echo json_encode(["error" => "Utilisateur non authentifié"]);
+            return;
+        }
+    
+        $userId = $_COOKIE['user_id'];
+    
+        // Décoder la chaîne des rôles et la transformer en tableau
+        $roles = isset($_COOKIE['role']) ? explode(',', urldecode($_COOKIE['role'])) : [];
+    
+        // 🔍 Debug pour vérifier les rôles
+        error_log("DEBUG RÔLES: " . json_encode($roles)); // ✅ Pour vérifier côté serveur
+    
+        // Mettre tous les rôles en minuscules
+        $roles = array_map('strtolower', $roles);
+    
+        // ✅ Vérifie la présence des rôles exigés
+        if (!array_intersect(['traducteur', 'admin'], $roles)) {
+            http_response_code(403);
+            echo json_encode(["error" => "Accès refusé, rôle traducteur requis"]);
+            return;
+        }
 
-		$userId = $_COOKIE['user_id'];
-		$roles = $this->getUserRole($userId);
-
-		if (!array_intersect(['traducteur', 'admin'], $roles)) {
-			http_response_code(403);
-			echo json_encode(["error" => "Accès refusé, rôle traducteur requis"]);
-			return;
-		}
+        
 
 		$data = json_decode(file_get_contents("php://input"), true);
 		if (!isset($data['name'], $data['ingredients'], $data['steps'], $data['Without'])) {
@@ -65,12 +78,16 @@ class TraductionController{
 		$recipes = $this->loadRecipes();
 		foreach ($recipes as &$recipe) {
 			if ($recipe['id'] == $recipeId) {
-				$recipe['traductions'] = [
-					"name" => $data['name'],
-					"ingredients" => $data['ingredients'],
-					"steps" => $data['steps'],
-					"Without" => $data['Without']
-				];
+                $existing = $recipe['traductions'] ?? [];
+
+                $recipe['traductions'] = array_merge($existing, array_filter([
+                  "name" => $data['name'],
+                  "ingredients" => $data['ingredients'],
+                  "steps" => $data['steps'],    
+                  "Without" => $data['Without']
+                ], fn($v) => $v !== null));
+
+                
 				$this->saveRecipes($recipes);
 				http_response_code(200);
 				echo json_encode(["message" => "Traduction ajoutée"]);

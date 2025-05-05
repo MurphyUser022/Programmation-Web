@@ -6,6 +6,7 @@ require_once 'CommentController.php';
 require_once 'RecettesController.php';
 require_once 'RoleController.php';
 require_once 'LikeController.php';
+require_once 'ModifierController.php';
 require_once 'TraductionController.php';
 
 // CORS headers
@@ -37,6 +38,7 @@ $commentController = new CommentController('data/comments.json', $authController
 $roleController = new RoleController('data/users.json', $authController);
 $likeController = new LikeController("data/recipes.json", "data/like.json");
 $recettesController = new RecettesController('data/recipes.json', $authController);
+$modifierController = new ModifierController('data/recipes.json', $authController);
 $traductionController = new TraductionController('data/recipes.json', 'data/users.json',$authController);
 
 
@@ -56,10 +58,12 @@ $router->register('POST', '/recipes',[$recettesController, 'testCokiee']);
 
 $router->register('GET', '/recipes', [$recettesController, 'ConsultRecipe']);
 $router->register('GET', '/recipes/{recipe_id}/{lang}', [$recettesController, 'RecipeByID']);
+$router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID2']);
 
 $router->register('DELETE', '/recipes/delete/{recipe_id}', [$recettesController, 'DeleteRecipeByID']);
 $router->register('GET', '/recipes', [$recettesController, 'searchRecipes']);
 
+$router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID2']);
 //gestion des roles
 $router->register('POST', '/roles/request', [$roleController, 'handleRoleRequest']);
 $router->register('POST', '/roles/{id}/approve', function($id) use ($roleController) {
@@ -80,5 +84,13 @@ $router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'toggleL
 // gestion des traductions
 $router->register('POST', '/recipes/{id}/traduction', [$traductionController, 'addTraduction']);
 $router->register('GET', '/recipes/{id}/traduction/{lang}', [$traductionController, 'getRecettesTraduits']);
+
+
+$router->register('POST','/update/{recipe_id}', [$modifierController , 'updateRecipe']);
+//$router->register('POST','/getStepsWithIndex/{recipe_id}', [$modifierController , 'getStepsWithIndex']);
+$router->register('POST','/testDeleteStepLocal/{recipe_id}', [$modifierController , 'testDeleteStepLocal']);
+
+
+$router->register('POST','/addToBothVersions/{recipe_id}', [$modifierController , 'addToBothVersions']);
 
 $router->handleRequest();

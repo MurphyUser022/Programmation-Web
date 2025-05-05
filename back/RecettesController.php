@@ -179,4 +179,30 @@ class RecettesController
         echo json_encode(["error" => "Recette non trouvée"]);
     }
     
+
+
+    public function RecipeByID2(array $params): void
+    {
+        $id = (int)$params['recipe_id']; // On cast ici
+    
+        if (!file_exists($this->recipeFile)) {
+            http_response_code(404); // petit correctif : 4004 n’existe pas 😉
+            echo json_encode(["error" => "Fichier de recettes introuvable"]);
+            return;
+        }
+    
+        $recipes = json_decode(file_get_contents($this->recipeFile), true);
+    
+        foreach ($recipes as $recipe) {
+            if ($recipe['id'] === $id) {
+                http_response_code(200);
+                echo json_encode($recipe);
+                return;
+            }
+        }
+    
+        http_response_code(404);
+        echo json_encode(["error" => "Recette non trouvée"]);
+    }
+    
 }
