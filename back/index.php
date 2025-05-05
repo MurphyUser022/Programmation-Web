@@ -68,9 +68,8 @@ $router->register('POST', '/recipes/search', [$recettesController, 'searchRecipe
 $router->register('GET', '/recipes/{recipe_id}', [$recettesController, 'RecipeByID2']);
 //gestion des roles
 $router->register('POST', '/roles/request', [$roleController, 'handleRoleRequest']);
-$router->register('POST', '/roles/{id}/approve', function($id) use ($roleController) {
-    $roleController->approveRole(['id' => $id]);
-});
+$router->register('POST', '/roles/{id}/approve', [$roleController, 'approveRole']);
+
 $router->register('POST', '/roles/{id}/reject', [$roleController, 'rejectRole']);
 $router->register('GET', '/auth/user/roles', [$authController, 'getCurrentUserRoles']);
 $router->register("GET", "/users", [$roleController, "getAllUsers"]);
