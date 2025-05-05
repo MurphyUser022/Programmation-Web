@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const roles = decodeURIComponent(roleCookie).split(",");
-  const isAllowed = roles.includes("Admin") || roles.includes("Traducteur");
+  const rolesLower = roles.map(role => role.toLowerCase()); 
+  const isAllowed = rolesLower.includes("admin") || rolesLower.includes("traducteur");
+  
   if (!isAllowed) {
     alert("Accès refusé. Seuls les admin ou Traducteur peuvent modifier les recettes.");
     window.location.href = "dashboard.html";
