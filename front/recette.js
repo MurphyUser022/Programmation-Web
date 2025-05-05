@@ -56,21 +56,13 @@ async function loadRecette() {
 
 async function fetchUsers() {
   try {
-    const res = await fetch(`${webServerAddress}/users`, {
-      credentials: 'include'
-    });
-    if (res.ok) {
-      return await res.json(); // tableau d'utilisateurs
-    } else {
-      console.error("Erreur récupération users");
-      return [];
-    }
+    const res = await fetch(`${webServerAddress}/users`, { credentials: 'include' });
+    return res.ok ? await res.json() : [];
   } catch (err) {
     console.error("Erreur réseau:", err);
     return [];
   }
 }
-
 
 // Chargement des commentaires
 async function loadCommentaires() {
@@ -84,19 +76,29 @@ async function loadCommentaires() {
     ]);
 
     const commentaires = await resComments.json();
-
     container.innerHTML = '';
+
     commentaires.forEach(comment => {
       const user = users.find(u => String(u.id) === String(comment.user_id));
       const username = user ? user.username : `Utilisateur ${comment.user_id}`;
 
       const li = document.createElement("li");
-      li.className = "bg-gray-100 p-4 rounded-lg shadow-md";
+      li.className = "bg-gray-100 p-4 rounded-lg shadow-md mb-4";
       li.innerHTML = `
         <p class="font-medium text-gray-800">${username} :</p>
         <p class="text-gray-700">${comment.message}</p>
         <span class="text-sm text-gray-500">${new Date(comment.timestamp).toLocaleString()}</span>
       `;
+
+      // Ajout de l'image s'il y en a
+      if (comment.image) {
+        const img = document.createElement("img");
+        img.src = `${webServerAddress}/${comment.image}`;
+        img.alt = "Image du commentaire";
+        img.className = "w-40 mt-2 rounded shadow";
+        li.appendChild(img);
+      }
+
       container.appendChild(li);
     });
 
@@ -106,34 +108,44 @@ async function loadCommentaires() {
   }
 }
 
-
-// Ajouter un commentaire
+// Envoi du commentaire (texte et image)
 document.getElementById("comment-button").addEventListener("click", async () => {
-  const message = document.getElementById("comment-input").value.trim();
+  const commentText = document.getElementById("comment-input").value.trim();
+  const imageFile = document.getElementById("comment-image").files[0];
 
-  if (!message) return alert("Entrez un commentaire");
+  if (!commentText && !imageFile) {
+    alert("Veuillez entrer un commentaire ou ajouter une image.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("message", commentText);
+  if (imageFile) formData.append("image", imageFile);
 
   try {
     const res = await fetch(`${webServerAddress}/Addcomments/${recetteId}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ message })
+      body: formData
     });
 
-    const data = await res.json();
+    const result = await res.json();
+
     if (res.ok) {
       document.getElementById("comment-input").value = '';
+      document.getElementById("comment-image").value = '';
       await loadCommentaires();
     } else {
-      alert(data.error || "Erreur lors de l'ajout du commentaire");
+      alert(result.error || "Erreur lors de l'ajout du commentaire");
     }
+
   } catch (err) {
-    console.error("Erreur ajout commentaire", err);
+    console.error("Erreur réseau :", err);
     alert("Erreur réseau");
   }
 });
 
+// Initialisation
 document.addEventListener("DOMContentLoaded", async () => {
   await loadRecette();
   await loadCommentaires();

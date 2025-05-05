@@ -10,5 +10,12 @@
         "user_id": "rec_68025d6b4a1ae9_91354408",
         "message": "Excellent",
         "timestamp": "2025-05-05T02:17:45+02:00"
+    },
+    {
+        "recipe_id": "10045",
+        "user_id": "rec_6802cfa98c2687_96747835",
+        "message": "parfait",
+        "timestamp": "2025-05-05T02:44:16+02:00",
+        "image": null
     }
 ]

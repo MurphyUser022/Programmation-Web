@@ -14,21 +14,35 @@ class CommentController
 
 	public function handlePostCommentRequest(array $params): void {
 		$recipeId = $params['id'] ?? null;
+		$message = $_POST['message'] ?? null;
+		$imagePath = null;
 	
-		$data = json_decode(file_get_contents("php://input"), true);
-		$message = $data['message'] ?? null;
-	
-		if (!$recipeId || !$message) {
+		if (!$recipeId || (!$message && empty($_FILES['image']))) {
 			http_response_code(400);
-			echo json_encode(["error" => "Recipe ID and message are required."]);
+			echo json_encode(["error" => "Texte ou image requis."]);
 			return;
 		}
 	
 		$userId = $_COOKIE['user_id'] ?? null;
 		if (!$userId) {
 			http_response_code(401);
-			echo json_encode(["error" => "User not authenticated."]);
+			echo json_encode(["error" => "Utilisateur non authentifié"]);
 			return;
+		}
+	
+		// Upload de l'image
+		if (!empty($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+			$uploadDir = "uploads/comments/";
+			if (!is_dir($uploadDir)) {
+				mkdir($uploadDir, 0777, true);
+			}
+	
+			$filename = uniqid("comment_") . "_" . basename($_FILES['image']['name']);
+			$targetPath = $uploadDir . $filename;
+	
+			if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+				$imagePath = $targetPath;
+			}
 		}
 	
 		$newComment = [
@@ -36,13 +50,15 @@ class CommentController
 			'user_id' => $userId,
 			'message' => $message,
 			'timestamp' => date('c'),
+			'image' => $imagePath
 		];
 	
 		$this->saveComment($newComment);
 	
 		http_response_code(201);
-		echo json_encode(['status' => 'success', 'message' => 'Comment saved successfully.']);
-	}	
+		echo json_encode(['status' => 'success', 'message' => 'Commentaire enregistré']);
+	}
+	
 	
 
 	// Saves a new comment to the file
