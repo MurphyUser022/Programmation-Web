@@ -74,8 +74,8 @@ $router->register("GET", "/users", [$roleController, "getAllUsers"]);
 
 
 // gestion des commentaires 
-$router->register('POST','/recipes/{id}/Addcomments', [$commentController, 'handlePostCommentRequest']);
-$router->register('GET','/recipes/{id}/Getcomments', [$commentController, 'handleGetCommentRequest']);
+$router->register('POST','/Addcomments/{id}', [$commentController, 'handlePostCommentRequest']);
+$router->register('GET','/comments/{id}', [$commentController, 'handleGetCommentsRequest']);
 
 // gestion des likes
 $router->register('POST','/recipes/{recipe_id}/like', [$likeController, 'toggleLike']);

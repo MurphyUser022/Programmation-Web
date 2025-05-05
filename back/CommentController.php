@@ -79,7 +79,8 @@ class CommentController
 		$filtered = array_filter($allComments, fn($c) => $c['recipe_id'] == $recipeId);
 	
 		echo json_encode(array_values($filtered));
-	}	
+	}
+		
 
 	public function handleDeleteCommentRequest(): void
 	{

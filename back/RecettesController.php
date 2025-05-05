@@ -148,40 +148,26 @@ class RecettesController
 
 
     
-    public function RecipeByID(array $params): void
-    {
-        $id = (int)$params['recipe_id']; // On cast ici
-
-        // Récupérer la langue (fr ou en)
-        $lang = isset($params['lang']) ? $params['lang'] : 'fr';  // Par défaut, la langue est 'fr'
+    public function getRecetteById(array $params): void {
+        $id = $params['id'] ?? null;
+        $lang = $_GET['lang'] ?? 'fr';
     
-
-        if (!in_array($lang, ['fr', 'en'])) {
-            http_response_code(400); // Mauvaise requête si la langue est invalide
-            echo json_encode(["error" => "Langue invalide"]);
-            return;
-        }
-        
-    
-        if (!file_exists($this->recipeFile)) {
-            http_response_code(404); // petit correctif : 4004 n’existe pas 😉
-            echo json_encode(["error" => "Fichier de recettes introuvable"]);
-            return;
-        }
-    
-        $recipes = json_decode(file_get_contents($this->recipeFile), true);
+        $recipes = json_decode(file_get_contents($this->recipeFile), true) ?? [];
     
         foreach ($recipes as $recipe) {
-            if ($recipe['id'] === $id) {
-                http_response_code(200);
+            if ((string)$recipe['id'] === (string)$id) {
+                if ($lang === 'en' && isset($recipe['traductions'])) {
+                    echo json_encode($recipe['traductions']);
+                    return;
+                }
                 echo json_encode($recipe);
                 return;
             }
         }
     
         http_response_code(404);
-        echo json_encode(["error" => "Recette non trouvée"]);
-    }
+        echo json_encode(["error" => "Recette introuvable"]);
+    }    
     
     public function validerRecette($params) {
         $recipeId = is_array($params) ? ($params['id'] ?? $params['recipe_id'] ?? null) : $params;

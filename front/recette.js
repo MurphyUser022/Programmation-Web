@@ -1,115 +1,140 @@
 const webServerAddress = "http://localhost:8080";
 
-let isEnglish = false;
+// Utilitaires
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const params = new URLSearchParams(window.location.search); 
-  const id = params.get('id');
-  const lang = params.get('lang');
+const recetteId = getQueryParam("id");
+const isEnglish = getQueryParam("lang") === "en";
 
-  isEnglish = lang === 'en';
+// Chargement de la recette
+async function loadRecette() {
+  const response = await fetch(`${webServerAddress}/recipes`);
+  const recettes = await response.json();
+  const recette = recettes.find(r => r.id == recetteId);
 
-  if (!id) {
-    document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>❌ Recette introuvable</div>";
+  if (!recette) {
+    document.body.innerHTML = "<p>Recette non trouvée</p>";
     return;
   }
 
-  try {
-    await loadRecipe(id);
-    await loadComments(id);
-  } catch (err) {
-    console.error(err);
-    document.body.innerHTML = "<div class='text-center text-2xl text-gray-500 mt-10'>👻 Oups ! Aucune recette trouvée.</div>";
-  }
+  const name = isEnglish && recette.traductions ? recette.traductions.name : recette.nameFR;
+  const ingredients = isEnglish && recette.traductions ? recette.traductions.ingredients : recette.ingredientsFR;
+  const steps = isEnglish && recette.traductions ? recette.traductions.steps : recette.stepsFR;
+  const restrictions = isEnglish && recette.traductions ? recette.traductions.Without : recette.Sans;
 
-  document.getElementById('like-button').addEventListener('click', () => {
-    toggleLike(id);
+  document.getElementById("recette-img").src = recette.imageURL;
+  document.getElementById("recette-title").textContent = name;
+  document.querySelector("p.italic").textContent = `Recette par ${recette.Author || 'Inconnu'}`;
+
+  const ingList = document.getElementById("recette-ingredients");
+  ingList.innerHTML = '';
+  ingredients.forEach(ing => {
+    const li = document.createElement("li");
+    li.textContent = ing.name || ing;
+    ingList.appendChild(li);
   });
 
-  document.getElementById('comment-button').addEventListener('click', () => {
-    addComment(id);
+  const stepsList = document.getElementById("recette-steps");
+  stepsList.innerHTML = '';
+  steps.forEach(step => {
+    const li = document.createElement("li");
+    li.textContent = step;
+    stepsList.appendChild(li);
   });
-});
 
-async function loadRecipe(id) {
-  const response = await fetch(`${webServerAddress}/recipes/${id}/${isEnglish ? 'en' : 'fr'}`);
-  if (!response.ok) throw new Error('Recette non trouvée');
-
-  const recette = await response.json();
-
-  document.getElementById('recette-img').src = recette.imageURL;
-  document.getElementById('recette-title').textContent = isEnglish && recette.traductions ? recette.traductions.name : recette.nameFR;
-  document.querySelector('p.text-lg').textContent = `Recette par ${recette.Author}`;
-
-  const restrictionsList = isEnglish && recette.traductions ? recette.traductions.Without : recette.Sans;
-  const restrictions = document.getElementById('restrictions');
-  restrictions.innerHTML = '';
-  restrictionsList.forEach(r => {
-    const li = document.createElement('li');
+  const restList = document.getElementById("restrictions");
+  restList.innerHTML = '';
+  restrictions?.forEach(r => {
+    const li = document.createElement("li");
     li.textContent = r;
-    restrictions.appendChild(li);
-  });
-
-  const ingredients = document.getElementById('recette-ingredients');
-  ingredients.innerHTML = '';
-  const ingList = isEnglish && recette.traductions ? recette.traductions.ingredients : recette.ingredientsFR;
-  ingList.forEach(i => {
-    const li = document.createElement('li');
-    li.textContent = `${i.quantity} ${i.name ?? ''}`;
-    ingredients.appendChild(li);
-  });
-
-  const steps = document.getElementById('recette-steps');
-  steps.innerHTML = '';
-  const stepList = isEnglish && recette.traductions ? recette.traductions.steps : recette.stepsFR;
-  stepList.forEach((s, i) => {
-    const li = document.createElement('li');
-    li.textContent = `${s}${recette.timers[i] ? ` (${recette.timers[i]} min)` : ''}`;
-    steps.appendChild(li);
+    restList.appendChild(li);
   });
 }
 
-async function loadComments(recipeId) {
-  const ul = document.getElementById('commentaires');
+async function fetchUsers() {
   try {
-    const response = await fetch(`${webServerAddress}/recipes/${recipeId}/Getcomments`);
-    const comments = await response.json();
-
-    ul.innerHTML = '';
-    if (!comments.length) {
-      ul.innerHTML = `<li class="text-gray-500">👻 Aucun commentaire pour cette recette.</li>`;
-      return;
+    const res = await fetch(`${webServerAddress}/users`, {
+      credentials: 'include'
+    });
+    if (res.ok) {
+      return await res.json(); // tableau d'utilisateurs
+    } else {
+      console.error("Erreur récupération users");
+      return [];
     }
+  } catch (err) {
+    console.error("Erreur réseau:", err);
+    return [];
+  }
+}
 
-    comments.forEach(c => {
-      const li = document.createElement('li');
+
+// Chargement des commentaires
+async function loadCommentaires() {
+  const container = document.getElementById("commentaires");
+  container.innerHTML = "<p class='text-sm text-gray-500'>Chargement des commentaires...</p>";
+
+  try {
+    const [resComments, users] = await Promise.all([
+      fetch(`${webServerAddress}/comments/${recetteId}`, { credentials: "include" }),
+      fetchUsers()
+    ]);
+
+    const commentaires = await resComments.json();
+
+    container.innerHTML = '';
+    commentaires.forEach(comment => {
+      const user = users.find(u => String(u.id) === String(comment.user_id));
+      const username = user ? user.username : `Utilisateur ${comment.user_id}`;
+
+      const li = document.createElement("li");
       li.className = "bg-gray-100 p-4 rounded-lg shadow-md";
       li.innerHTML = `
-        <p class="font-medium text-gray-800">${c.username ?? 'Utilisateur'} :</p>
-        <p class="text-gray-700">${c.message}</p>
-        <span class="text-sm text-gray-500">${new Date(c.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+        <p class="font-medium text-gray-800">${username} :</p>
+        <p class="text-gray-700">${comment.message}</p>
+        <span class="text-sm text-gray-500">${new Date(comment.timestamp).toLocaleString()}</span>
       `;
-      ul.appendChild(li);
+      container.appendChild(li);
     });
-  } catch {
-    ul.innerHTML = `<li class="text-red-500">Erreur de chargement des commentaires.</li>`;
+
+  } catch (err) {
+    console.error("Erreur chargement commentaires", err);
+    container.innerHTML = "<p class='text-red-600'>Impossible de charger les commentaires.</p>";
   }
 }
 
-async function addComment(id) {
-  const message = document.getElementById('comment-input').value.trim();
-  if (!message) return alert("Veuillez écrire un commentaire.");
 
-  const res = await fetch(`${webServerAddress}/recipes/${id}/Addcomments`, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ message })
-  });
+// Ajouter un commentaire
+document.getElementById("comment-button").addEventListener("click", async () => {
+  const message = document.getElementById("comment-input").value.trim();
 
-  if (res.ok) {
-    document.getElementById('comment-input').value = '';
-    await loadComments(id);
-  } else {
-    alert("Erreur lors de l'envoi du commentaire.");
+  if (!message) return alert("Entrez un commentaire");
+
+  try {
+    const res = await fetch(`${webServerAddress}/Addcomments/${recetteId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      document.getElementById("comment-input").value = '';
+      await loadCommentaires();
+    } else {
+      alert(data.error || "Erreur lors de l'ajout du commentaire");
+    }
+  } catch (err) {
+    console.error("Erreur ajout commentaire", err);
+    alert("Erreur réseau");
   }
-}
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadRecette();
+  await loadCommentaires();
+});
