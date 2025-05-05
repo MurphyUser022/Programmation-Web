@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (result.includes("successfully")) {
           alert("Inscription réussie !");
-          window.location.href = "dashboard.html";
+          window.location.href = "index.html";
         } else {
           alert("Erreur: " + result);
         }
